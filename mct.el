@@ -4,7 +4,7 @@
 
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; URL: https://gitlab.com/protesilaos/mct
-;; Version: 0.1.0
+;; Version: 0.2.0
 ;; Package-Requires: ((emacs "28.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -249,12 +249,14 @@ Add this to `completion-list-mode-hook'."
                              'mct-line-number-current-line)
     (display-line-numbers-mode 1)))
 
+(defvar hl-line-face)
+
 (defun mct--hl-line ()
   "Set up line highlighting for the completions' buffer.
 Add this to `completion-list-mode-hook'."
   (when (and (derived-mode-p 'completion-list-mode)
              (eq mct-completions-format 'one-column))
-    (face-remap-add-relative 'hl-line 'mct-hl-line)
+    (face-remap-add-relative hl-line-face 'mct-hl-line)
     (hl-line-mode 1)))
 
 ;; Thanks to Omar Antolín Camarena for recommending the use of
