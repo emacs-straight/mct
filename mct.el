@@ -182,27 +182,17 @@ NOTE that setting this option with `setq' requires a restart of
 
 ;;;; Completion metadata
 
-(defun mct--minibuffer-field-beg ()
-  "Determine beginning of completion in the minibuffer."
-  (if-let ((window (active-minibuffer-window)))
-      (with-current-buffer (window-buffer window)
-        (minibuffer-prompt-end))
-    (nth 0 completion-in-region--data)))
-
-(defun mct--minibuffer-field-end ()
-  "Determine end of completion in the minibuffer."
-  (if-let ((window (active-minibuffer-window)))
-      (with-current-buffer (window-buffer window)
-        (point-max))
-    (nth 1 completion-in-region--data)))
-
 (defun mct--completion-category ()
   "Return completion category."
   (when-let ((window (active-minibuffer-window)))
     (with-current-buffer (window-buffer window)
-      (let* ((beg (mct--minibuffer-field-beg))
-             (md (completion--field-metadata beg)))
-        (alist-get 'category (cdr md))))))
+      (completion-metadata-get
+       (completion-metadata (buffer-substring-no-properties
+                             (minibuffer-prompt-end)
+                             (max (minibuffer-prompt-end) (point)))
+                            minibuffer-completion-table
+                            minibuffer-completion-predicate)
+       'category))))
 
 ;;;; Basics of intersection between minibuffer and Completions' buffer
 
@@ -264,14 +254,10 @@ Add this to `completion-list-mode-hook'."
       (setq-local window-resize-pixelwise t))
     (fit-window-to-buffer window (floor (frame-height) 2) 1)))
 
-(defun mct--input-string ()
-  "Return the contents of the minibuffer as a string."
-  (buffer-substring-no-properties (minibuffer-prompt-end) (point-max)))
-
 (defun mct--minimum-input ()
   "Test for minimum requisite input for live completions.
 See `mct-minimum-input'."
-  (>= (length (mct--input-string)) mct-minimum-input))
+  (>= (- (point-max) (minibuffer-prompt-end)) mct-minimum-input))
 
 ;;;;; Live-updating Completions' buffer
 
@@ -458,7 +444,7 @@ by `mct-completion-windows-regexp'."
    ((and (eq (char-before) ?/)
          (eq (mct--completion-category) 'file))
     (when (string-equal (minibuffer-contents) "~/")
-      (delete-region (mct--minibuffer-field-beg) (mct--minibuffer-field-end))
+      (delete-minibuffer-contents)
       (insert (expand-file-name "~/"))
       (goto-char (line-end-position)))
     (save-excursion
@@ -800,21 +786,13 @@ determined as follows:
 A candidate is recognised for as long as point is not past its
 last character."
   (interactive nil mct-mode)
-  (let* ((window (mct--get-completion-window))
-         (buffer (window-buffer window))
-         (mini (active-minibuffer-window))
-         pos)
-    (when (and mini window)
-      (with-current-buffer buffer
-        (when-let ((old-point (window-old-point window)))
-          (if (= old-point (point-min))
-              (setq pos (mct--first-completion-point))
-            (setq pos old-point))))
-      (when pos
-        ;; NOTE 2021-10-26: why must we `switch-to-completions' to get a
-        ;; valid candidate?  Why can't this be part of the above
-        ;; `with-current-buffer'?
-        (switch-to-completions)
+  (when-let ((window (mct--get-completion-window))
+             (_mini (active-minibuffer-window)))
+    (with-selected-window window
+      (when-let* ((old-point (window-old-point window))
+                  (pos (if (= old-point (point-min))
+                           (mct--first-completion-point)
+                         old-point)))
         (goto-char pos)
         (mct-choose-completion-no-exit)))))
 
@@ -911,7 +889,7 @@ ARGS."
            (eq (mct--completion-category) 'file)
            rfn-eshadow-overlay (overlay-buffer rfn-eshadow-overlay)
            (eq this-command 'self-insert-command)
-           (= saved-point (mct--minibuffer-field-end))
+           (= saved-point (point-max))
            (or (>= (- (point) (overlay-end rfn-eshadow-overlay)) 2)
                (eq ?/ (char-before (- (point) 2)))))
       (delete-region (overlay-start rfn-eshadow-overlay)
