@@ -260,6 +260,7 @@ Meant to be added to `after-change-functions'."
                   (save-excursion
                     (goto-char (point-max))
                     (let ((inhibit-message t)
+                          (message-log-max nil)
                           ;; don't ring the bell in `minibuffer-completion-help'
                           ;; when <= 1 completion exists.
                           (ring-bell-function #'ignore))
@@ -804,7 +805,7 @@ A candidate is recognised for as long as point is not past its
 last character."
   (interactive nil mct-mode)
   (when-let ((window (mct--get-completion-window))
-             (_mini (active-minibuffer-window)))
+             ((active-minibuffer-window)))
     (with-selected-window window
       (when-let* ((old-point (window-old-point window))
                   (pos (if (= old-point (point-min))
@@ -885,11 +886,6 @@ Apply APP while inhibiting modification hooks."
   (if mct-apply-completion-stripes
       (mct--add-stripes)
     (mct--remove-stripes)))
-
-(defun mct--setup-silent-line-truncation ()
-  "Toggle line truncation without printing messages."
-  (let ((inhibit-message t))
-    (toggle-truncate-lines t)))
 
 ;;;;; Shadowed path
 
@@ -976,20 +972,19 @@ region.")
 
 (defvar mct-completion-list-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "M-v") #'scroll-down-command)
     (define-key map [remap keyboard-quit] #'mct-keyboard-quit-dwim)
     (define-key map [remap goto-line] #'mct-choose-completion-number)
     (define-key map [remap next-line] #'mct-next-completion-or-mini)
     (define-key map (kbd "n") #'mct-next-completion-or-mini)
     (define-key map [remap previous-line] #'mct-previous-completion-or-mini)
-    (define-key map (kbd "M-p") #'mct-previous-completion-group)
-    (define-key map (kbd "M-n") #'mct-next-completion-group)
     (define-key map (kbd "p") #'mct-previous-completion-or-mini)
+    (define-key map [remap backward-paragraph] #'mct-previous-completion-group)
+    (define-key map [remap forward-paragraph] #'mct-next-completion-group)
     (define-key map (kbd "e") #'mct-focus-minibuffer)
     (define-key map (kbd "M-e") #'mct-edit-completion)
-    (define-key map (kbd "<tab>") #'mct-choose-completion-no-exit)
-    (define-key map (kbd "<return>") #'mct-choose-completion-exit)
-    (define-key map (kbd "<M-return>") #'mct-choose-completion-dwim)
+    (define-key map (kbd "TAB") #'mct-choose-completion-no-exit)
+    (define-key map (kbd "RET") #'mct-choose-completion-exit)
+    (define-key map (kbd "M-RET") #'mct-choose-completion-dwim)
     (define-key map [remap beginning-of-buffer] #'mct-beginning-of-buffer)
     map)
   "Derivative of `completion-list-mode-map'.")
@@ -998,19 +993,19 @@ region.")
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-j") #'exit-minibuffer)
     (define-key map [remap goto-line] #'mct-choose-completion-number)
+    (define-key map [remap next-line] #'mct-switch-to-completions-top)
+    (define-key map [remap next-line-or-history-element] #'mct-switch-to-completions-top)
+    (define-key map [remap previous-line] #'mct-switch-to-completions-bottom)
+    (define-key map [remap previous-line-or-history-element] #'mct-switch-to-completions-bottom)
     (define-key map (kbd "M-e") #'mct-edit-completion)
-    (define-key map (kbd "<C-return>") #'mct-complete-and-exit)
-    (define-key map (kbd "C-n") #'mct-switch-to-completions-top)
-    (define-key map (kbd "<down>") #'mct-switch-to-completions-top)
-    (define-key map (kbd "C-p") #'mct-switch-to-completions-bottom)
-    (define-key map (kbd "<up>") #'mct-switch-to-completions-bottom)
+    (define-key map (kbd "C-RET") #'mct-complete-and-exit)
     (define-key map (kbd "C-l") #'mct-list-completions-toggle)
     map)
   "Derivative of `minibuffer-local-completion-map'.")
 
 (defvar mct-minibuffer-local-filename-completion-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "<backspace>") #'mct-backward-updir)
+    (define-key map (kbd "DEL") #'mct-backward-updir)
     map)
   "Derivative of `minibuffer-local-filename-completion-map'.")
 
@@ -1033,11 +1028,11 @@ region.")
 (defun mct--setup-completion-list ()
   "Set up the completion-list for Mct."
   (when (mct--active-p)
-    (setq-local completion-show-help nil)
+    (setq-local completion-show-help nil
+                truncate-lines t)
     (mct--setup-clean-completions)
     (mct--setup-appearance)
     (mct--setup-completion-list-keymap)
-    (mct--setup-silent-line-truncation)
     (mct--setup-highlighting)
     (mct--setup-line-numbers)
     (cursor-sensor-mode)))
