@@ -115,8 +115,9 @@ number of candidates that are being computed."
 
 (defcustom mct-live-update-delay 0.3
   "Delay in seconds before updating the Completions' buffer.
+Set this to 0 to disable the delay.
 
-Set this to 0 to disable the delay."
+This applies in all cases covered by `mct-live-completion'."
   :type 'number
   :group 'mct)
 
@@ -173,17 +174,7 @@ See `completions-format' for possible values."
   :type '(choice (const horizontal) (const vertical) (const one-column))
   :group 'mct)
 
-(defcustom mct-region-completions-format mct-completions-format
-  "The Completions' appearance used by `mct-region-mode'.
-See `completions-format' for possible values.
-
-This is like `mct-completions-format' when performing in-buffer
-completion."
-  :type '(choice (variable :tag "Inherit value of `mct-completions-format'" mct-completions-format)
-                 (const horizontal)
-                 (const vertical)
-                 (const one-column))
-  :group 'mct)
+(make-obsolete 'mct-region-completions-format 'mct-completions-format "0.5.0")
 
 ;;;; Completion metadata
 
@@ -347,7 +338,7 @@ Apply APP by first let binding the `completions-format' to
 Apply APP by first let binding the `completions-format' to
 `mct-completions-format'."
   (if (mct--region-p)
-      (let ((completions-format mct-region-completions-format))
+      (let ((completions-format mct-completions-format))
         (apply app)
         (mct--fit-completions-window))
     (apply app)))
@@ -434,12 +425,8 @@ Apply APP by first setting up the minibuffer to work with Mct."
 ;; We need this to make things work on Emacs 27.
 (defun mct--one-column-p ()
   "Test if we have a one-column view available."
-  (when (>= emacs-major-version 28)
-    (cond
-     ((mct--region-p)
-      (eq mct-region-completions-format 'one-column))
-     ((mct--minibuffer-p)
-      (eq mct-completions-format 'one-column)))))
+  (and (eq mct-completions-format 'one-column)
+       (> emacs-major-version 28)))
 
 ;;;;; Focus minibuffer and/or show completions
 
@@ -1029,33 +1016,33 @@ region.")
 
 (defvar mct-minibuffer-completion-list-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-g") #'mct-keyboard-quit-dwim)
-    (define-key map (kbd "M-g g") #'mct-choose-completion-number)
-    (define-key map (kbd "M-g M-g") #'mct-choose-completion-number)
-    (define-key map (kbd "C-n") #'mct-next-completion-or-mini)
+    (define-key map [remap keyboard-quit] #'mct-keyboard-quit-dwim)
+    (define-key map [remap goto-line] #'mct-choose-completion-number)
+    (define-key map [remap next-line] #'mct-next-completion-or-mini)
     (define-key map (kbd "n") #'mct-next-completion-or-mini)
-    (define-key map (kbd "C-p") #'mct-previous-completion-or-mini)
+    (define-key map [remap previous-line] #'mct-previous-completion-or-mini)
     (define-key map (kbd "p") #'mct-previous-completion-or-mini)
-    (define-key map (kbd "M-}") #'mct-next-completion-group)
+    (define-key map [remap backward-paragraph] #'mct-previous-completion-group)
+    (define-key map [remap forward-paragraph] #'mct-next-completion-group)
+    (define-key map (kbd "M-p") #'mct-previous-completion-group)
     (define-key map (kbd "M-n") #'mct-next-completion-group)
-    (define-key map (kbd "M-{") #'mct-previous-completion-group)
-    (define-key map (kbd "M-p") #'mct-previous-completion-group)    
     (define-key map (kbd "e") #'mct-focus-minibuffer)
     (define-key map (kbd "M-e") #'mct-edit-completion)
     (define-key map (kbd "TAB") #'mct-choose-completion-no-exit)
     (define-key map (kbd "RET") #'mct-choose-completion-exit)
     (define-key map (kbd "M-RET") #'mct-choose-completion-dwim)
-    (define-key map (kbd "M-<") #'mct-beginning-of-buffer)
+    (define-key map [remap beginning-of-buffer] #'mct-beginning-of-buffer)
     map)
   "Derivative of `completion-list-mode-map'.")
 
 (defvar mct-minibuffer-local-completion-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-j") #'exit-minibuffer)
-    (define-key map (kbd "M-g g") #'mct-choose-completion-number)
-    (define-key map (kbd "M-g M-g") #'mct-choose-completion-number)
-    (define-key map (kbd "C-n") #'mct-switch-to-completions-top)
-    (define-key map (kbd "C-p") #'mct-switch-to-completions-bottom)
+    (define-key map [remap goto-line] #'mct-choose-completion-number)
+    (define-key map [remap next-line] #'mct-switch-to-completions-top)
+    (define-key map [remap next-line-or-history-element] #'mct-switch-to-completions-top)
+    (define-key map [remap previous-line] #'mct-switch-to-completions-bottom)
+    (define-key map [remap previous-line-or-history-element] #'mct-switch-to-completions-bottom)
     (define-key map (kbd "M-e") #'mct-edit-completion)
     (define-key map (kbd "C-<return>") #'mct-complete-and-exit)
     (define-key map (kbd "C-l") #'mct-list-completions-toggle)
@@ -1151,8 +1138,8 @@ Meant to be added to `after-change-functions'."
 
 (defvar mct-region-buffer-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-n") #'mct-switch-to-completions-top)
-    (define-key map (kbd "C-p") #'mct-switch-to-completions-bottom)
+    (define-key map [remap next-line] #'mct-switch-to-completions-top)
+    (define-key map [remap previous-line] #'mct-switch-to-completions-bottom)
     ;; TODO: Either keep the TAB=completion-at-point binding or add our own
     ;; command which is compatible with orderless completion.
     (define-key map (kbd "TAB") #'ignore)
@@ -1212,18 +1199,17 @@ minibuffer)."
 
 (defvar mct-region-completion-list-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-g") #'mct-next-completion-or-quit)
-    (define-key map (kbd "C-n") #'mct-next-completion-or-quit)
+    (define-key map [remap next-line] #'mct-next-completion-or-quit)
+    (define-key map [remap previous-line] #'mct-previous-completion-or-quit)
     (define-key map (kbd "n") #'mct-next-completion-or-quit)
-    (define-key map (kbd "C-p") #'mct-previous-completion-or-quit)
     (define-key map (kbd "p") #'mct-previous-completion-or-quit)
-    (define-key map (kbd "M-}") #'mct-next-completion-group)
+    (define-key map [remap backward-paragraph] #'mct-previous-completion-group)
+    (define-key map [remap forward-paragraph] #'mct-next-completion-group)
     (define-key map (kbd "M-n") #'mct-next-completion-group)
-    (define-key map (kbd "M-{") #'mct-previous-completion-group)
     (define-key map (kbd "M-p") #'mct-previous-completion-group)
     (define-key map (kbd "TAB") #'choose-completion)
     (define-key map (kbd "RET") #'choose-completion)
-    (define-key map (kbd "M-<") #'mct-beginning-of-buffer)
+    (define-key map [remap beginning-of-buffer] #'mct-beginning-of-buffer)
     map)
   "Derivative of `completion-list-mode-map'.")
 
