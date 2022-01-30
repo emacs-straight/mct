@@ -45,6 +45,27 @@ Used by `mct--get-completion-window'."
   :type 'string
   :group 'mct)
 
+(defcustom mct-completion-window-size (cons #'mct--frame-height-fraction 1)
+  "Set the maximum and minimum height of the Completions' buffer.
+
+The value is a cons cell in the form of (max-height . min-height)
+where each value is either a natural number or a function which
+returns such a number.
+
+The default maximum height of the window is calculated by the
+function `mct--frame-height-fraction', which finds the closest
+round number to 1/3 of the frame's height.  While the default
+minimum height is 1.  This means that during live completions the
+Completions' window will shrink or grow to show candidates within
+the specified boundaries.  To disable this bouncing effect, set
+both max-height and min-height to the same number."
+  :type '(cons
+          (choice (function :tag "Function to determine maximum height")
+                  (natnum :tag "Maximum height in number of lines"))
+          (choice (function :tag "Function to determine minimum height")
+                  (natnum :tag "Minimum height in number of lines")))
+  :group 'mct)
+
 (defcustom mct-remove-shadowed-file-names nil
   "Delete shadowed parts of file names.
 
@@ -92,11 +113,11 @@ automatically displayed once the `mct-minimum-input' is met and
 is hidden if the input drops below that threshold.  While
 visible, the buffer is updated live to match the user's input.
 
-Note that every function in the `mct-completion-passlist' ignores
-this option altogether.  This means that every such command will
-always show the Completions' buffer automatically and will always
-update its contents live.  Same principle for every function
-declared in the `mct-completion-blocklist', which will always
+Note that every command or completion category in the
+`mct-completion-passlist' ignores this option altogether.  This
+means that every such symbol will always show the Completions'
+buffer automatically and will always update its contents live.
+Same principle for `mct-completion-blocklist', which will always
 disable both the automatic display and live updating of the
 Completions' buffer."
   :type '(choice
@@ -122,7 +143,8 @@ This applies in all cases covered by `mct-live-completion'."
   :group 'mct)
 
 (defcustom mct-completion-blocklist nil
-  "Functions that disable live completions.
+  "List of symbols where live completions are outright disabled.
+
 This means that they ignore `mct-live-completion'.  They do not
 automatically display the Completions' buffer, nor do they update
 it to match user input.
@@ -131,16 +153,27 @@ The Completions' buffer can still be accessed with commands that
 place it in a window (such as `mct-list-completions-toggle',
 `mct-switch-to-completions-top').
 
-A less drastic measure is to set `mct-minimum-input' to an
-appropriate value."
+The value of this user option is a list of symbols.  Those can
+refer to commands like `find-file' or completion categories such
+as `file', `buffer', or what other packages define like Consult's
+`consult-location' category.
+
+Perhaps a less drastic measure is to set `mct-minimum-input' to
+an appropriate value."
   :type '(repeat symbol)
   :group 'mct)
 
 (defcustom mct-completion-passlist nil
-  "Functions that do live updating of completions from the start.
+  "List of symbols where live completions are always enabled.
+
 This means that they ignore the value of `mct-live-completion'
 and the `mct-minimum-input'.  They also bypass any possible delay
-introduced by `mct-live-update-delay'."
+introduced by `mct-live-update-delay'.
+
+The value of this user option is a list of symbols.  Those can
+refer to commands like `find-file' or completion categories such
+as `file', `buffer', or what other packages define like Consult's
+`consult-location' category."
   :type '(repeat symbol)
   :group 'mct)
 
@@ -178,6 +211,10 @@ See `completions-format' for possible values."
 
 ;;;; Completion metadata
 
+(defun mct--this-command ()
+  "Return this command."
+  (or (bound-and-true-p current-minibuffer-command) this-command))
+
 (defun mct--completion-category ()
   "Return completion category."
   (when-let ((window (active-minibuffer-window)))
@@ -190,18 +227,18 @@ See `completions-format' for possible values."
                             minibuffer-completion-predicate)
        'category))))
 
+(defun mct--symbol-in-list (list)
+  "Test if symbol of command or category is in LIST."
+  (or (memq (mct--this-command) list)
+      (memq (mct--completion-category) list)))
+
 ;;;; Basics of intersection between minibuffer and Completions' buffer
 
 (define-obsolete-variable-alias
   'mct-hl-line 'mct-highlight-candidate "0.3.0")
 
 (defface mct-highlight-candidate
-  '((default :extend t)
-    (((class color) (min-colors 88) (background light))
-     :background "#b0d8ff" :foreground "#000000")
-    (((class color) (min-colors 88) (background dark))
-     :background "#103265" :foreground "#ffffff")
-    (t :inherit highlight))
+  '((t :inherit highlight :extend t))
   "Face for current candidate in the completions' buffer."
   :group 'mct)
 
@@ -240,12 +277,30 @@ See `completions-format' for possible values."
                                  (goto-char prev))))))
         (put-text-property (point-min) (point) 'invisible t)))))
 
+(defun mct--frame-height-fraction ()
+  "Return round number of 1/3 of `frame-height'.
+Can be used in `mct-completion-window-size'."
+  (floor (frame-height) 3))
+
+(defun mct--height (param)
+  "Return height of PARAM in number of lines."
+  (cond
+   ((natnump param) param)
+   ((functionp param) (funcall param))
+   ;; There is no compelling reason to fall back to 5.  It just feels
+   ;; like a reasonable small value...
+   (t 5)))
+
 (defun mct--fit-completions-window (&rest _args)
   "Fit Completions' buffer to its window."
   (when-let ((window (mct--get-completion-window)))
-    (with-current-buffer (window-buffer window)
-      (setq-local window-resize-pixelwise t))
-    (fit-window-to-buffer window (floor (frame-height) 2) 1)))
+    ;; TODO 2022-01-28: Do we need the pixelwise adjustment?
+    ;; (with-current-buffer (window-buffer window)
+    ;;   (setq-local window-resize-pixelwise t))
+    (let* ((size mct-completion-window-size)
+           (max (car size))
+           (min (cdr size)))
+      (fit-window-to-buffer window (mct--height max) (mct--height min)))))
 
 (defun mct--minimum-input ()
   "Test for minimum requisite input for live completions.
@@ -293,20 +348,16 @@ Meant to be added to `after-change-functions'."
                           nil #'mct--live-completions-refresh-immediately))
       (mct--live-completions-refresh-immediately))))
 
-(defun mct--this-command ()
-  "Return this command."
-  (or (bound-and-true-p current-minibuffer-command) this-command))
-
 (defun mct--setup-live-completions ()
   "Set up the completions' buffer."
   (cond
    ((null mct-live-completion))
-   ((memq (mct--this-command) mct-completion-passlist)
+   ((mct--symbol-in-list mct-completion-passlist)
     (setq-local mct-minimum-input 0)
     (setq-local mct-live-update-delay 0)
     (mct--show-completions)
     (add-hook 'after-change-functions #'mct--live-completions-refresh nil t))
-   ((not (memq (mct--this-command) mct-completion-blocklist))
+   ((not (mct--symbol-in-list mct-completion-blocklist))
     (add-hook 'after-change-functions #'mct--live-completions-refresh nil t))))
 
 (defvar-local mct--active nil
@@ -516,13 +567,19 @@ by `mct-completion-windows-regexp'."
 
 ;;;;; Cyclic motions between minibuffer and completions' buffer
 
-(defun mct--completions-completion-p ()
+(defun mct--completion-at-point-p ()
   "Return non-nil if there is a completion at point."
   (let ((point (point)))
-    ;; The `or' is for Emacs 27 where there were no completion--string
+    ;; The `or' is for Emacs 27 where there are no completion--string
     ;; properties.
     (or (get-text-property point 'completion--string)
         (get-text-property point 'mouse-face))))
+
+(defun mct--arg-completion-point-p (arg)
+  "Return non-nil if ARGth next completion exists."
+  (save-excursion
+    (mct--next-completion arg)
+    (mct--completion-at-point-p)))
 
 (defun mct--first-completion-point ()
   "Return the `point' of the first completion."
@@ -553,7 +610,7 @@ a `one-column' value."
   "Check if ARGth line has a completion candidate."
   (save-excursion
     (vertical-motion arg)
-    (null (mct--completions-completion-p))))
+    (null (mct--completion-at-point-p))))
 
 (defun mct--switch-to-completions ()
   "Subroutine for switching to the completions' buffer."
@@ -587,7 +644,7 @@ a `one-column' value."
   (goto-char (point-max))
   (next-completion -1)
   (goto-char (point-at-bol))
-  (unless (mct--completions-completion-p)
+  (unless (mct--completion-at-point-p)
     (next-completion 1))
   (mct--restore-old-point-in-grid (point))
   (recenter
@@ -596,6 +653,16 @@ a `one-column' value."
            (truncate (/ (window-body-height) 4.0))))
    t))
 
+(defun mct--empty-line-p (arg)
+  "Return non-nil if ARGth line is empty."
+  (unless (mct--arg-completion-point-p arg)
+    (save-excursion
+      (goto-char (point-at-bol))
+      (and (not (bobp))
+	       (or (beginning-of-line (1+ arg)) t)
+	       (save-match-data
+	         (looking-at "[\s\t]*$"))))))
+
 (defun mct--bottom-of-completions-p (arg)
   "Test if point is at the notional bottom of the Completions.
 ARG is a numeric argument for `next-completion', as described in
@@ -603,13 +670,9 @@ ARG is a numeric argument for `next-completion', as described in
   (or (eobp)
       (mct--completions-line-boundary (mct--last-completion-point))
       (= (save-excursion (next-completion arg) (point)) (point-max))
-      ;; The empty final line case...
-      (save-excursion
-        (goto-char (point-at-bol))
-        (and (not (bobp))
-	         (or (beginning-of-line (1+ arg)) t)
-	         (save-match-data
-	           (looking-at "[\s\t]*$"))))))
+      ;; The empty final line case which should avoid candidates with
+      ;; spaces or line breaks...
+      (mct--empty-line-p arg)))
 
 (defun mct--next-completion (arg)
   "Routine to move to the next ARGth completion candidate."
@@ -628,7 +691,7 @@ ARG is a numeric argument for `next-completion', as described in
         (unless (eq col (save-excursion (goto-char (point-at-bol)) (current-column)))
           (line-move-to-column col))
         (when (or (> (current-column) col)
-                  (not (mct--completions-completion-p)))
+                  (not (mct--completion-at-point-p)))
           (next-completion -1)))
     (next-completion (or arg 1))))
 
@@ -679,7 +742,7 @@ ARG is a numeric argument for `previous-completion', as described in
         (unless (eq col (save-excursion (goto-char (point-at-bol)) (current-column)))
           (line-move-to-column col))
         (when (or (> (current-column) col)
-                  (not (mct--completions-completion-p)))
+                  (not (mct--completion-at-point-p)))
           (next-completion -1)))
     (previous-completion (or (abs arg) 1))))
 
@@ -900,9 +963,11 @@ If the region is active, deactivate it.  A second invocation of
 this command is then required to abort the session."
   (interactive nil mct-minibuffer-mode)
   (when (derived-mode-p 'completion-list-mode)
-    (if (use-region-p)
-        (keyboard-quit)
-      (abort-recursive-edit))))
+    (cond
+     ((null (active-minibuffer-window))
+      (minibuffer-hide-completions))
+     ((use-region-p) (keyboard-quit))
+     (t (abort-recursive-edit)))))
 
 ;;;; Global minor mode setup
 
@@ -974,7 +1039,7 @@ region.")
 ;; clicking on it with the mouse.
 (defun mct--completions-completion-beg ()
   "Return point of completion candidate at START and END."
-  (if-let ((string (mct--completions-completion-p)))
+  (if-let ((string (mct--completion-at-point-p)))
       (save-excursion
         (prop-match-beginning (mct--completions-text-property-search)))
     (point)))
@@ -982,7 +1047,7 @@ region.")
 ;; Same as above for the `if-let'.
 (defun mct--completions-completion-end ()
   "Return end of completion candidate."
-  (if-let ((string (mct--completions-completion-p)))
+  (if-let ((string (mct--completion-at-point-p)))
       (save-excursion
         (if (mct--one-column-p)
             (1+ (point-at-eol))
