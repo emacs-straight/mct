@@ -38,12 +38,7 @@
   "Extensions for the minibuffer."
   :group 'minibuffer)
 
-(defcustom mct-completion-windows-regexp
-  "\\`\\*Completions.*\\*\\'"
-  "Regexp to match window names with completion candidates.
-Used by `mct--get-completion-window'."
-  :type 'string
-  :group 'mct)
+(make-obsolete 'mct-completion-windows-regexp 'mct--completions-window-name "0.5.0")
 
 (defcustom mct-completion-window-size (cons #'mct--frame-height-fraction 1)
   "Set the maximum and minimum height of the Completions' buffer.
@@ -58,16 +53,21 @@ round number to 1/3 of the frame's height.  While the default
 minimum height is 1.  This means that during live completions the
 Completions' window will shrink or grow to show candidates within
 the specified boundaries.  To disable this bouncing effect, set
-both max-height and min-height to the same number."
-  :type '(cons
-          (choice (function :tag "Function to determine maximum height")
-                  (natnum :tag "Maximum height in number of lines"))
-          (choice (function :tag "Function to determine minimum height")
-                  (natnum :tag "Minimum height in number of lines")))
+both max-height and min-height to the same number.
+
+If nil, do not try to fit the Completions' buffer to its window.
+
+Also see `mct-live-completion'."
+  :type '(choice (const :tag "Disable size constraints" nil)
+                 (cons
+                  (choice (function :tag "Function to determine maximum height")
+                          (natnum :tag "Maximum height in number of lines"))
+                  (choice (function :tag "Function to determine minimum height")
+                          (natnum :tag "Minimum height in number of lines"))))
   :group 'mct)
 
 (defcustom mct-remove-shadowed-file-names nil
-  "Delete shadowed parts of file names.
+  "Delete shadowed parts of file names from the minibuffer.
 
 For example, if the user types ~/ after a long path name,
 everything preceding the ~/ is removed so the interactive
@@ -78,7 +78,7 @@ Only works when variable `file-name-shadow-mode' is non-nil."
   :group 'mct)
 
 (defcustom mct-hide-completion-mode-line nil
-  "Do not show a mode line in the Completions' buffer."
+  "When non-nil, do not show the Completions' buffer mode line."
   :type 'boolean
   :group 'mct)
 
@@ -88,7 +88,7 @@ Only works when variable `file-name-shadow-mode' is non-nil."
   :group 'mct)
 
 (defcustom mct-apply-completion-stripes nil
-  "Display alternating backgrounds the Completions' buffer."
+  "When non-nil, use alternating backgrounds in the Completions."
   :type 'boolean
   :group 'mct)
 
@@ -119,7 +119,9 @@ means that every such symbol will always show the Completions'
 buffer automatically and will always update its contents live.
 Same principle for `mct-completion-blocklist', which will always
 disable both the automatic display and live updating of the
-Completions' buffer."
+Completions' buffer.
+
+Also see `mct-completion-window-size'."
   :type '(choice
           (const :tag "Disable live-updating" nil)
           (const :tag "Enable live-updating" t)
@@ -145,6 +147,11 @@ This applies in all cases covered by `mct-live-completion'."
 (defcustom mct-completion-blocklist nil
   "List of symbols where live completions are outright disabled.
 
+The value of this user option is a list of symbols.  Those can
+refer to commands like `find-file' or completion categories such
+as `file', `buffer', or what other packages define like Consult's
+`consult-location' category.
+
 This means that they ignore `mct-live-completion'.  They do not
 automatically display the Completions' buffer, nor do they update
 it to match user input.
@@ -153,27 +160,26 @@ The Completions' buffer can still be accessed with commands that
 place it in a window (such as `mct-list-completions-toggle',
 `mct-switch-to-completions-top').
 
-The value of this user option is a list of symbols.  Those can
-refer to commands like `find-file' or completion categories such
-as `file', `buffer', or what other packages define like Consult's
-`consult-location' category.
-
 Perhaps a less drastic measure is to set `mct-minimum-input' to
-an appropriate value."
+an appropriate value.  Or better use `mct-completion-passlist'.
+
+Read the manual for known completion categories."
   :type '(repeat symbol)
   :group 'mct)
 
 (defcustom mct-completion-passlist nil
   "List of symbols where live completions are always enabled.
 
+The value of this user option is a list of symbols.  Those can
+refer to commands like `find-file' or completion categories such
+as `file', `buffer', or what other packages define like Consult's
+`consult-location' category.
+
 This means that they ignore the value of `mct-live-completion'
 and the `mct-minimum-input'.  They also bypass any possible delay
 introduced by `mct-live-update-delay'.
 
-The value of this user option is a list of symbols.  Those can
-refer to commands like `find-file' or completion categories such
-as `file', `buffer', or what other packages define like Consult's
-`consult-location' category."
+Read the manual for known completion categories."
   :type '(repeat symbol)
   :group 'mct)
 
@@ -202,12 +208,55 @@ and/or the documentation string of `display-buffer'."
   :group 'mct)
 
 (defcustom mct-completions-format 'one-column
-  "The Completions' appearance used by `mct-minibuffer-mode'.
+  "Set the presentation of candidates in the Completions' buffer.
 See `completions-format' for possible values."
   :type '(choice (const horizontal) (const vertical) (const one-column))
   :group 'mct)
 
 (make-obsolete 'mct-region-completions-format 'mct-completions-format "0.5.0")
+
+(defcustom mct-persist-dynamic-completion t
+  "When non-nil, keep dynamic completion live.
+
+Without any intervention from MCT, the default Emacs behavior for
+commands such as `find-file' or for a `file' completion category
+is to hide the `*Completions*' buffer after updating the list of
+candidates in a non-exiting fashion (e.g. select a directory and
+expect to continue typing the path).  This, however, runs
+contrary to the interaction model of MCT when it performs live
+completions, because the user expects the Completions' buffer to
+remain visible while typing out the path to the file.
+
+When this user option is non-nil (the default) it makes all
+non-exiting commands keep the `*Completions*' visible when
+updating the list of candidates.
+
+This applies to prompts in the `file' completion category
+whenever the user selects a candidate with
+`mct-choose-completion-no-exit', `mct-edit-completion',
+`minibuffer-complete', `minibuffer-force-complete' (i.e. any
+command that does not exit the minibuffer).
+
+The two exceptions are (i) when the current completion session
+runs a command or category that is blocked by the
+`mct-completion-blocklist' or (ii) the user option
+`mct-live-completion' is nil.
+
+The underlying rationale:
+
+Most completion commands present a flat list of candidates to
+choose from.  Picking a candidate concludes the session.  Some
+prompts, however, can recalculate the list of completions based
+on the selected candidate.  A case in point is `find-file' (or
+any command with the `file' completion category) which
+dynamically adjusts the completions to show only the elements
+which extend the given file system path.  We call such cases
+\"dynamic completion\".  Due to their particular nature, these
+need to be handled explicitly.  The present user option is
+provided primarily to raise awareness about this state of
+affairs."
+  :type 'boolean
+  :group 'mct)
 
 ;;;; Completion metadata
 
@@ -228,9 +277,27 @@ See `completions-format' for possible values."
        'category))))
 
 (defun mct--symbol-in-list (list)
-  "Test if symbol of command or category is in LIST."
+  "Test if command or category is in LIST."
   (or (memq (mct--this-command) list)
       (memq (mct--completion-category) list)))
+
+(defun mct--passlist-p ()
+  "Return non-nil if symbol is in the `mct-completion-passlist'."
+  (or (memq (mct--this-command) mct-completion-passlist)
+      (memq (mct--completion-category) mct-completion-passlist)))
+
+(defun mct--blocklist-p ()
+  "Return non-nil if symbol is in the `mct-completion-blocklist'."
+  (or (memq (mct--this-command) mct-completion-blocklist)
+      (memq (mct--completion-category) mct-completion-blocklist)))
+
+;; Normally we would also include `imenu', but it has its own defcustom
+;; for popping up the Completions eagerly...  Let's not interfere with
+;; that.
+;;
+;; See bug#52389: <https://debbugs.gnu.org/cgi/bugreport.cgi?bug=52389>.
+(defvar mct--dynamic-completion-categories '(file)
+  "Completion categories that perform dynamic completion.")
 
 ;;;; Basics of intersection between minibuffer and Completions' buffer
 
@@ -257,7 +324,7 @@ See `completions-format' for possible values."
 
 ;; Thanks to Omar Antolín Camarena for recommending the use of
 ;; `cursor-sensor-functions' and the concomitant hook with
-;; `cursor-censor-mode' instead of the dirty hacks I had before to
+;; `cursor-sensor-mode' instead of the dirty hacks I had before to
 ;; prevent the cursor from moving to that position where no completion
 ;; candidates could be found at point (e.g. it would break `embark-act'
 ;; as it could not read the topmost candidate when point was at the
@@ -293,14 +360,11 @@ Can be used in `mct-completion-window-size'."
 
 (defun mct--fit-completions-window (&rest _args)
   "Fit Completions' buffer to its window."
-  (when-let ((window (mct--get-completion-window)))
-    ;; TODO 2022-01-28: Do we need the pixelwise adjustment?
-    ;; (with-current-buffer (window-buffer window)
-    ;;   (setq-local window-resize-pixelwise t))
-    (let* ((size mct-completion-window-size)
-           (max (car size))
-           (min (cdr size)))
-      (fit-window-to-buffer window (mct--height max) (mct--height min)))))
+  (when-let* ((window (mct--get-completion-window))
+              (size mct-completion-window-size)
+              (max (car size))
+              (min (cdr size)))
+    (fit-window-to-buffer window (mct--height max) (mct--height min))))
 
 (defun mct--minimum-input ()
   "Test for minimum requisite input for live completions.
@@ -308,6 +372,9 @@ See `mct-minimum-input'."
   (>= (- (point-max) (minibuffer-prompt-end)) mct-minimum-input))
 
 ;;;;; Live-updating Completions' buffer
+
+(defvar mct--completions-window-name "\\`\\*Completions.*\\*\\'"
+  "Regexp to match window names with completion candidates.")
 
 ;; Adapted from Omar Antolín Camarena's live-completions library:
 ;; <https://github.com/oantolin/live-completions>.
@@ -352,12 +419,12 @@ Meant to be added to `after-change-functions'."
   "Set up the completions' buffer."
   (cond
    ((null mct-live-completion))
-   ((mct--symbol-in-list mct-completion-passlist)
+   ((mct--passlist-p)
     (setq-local mct-minimum-input 0)
     (setq-local mct-live-update-delay 0)
     (mct--show-completions)
     (add-hook 'after-change-functions #'mct--live-completions-refresh nil t))
-   ((not (mct--symbol-in-list mct-completion-blocklist))
+   ((not (mct--blocklist-p))
     (add-hook 'after-change-functions #'mct--live-completions-refresh nil t))))
 
 (defvar-local mct--active nil
@@ -468,16 +535,11 @@ Apply APP by first setting up the minibuffer to work with Mct."
 ;; (declare-function prop-match-beginning "text-property-search" (cl-x))
 ;; (declare-function prop-match-end "text-property-search" (cl-x))
 
-
-
-;; FIXME 2022-01-21: The line highlight does not :extend for
-;; mct-region-mode when using the one-column style.
-
 ;; We need this to make things work on Emacs 27.
 (defun mct--one-column-p ()
   "Test if we have a one-column view available."
   (and (eq mct-completions-format 'one-column)
-       (> emacs-major-version 28)))
+       (>= emacs-major-version 28)))
 
 ;;;;; Focus minibuffer and/or show completions
 
@@ -493,13 +555,13 @@ Apply APP by first setting up the minibuffer to work with Mct."
   (get-window-with-predicate
    (lambda (window)
      (string-match-p
-      mct-completion-windows-regexp
+      mct--completions-window-name
       (buffer-name (window-buffer window))))))
 
 (defun mct--show-completions ()
   "Show the completions' buffer."
   (let ((display-buffer-alist
-         (cons (cons mct-completion-windows-regexp mct-display-buffer-action)
+         (cons (cons mct--completions-window-name mct-display-buffer-action)
                display-buffer-alist))
         ;; don't ring the bell in `minibuffer-completion-help'
         ;; when <= 1 completion exists.
@@ -528,7 +590,7 @@ The continuous switch is essentially the same as running
 succession.
 
 What constitutes a completions' window is ultimately determined
-by `mct-completion-windows-regexp'."
+by `mct--completions-window-name'."
   (interactive nil mct-minibuffer-mode)
   (let* ((mini (active-minibuffer-window))
          (completions (mct--get-completion-window)))
@@ -561,7 +623,7 @@ by `mct-completion-windows-regexp'."
       (goto-char (line-end-position)))
     (save-excursion
       (goto-char (1- (point)))
-      (when (search-backward "/" (point-min) t)
+      (when (search-backward "/" (minibuffer-prompt-end) t)
         (delete-region (1+ (point)) (point-max)))))
    (t (call-interactively 'backward-delete-char))))
 
@@ -950,7 +1012,7 @@ followed by exiting the minibuffer with that candidate."
 ;; `cursor-sensor-functions'.
 (defun mct-beginning-of-buffer ()
   "Go to the top of the Completions buffer."
-  (interactive nil mct-minibuffer-mode)
+  (interactive nil mct-minibuffer-mode mct-region-mode)
   (goto-char (mct--first-completion-point)))
 
 (defun mct-keyboard-quit-dwim ()
@@ -961,7 +1023,7 @@ If in a completions' buffer and unless the region is active, run
 
 If the region is active, deactivate it.  A second invocation of
 this command is then required to abort the session."
-  (interactive nil mct-minibuffer-mode)
+  (interactive nil mct-minibuffer-mode mct-region-mode)
   (when (derived-mode-p 'completion-list-mode)
     (cond
      ((null (active-minibuffer-window))
@@ -1149,6 +1211,28 @@ region.")
     (mct--setup-line-numbers)
     (cursor-sensor-mode)))
 
+;;;;; Dynamic completion
+
+;; TODO 2022-01-29: Research how things work for relevant cases in
+;; completion-in-region and adapt accordingly.
+(defun mct--persist-dynamic-completion (&rest _)
+  "Persist completion, per `mct-persist-dynamic-completion'."
+  (when (and (not (mct--symbol-in-list mct-completion-blocklist))
+             mct-persist-dynamic-completion
+             (memq (mct--completion-category) mct--dynamic-completion-categories)
+             mct-live-completion)
+    (mct-focus-minibuffer)
+    (mct--show-completions)))
+
+(defun mct--setup-dynamic-completion-persist ()
+  "Set up `mct-persist-dynamic-completion'."
+  (let ((commands '(choose-completion minibuffer-complete minibuffer-force-complete)))
+    (if mct-minibuffer-mode
+        (dolist (fn commands)
+          (advice-add fn :after #'mct--persist-dynamic-completion))
+      (dolist (fn commands)
+        (advice-remove fn #'mct--persist-dynamic-completion)))))
+
 ;;;;; mct-minibuffer-mode declaration
 
 (declare-function minibuf-eldef-setup-minibuffer "minibuf-eldef")
@@ -1172,6 +1256,7 @@ region.")
     (advice-remove #'minibuffer-completion-help #'mct--minibuffer-completion-help-advice)
     (advice-remove #'completing-read-multiple #'mct--crm-indicator)
     (advice-remove #'minibuf-eldef-setup-minibuffer #'mct--stealthily))
+  (mct--setup-dynamic-completion-persist)
   (mct--setup-shared))
 
 (define-obsolete-function-alias 'mct-mode 'mct-minibuffer-mode "0.4.0")
