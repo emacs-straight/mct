@@ -4,7 +4,7 @@
 
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; URL: https://gitlab.com/protesilaos/mct
-;; Version: 0.4.2
+;; Version: 0.5.0
 ;; Package-Requires: ((emacs "27.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -25,7 +25,7 @@
 ;;; Commentary:
 ;;
 ;; MCT enhances the default Emacs completion.  It makes the minibuffer
-;; and Completions' buffer work together and look like a vertical
+;; and Completions' buffer work together as part of a singular
 ;; completion UI.
 ;;
 ;; Read the documentation for basic usage and configuration.

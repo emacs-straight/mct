@@ -5,9 +5,9 @@
 #+options: ':t toc:nil author:t email:t num:t
 #+startup: content
 
-#+macro: stable-version 0.4.2
-#+macro: release-date 2022-01-21
-#+macro: development-version 0.5.0-dev
+#+macro: stable-version 0.5.0
+#+macro: release-date 2022-02-08
+#+macro: development-version 0.6.0-dev
 #+macro: file @@texinfo:@file{@@$1@@texinfo:}@@
 #+macro: space @@texinfo:@: @@
 #+macro: kbd @@texinfo:@kbd{@@$1@@texinfo:}@@
@@ -234,8 +234,6 @@ or categories specified.
 :END:
 #+vindex: mct-completion-passlist
 
-[ Updated as part of {{{development-version}}}. ]
-
 Brief: List of symbols where live completions are always enabled.
 
 Symbol: ~mct-completion-passlist~ (=repeat symbol= type)
@@ -256,8 +254,6 @@ by ~mct-live-update-delay~.  In other words, it immediately displays the
 :CUSTOM_ID: h:36f56245-281a-4389-a998-66778de100db
 :END:
 #+vindex: mct-completion-blocklist
-
-[ Updated as part of {{{development-version}}}. ]
 
 Brief: List of symbols where live completions are always disabled.
 
@@ -366,8 +362,6 @@ If nil, do not try to fit the Completions' buffer to its window.
 :END:
 #+cindex: Persistent dynamic completion in the minibuffer
 #+vindex: mct-persist-dynamic-completion
-
-[ Part of {{{development-version}}}. ]
 
 Brief: Whether to keep dynamic completion live.
 
@@ -791,6 +785,12 @@ M-x package-refresh-contents
 M-x package-install RET mct
 #+end_src
 
+A package is also available via Guix:
+
+#+begin_src sh
+guix package -i emacs-mct
+#+end_src
+
 ** Manual installation method
 :PROPERTIES:
 :CUSTOM_ID: h:663ec536-056b-443e-9272-2a365eb28b83
@@ -857,12 +857,12 @@ And with more options:
 ;; displaying and updating the completions' buffer.
 (setq mct-completion-passlist
       '(;; Some commands
-        imenu
         Info-goto-node
         Info-index
         Info-menu
         vc-retrieve-tag
         ;; Some completion categories
+        imenu
         file
         buffer
         kill-ring
@@ -1390,6 +1390,8 @@ MCT is meant to be a collective effort.  Every bit of help matters.
   Duckworth, Jonathan Irving, José Antonio Ortega Ruiz, Kostadin Ninev,
   Manuel Uberti, Philip Kaludercic, Theodor Thornhill, Tomasz
   Hołubowicz, Z.Du.  As well as users: danrobi11.
+
++ Packaging :: Andrew Tropin and Nicolas Goaziou (Guix).
 
 + Inspiration for certain features :: =icomplete.el= (built-in---multiple
   authors), Daniel Mendler (=vertico=), Omar Antolín Camarena (=embark=,
