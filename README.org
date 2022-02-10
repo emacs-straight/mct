@@ -330,6 +330,22 @@ thousands of candidates to the passlist.  So no ~command~, ~function~,
 
 When in doubt, do not add a symbol to either the pass- or block- list.
 
+[[#h:499ee65d-429d-48c0-9e3a-a60ca649e32d][Find completion category]].
+
+*** Find completion category
+:PROPERTIES:
+:CUSTOM_ID: h:499ee65d-429d-48c0-9e3a-a60ca649e32d
+:END:
+
+While using a command that provides a minibuffer prompt, type =M-:= (the
+~eval-expression~ command) and evaluate =(mct--completion-category)=.  It
+will return the completion category, if any.  Note that this only works
+when the variable ~enable-recursive-minibuffers~ is non-nil.
+
+To review echo area messages, use =C-h e= (~view-echo-area-messages~).
+
+[[#h:1f42c4e6-53c1-4e8a-81ef-deab70822fa4][Known completion categories]].
+
 ** Size boundaries of the Completions
 :PROPERTIES:
 :CUSTOM_ID: h:2fcf708f-4edf-41f3-9e29-0e750f3a80af
@@ -661,16 +677,17 @@ Completions' buffer ([[#h:97eb5898-1e52-4338-bd55-8c52f9d8ccd3][Cyclic behaviour
 
    #+findex: mct-choose-completion-dwim
 6. In prompts that allow the selection of multiple candidates
-   (internally via the ~completing-read-multiple~ function) a =[CRM]= label
-   is added to the text of the prompt.  The user thus knows that
-   pressing =M-RET= (~mct-choose-completion-dwim~) in the =*Completions*= will
-   append the candidate at point to the list of selections and keep the
-   completions available so that another item may be selected.  Any of
-   the aforementioned applicable methods can confirm the final
-   selection.  If, say, you want to pick a total of three candidates, do
-   =M-RET= for the first two and =RET= (~mct-choose-completion-exit~) for the
-   last one.  In contexts that are not CRM-powered, the =M-RET= has the
-   same effect as =TAB= (~mct-choose-completion-no-exit~).
+   (internally via the ~completing-read-multiple~ function) using =M-RET=
+   (~mct-choose-completion-dwim~) in the =*Completions*= will append the
+   candidate at point to the list of selections and keep the completions
+   available so that another item may be selected.  Any of the
+   aforementioned applicable methods can confirm the final selection.
+   If, say, you want to pick a total of three candidates, do =M-RET= for
+   the first two and =RET= (~mct-choose-completion-exit~) for the last one.
+   In contexts that are not CRM-powered, the =M-RET= has the same effect
+   as =TAB= (~mct-choose-completion-no-exit~).
+
+   [[#h:162f232d-1e9d-4756-90d3-d6bf5bb4d8ef][Indicator for completing-read-multiple]].
 
    #+findex: mct-complete-and-exit
 7. When point is at the minibuffer, select the current candidate in
@@ -679,31 +696,19 @@ Completions' buffer ([[#h:97eb5898-1e52-4338-bd55-8c52f9d8ccd3][Cyclic behaviour
    immediately exit the minibuffer with the completed candidate as the
    selected one.
 
-** Other commands for mct-minibuffer-mode
-:PROPERTIES:
-:CUSTOM_ID: h:b46a3366-6a7a-49ed-8caa-693d6ee437e9
-:END:
-#+cindex: Miscellaneous commands for minibuffer completion
-
-  #+findex: mct-next-completion-group
-  #+findex: mct-previous-completion-group
-+ Emacs 28 has the ability to group candidates inside the completions'
-  buffer under headings.  For example, the Consult package makes good
-  use of those ([[#h:03227254-d467-4147-b8cf-2fe05a2e279b][Extensions]]).  MCT provides motions that jump between
-  such headings, placing the point at the first candidate right below
-  the heading's text.  Use =M-n= (~mct-next-completion-group~) and =M-p=
-  (~mct-previous-completion-group~) to move to the next or previous one,
-  respectively.  Both commands accept an optional numeric argument.  For
-  the sake of avoiding surprises, these commands do not cycle between
-  the completions and the minibuffer: they stop at the first or last
-  heading.
-
-  #+findex: mct-backward-updir
-+ When using completion categories that involve file paths, such as
-  ~find-file~, the backspace key (=DEL=) goes up a directory if point is
-  right after a path's directory delimiter (a forward slash).  Otherwise
-  it deletes a single character backwards.  The command's symbol is
-  ~mct-backward-updir~.
+   #+findex: mct-next-completion-group
+   #+findex: mct-previous-completion-group
+8. Emacs 28 has the ability to group candidates inside the completions'
+   buffer under headings.  For example, the Consult package makes good
+   use of those ([[#h:03227254-d467-4147-b8cf-2fe05a2e279b][Extensions]]).  MCT provides motions that jump between
+   such headings, placing the point at the first candidate right below
+   the heading's text.  Use =M-n= (~mct-next-completion-group~) and =M-p=
+   (~mct-previous-completion-group~) to move to the next or previous one,
+   respectively (also work with they keys for ~forward-paragraph~ and
+   ~backward-paragraph~).  Both commands accept an optional numeric
+   argument.  For the sake of avoiding surprises, these commands do not
+   cycle between the completions and the minibuffer: they stop at the
+   first or last heading.
 
 ** Interaction model of mct-region-mode
 :PROPERTIES:
@@ -989,7 +994,6 @@ locally for the =*Completions*= buffer like this:
 #+cindex: Keymaps
 #+vindex: mct-completion-list-mode-map
 #+vindex: mct-minibuffer-local-completion-map
-#+vindex: mct-minibuffer-local-filename-completion-map
 #+vindex: mct-region-buffer-map
 #+vindex: mct-region-completion-list-map
 
@@ -998,7 +1002,6 @@ minibuffer and the =*Completions*= buffer, respectively:
 
 + ~mct-completion-list-mode-map~
 + ~mct-minibuffer-local-completion-map~
-+ ~mct-minibuffer-local-filename-completion-map~
 + ~mct-region-buffer-map~
 + ~mct-region-completion-list-map~
 
@@ -1096,7 +1099,7 @@ accepts a custom function.  Consider any of the following examples:
   "Sort ELEMS first alphabetically, then by length."
   (sort elems (lambda (c1 c2)
                 (or (string-version-lessp c1 c2)
-                    (< (length c1) (length c2)))))))
+                    (< (length c1) (length c2))))))
 
 (defun my-sort-by-history (elems)
   "Sort ELEMS by minibuffer history.
@@ -1119,6 +1122,102 @@ Use `mct-sort-sort-by-alpha-length' if no history is available."
 #+end_src
 
 [[#h:1f42c4e6-53c1-4e8a-81ef-deab70822fa4][Known completion categories]].
+
+** Indicator for completing-read-multiple
+:PROPERTIES:
+:CUSTOM_ID: h:162f232d-1e9d-4756-90d3-d6bf5bb4d8ef
+:END:
+#+cindex: CRM indicator
+
+[ Part of {{{development-version}}} ]
+
+Previous versions of MCT would prepend a =[CRM]= tag to the minibuffer
+prompt of commands powered by ~completing-read-multiple~.  While this is a
+nice usability enhancement, it is not specific to MCT and thus should
+not be part of =mct.el=.  Use this in your init file instead:
+
+#+begin_src emacs-lisp
+;; Copied from Daniel Mendler's `vertico' library:
+;; <https://github.com/minad/vertico>.
+(defun my-crm-indicator (args)
+  "Add prompt indicator to `completing-read-multiple' filter ARGS."
+  (cons (concat "[CRM] " (car args)) (cdr args)))
+
+(advice-add #'completing-read-multiple :filter-args #'my-crm-indicator)
+#+end_src
+
+** Select completion with Avy
+:PROPERTIES:
+:CUSTOM_ID: h:18a2a223-8544-4294-b847-012c99003de4
+:END:
+
+The =avy= package by Oleh Krehel can be used to quickly select a candidate
+from a visible =*Completions*= buffer.  In the following example, we
+activate it with the =C-.= key.
+
+#+begin_src emacs-lisp
+;; Adapted from Omar Antolín Camarena's `avy-embark-collect.el'.
+(defun my-avy--choose (pt)
+  "Choose completion at PT."
+  (goto-char pt)
+  (mct-choose-completion-exit))
+
+(defun my-avy-completions-select ()
+  "Choose completion and exit using Avy."
+  (interactive)
+  (when (mct--get-completion-window)
+    (mct--switch-to-completions)
+    (avy-with avy-completion
+      (let ((avy-action 'my-avy--choose))
+        (avy-process
+         (save-excursion
+           (let (completions)
+             (goto-char (mct--first-completion-point))
+             (while (not (eobp))
+               (push (point) completions)
+               (next-completion 1))
+             (nreverse completions))))))))
+
+(dolist (map (list mct-minibuffer-local-completion-map
+                   mct-minibuffer-completion-list-map
+                   mct-region-completion-list-map
+                   mct-region-buffer-map))
+  (define-key map (kbd "C-.") #'my-avy-completions-select))
+#+end_src
+
+** Ido-style navigation through directories
+:PROPERTIES:
+:CUSTOM_ID: h:9a6746dd-0be9-4e29-ac40-0af9612d05a2
+:END:
+
+[ Part of {{{development-version}}} ]
+
+Older versions of MCT had a command for file navigation that would
+delete the whole directory component before point, effectively going
+back up one directory.  While the functionality can be useful, it is not
+integral to the MCT experience and thus should not belong in =mct.el=.
+Add this to your own configuration file instead:
+
+#+begin_src emacs-lisp
+;; Adaptation of `icomplete-fido-backward-updir'.
+(defun my-backward-updir ()
+  "Delete char before point or go up a directory."
+  (interactive nil mct-minibuffer-mode)
+  (cond
+   ((and (eq (char-before) ?/)
+         (eq (mct--completion-category) 'file))
+    (when (string-equal (minibuffer-contents) "~/")
+      (delete-minibuffer-contents)
+      (insert (expand-file-name "~/"))
+      (goto-char (line-end-position)))
+    (save-excursion
+      (goto-char (1- (point)))
+      (when (search-backward "/" (minibuffer-prompt-end) t)
+        (delete-region (1+ (point)) (point-max)))))
+   (t (call-interactively 'backward-delete-char))))
+
+(define-key minibuffer-local-filename-completion-map (kbd "DEL") #'my-backward-updir)
+#+end_src
 
 ** MCT in the current or the other window
 :PROPERTIES:
@@ -1363,10 +1462,9 @@ They all make for a natural complement to the standard Emacs experience
   of the end-user.  ~fido-mode~ and its accoutrements are defined in
   =icomplete.el=.
 
-  What MCT borrows from Icomplete is the ~mct-backward-updir~ command, the
-  tidying of the shadowed file paths, and ideas for the input delay
-  (explained elsewhere in this document).  Internally, I also learnt how
-  to extend local keymaps by studying =icomplete.el=.
+  What MCT borrows from Icomplete is for the input delay (explained
+  elsewhere in this document).  Internally, I also learnt how to extend
+  local keymaps by studying =icomplete.el=.
 
   I had used Icomplete for several months before moving to what now has
   become =mct.el=.  I think it is excellent at providing a thin layer over
@@ -1384,12 +1482,12 @@ MCT is meant to be a collective effort.  Every bit of help matters.
 
 + Contributions to code or documentation :: Daniel Mendler, James Norman
   Vladimir Cash, José Antonio Ortega Ruiz, Juri Linkov, Philip
-  Kaludercic.
+  Kaludercic, Tomasz Hołubowicz.
 
 + Ideas and user feedback :: Andrew Tropin, Benjamin (@zealotrush), Case
-  Duckworth, Jonathan Irving, José Antonio Ortega Ruiz, Kostadin Ninev,
-  Manuel Uberti, Philip Kaludercic, Theodor Thornhill, Tomasz
-  Hołubowicz, Z.Du.  As well as users: danrobi11.
+  Duckworth, Chris Burroughs, Jonathan Irving, José Antonio Ortega Ruiz,
+  Kostadin Ninev, Manuel Uberti, Philip Kaludercic, Theodor Thornhill,
+  Tomasz Hołubowicz, Z.Du.  As well as users: danrobi11.
 
 + Packaging :: Andrew Tropin and Nicolas Goaziou (Guix).
 
