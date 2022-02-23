@@ -745,12 +745,9 @@ when point can no longer move in that direction it switches to
 the minibuffer."
   (interactive "p" mct-minibuffer-mode)
   (let ((count (or arg 1)))
-    (cond
-     ((mct--bottom-of-completions-p count)
-      (mct-focus-minibuffer))
-     (t
-      (mct--next-completion count))
-     (setq this-command 'next-line))))
+    (if (mct--bottom-of-completions-p count)
+        (mct-focus-minibuffer)
+      (mct--next-completion count))))
 
 (defun mct--motion-below-point-min-p (arg)
   "Return non-nil if backward ARG motion exceeds `point-min'."
@@ -1192,7 +1189,7 @@ region.")
 (defun mct--setup-dynamic-completion-persist ()
   "Set up `mct-persist-dynamic-completion'."
   (let ((commands '(choose-completion minibuffer-complete minibuffer-force-complete)))
-    (if mct-minibuffer-mode
+    (if (bound-and-true-p mct-minibuffer-mode)
         (dolist (fn commands)
           (advice-add fn :after #'mct--persist-dynamic-completion))
       (dolist (fn commands)
@@ -1424,8 +1421,8 @@ minibuffer)."
                   minibuffer-force-complete
                   minibuffer-complete-and-exit
                   minibuffer-force-complete-and-exit))
-      (advice-add fn :around #'mct--shared-messageless))
-    (advice-add #'minibuffer-message :around #'mct--shared-honor-inhibit-message)))
+      (advice-remove fn #'mct--shared-messageless))
+    (advice-remove #'minibuffer-message #'mct--shared-honor-inhibit-message)))
 
 (provide 'mct)
 ;;; mct.el ends here
