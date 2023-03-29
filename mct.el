@@ -266,13 +266,11 @@ affairs."
 
 (defun mct--passlist-p ()
   "Return non-nil if symbol is in the `mct-completion-passlist'."
-  (or (memq (mct--this-command) mct-completion-passlist)
-      (memq (mct--completion-category) mct-completion-passlist)))
+  (mct--symbol-in-list mct-completion-passlist))
 
 (defun mct--blocklist-p ()
   "Return non-nil if symbol is in the `mct-completion-blocklist'."
-  (or (memq (mct--this-command) mct-completion-blocklist)
-      (memq (mct--completion-category) mct-completion-blocklist)))
+  (mct--symbol-in-list mct-completion-blocklist))
 
 ;; Normally we would also include `imenu', but it has its own defcustom
 ;; for popping up the Completions eagerly...  Let's not interfere with
@@ -519,11 +517,7 @@ by `mct--completions-window-name'."
 
 (defun mct--completion-at-point-p ()
   "Return non-nil if there is a completion at point."
-  (let ((point (point)))
-    ;; The `or' is for Emacs 27 where there are no completion--string
-    ;; properties.
-    (or (get-text-property point 'completion--string)
-        (get-text-property point 'mouse-face))))
+  (get-text-property (point) 'completion--string))
 
 (defun mct--arg-completion-point-p (arg)
   "Return non-nil if ARGth next completion exists."
@@ -834,20 +828,13 @@ Apply APP while inhibiting modification hooks."
   "Priority used on the `mct--highlight-overlay'.
 This value means that it is overriden by the active region.")
 
-;; This is for Emacs 27 which does not have a completion--string text
-;; property.
-(defun mct--completions-text-property-search ()
-  "Search for text property of completion candidate."
-  (or (text-property-search-forward 'completion--string)
-      (text-property-search-forward 'mouse-face)))
-
 ;; The `if-let' is to prevent highlighting of empty space, such as by
 ;; clicking on it with the mouse.
 (defun mct--completions-completion-beg ()
   "Return point of completion candidate at START and END."
   (if-let ((string (mct--completion-at-point-p)))
       (save-excursion
-        (prop-match-beginning (mct--completions-text-property-search)))
+        (prop-match-beginning (text-property-search-forward 'completion--string)))
     (point)))
 
 ;; Same as above for the `if-let'.
