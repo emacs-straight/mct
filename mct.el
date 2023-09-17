@@ -280,6 +280,36 @@ affairs."
 (defvar mct--dynamic-completion-categories '(file)
   "Completion categories that perform dynamic completion.")
 
+;;;; Sorting functions for `completions-sort' (Emacs 29)
+
+(defun mct-sort-by-alpha-length (elements)
+  "Sort ELEMENTS first alphabetically, then by length.
+This function can be used as the value of the user option
+`completions-sort'."
+  (sort
+   elements
+   (lambda (c1 c2)
+     (or (string-version-lessp c1 c2)
+         (< (length c1) (length c2))))))
+
+(defun mct-sort-by-history (elements)
+  "Sort ELEMENTS by minibuffer history, else return them unsorted.
+This function can be used as the value of the user option
+`completions-sort'."
+  (if-let ((hist (and (not (eq minibuffer-history-variable t))
+                      (symbol-value minibuffer-history-variable))))
+      (minibuffer--sort-by-position hist elements)
+    elements))
+
+(defun mct-sort-multi-category (elements)
+  "Sort ELEMENTS per completion category.
+This function can be used as the value of the user option
+`completions-sort'."
+  (pcase (mct--completion-category)
+    ('kill-ring elements) ; no sorting
+    ('file (mct-sort-by-alpha-length elements))
+    (_ (mct-sort-by-history elements))))
+
 ;;;; Basics of intersection between minibuffer and Completions buffer
 
 (defface mct-highlight-candidate
@@ -301,18 +331,19 @@ affairs."
 ;; beginning of the line, unless the point was moved forward).
 (defun mct--setup-clean-completions ()
   "Keep only completion candidates in the Completions."
-  (with-current-buffer standard-output
-    (unless (mct--first-line-completion-p)
-      (goto-char (point-min))
-      (let ((inhibit-read-only t))
-        (delete-region (line-beginning-position) (1+ (line-end-position)))
-        (insert (propertize " "
-                            'cursor-sensor-functions
-                            (list
-                             (lambda (_win prev dir)
-                               (when (eq dir 'entered)
-                                 (goto-char prev))))))
-        (put-text-property (point-min) (point) 'invisible t)))))
+  (unless completions-header-format
+    (with-current-buffer standard-output
+      (unless (mct--first-line-completion-p)
+        (goto-char (point-min))
+        (let ((inhibit-read-only t))
+          (delete-region (line-beginning-position) (1+ (line-end-position)))
+          (insert (propertize " "
+                              'cursor-sensor-functions
+                              (list
+                               (lambda (_win prev dir)
+                                 (when (eq dir 'entered)
+                                   (goto-char prev))))))
+          (put-text-property (point-min) (point) 'invisible t))))))
 
 (defun mct-frame-height-third ()
   "Return round number of 1/3 of `frame-height'.
@@ -528,8 +559,9 @@ by `mct--completions-window-name'."
 (defun mct--first-completion-point ()
   "Return the `point' of the first completion."
   (save-excursion
-    (goto-char (point-min))
-    (next-completion 1)
+    (goto-char (point-max))
+    (when completions-header-format
+     (next-completion 1))
     (point)))
 
 (defun mct--last-completion-point ()
@@ -608,7 +640,11 @@ the minibuffer."
   "Return non-nil if backward ARG motion exceeds `point-min'."
   (let ((line (- (line-number-at-pos) arg)))
     (or (< line 1)
-        (= (save-excursion (previous-completion arg) (point)) (point-min)))))
+        (when completions-header-format
+          (= (save-excursion
+               (previous-completion arg)
+               (line-number-at-pos))
+             (line-number-at-pos (point-max)))))))
 
 (defun mct--top-of-completions-p (arg)
   "Test if point is at the notional top of the Completions.
@@ -796,7 +832,9 @@ Apply APP while inhibiting modification hooks."
 (defun mct--setup-appearance ()
   "Set up variables for the appearance of the Completions buffer."
   (when mct-hide-completion-mode-line
-    (setq-local mode-line-format nil)))
+    (setq-local mode-line-format nil))
+  (when completions-header-format
+    (setq-local display-line-numbers-offset -1)))
 
 ;;;;; Shadowed path
 
