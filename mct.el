@@ -131,6 +131,16 @@ number of candidates that are being computed."
   :type 'natnum
   :group 'mct)
 
+(defcustom mct-completing-read-multiple-indicator t
+  "When non-nil show an indicator for `completing-read-multiple' prompts.
+If nil, do not show anything.  Those prompts will look like the generic ones.
+
+The indicator informs the user this is a `completing-read-multiple'
+prompt and also shows the `crm-separator', which is usually a comma."
+  :type 'boolean
+  :package-version '(mct . "1.1.0")
+  :group 'mct)
+
 (defcustom mct-live-update-delay 0.3
   "Delay in seconds before updating the Completions buffer.
 Set this to 0 to disable the delay.
@@ -271,33 +281,57 @@ affairs."
 
 ;;;; Sorting functions for `completions-sort' (Emacs 29)
 
-(defun mct-sort-by-alpha-length (elements)
-  "Sort ELEMENTS first alphabetically, then by length.
+(defvar mct-sort-alpha-function #'string-version-lessp
+  "Function to perform alphabetic sorting between two strings.")
+
+(defun mct-sort-by-alpha (completions)
+  "Sort COMPLETIONS alphabetically.
 This function can be used as the value of the user option
 `completions-sort'."
   (sort
-   elements
-   (lambda (c1 c2)
-     (or (string-version-lessp c1 c2)
-         (< (length c1) (length c2))))))
+   completions
+   (lambda (string1 string2)
+     (funcall mct-sort-alpha-function string1 string2))))
 
-(defun mct-sort-by-history (elements)
-  "Sort ELEMENTS by minibuffer history, else return them unsorted.
+(defun mct-sort-by-alpha-length (completions)
+  "Sort COMPLETIONS first alphabetically, then by length.
 This function can be used as the value of the user option
 `completions-sort'."
-  (if-let ((hist (and (not (eq minibuffer-history-variable t))
-                      (symbol-value minibuffer-history-variable))))
-      (minibuffer--sort-by-position hist elements)
-    elements))
+  (sort
+   completions
+   (lambda (string1 string2)
+     (or (funcall mct-sort-alpha-function string1 string2)
+         (< (length string1) (length string2))))))
 
-(defun mct-sort-multi-category (elements)
-  "Sort ELEMENTS per completion category.
+;; Based on `minibuffer-sort-by-history' from Emacs 30.
+(defun mct-sort-by-history (completions)
+  "Sort COMPLETIONS by minibuffer history, else return them unsorted.
+This function can be used as the value of the user option
+`completions-sort'."
+  (let ((alphabetized (mct-sort-by-alpha completions)))
+    ;; Only use history when it's specific to these completions.
+    (if (eq minibuffer-history-variable
+            (default-value minibuffer-history-variable))
+        alphabetized
+      (minibuffer--sort-by-position
+       (minibuffer--sort-preprocess-history minibuffer-completion-base)
+       alphabetized))))
+
+(defun mct-sort-directories-then-files (completions)
+  "Sort COMPLETIONS with `mct-sort-by-alpha-length' with directories first."
+  (setq files (mct-sort-by-alpha completions))
+  ;; But then move directories first
+  (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
+         (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
+
+(defun mct-sort-multi-category (completions)
+  "Sort COMPLETIONS per completion category.
 This function can be used as the value of the user option
 `completions-sort'."
   (pcase (mct--completion-category)
-    ('kill-ring elements) ; no sorting
-    ('file (mct-sort-by-alpha-length elements))
-    (_ (mct-sort-by-history elements))))
+    ('kill-ring completions) ; no sorting
+    ('file (mct-sort-directories-then-files completions))
+    (_ (mct-sort-by-history completions))))
 
 ;;;; Basics of intersection between minibuffer and Completions buffer
 
@@ -739,6 +773,20 @@ If ARG is supplied, move that many completion groups at a time."
 (defvar crm-completion-table)
 (defvar crm-separator)
 
+;; This is adapted from the README of the `vertico' package by Daniel
+;; Mendler.
+(defun mct--crm-indicator (args)
+  (cons (format "%s %s | %s"
+                (propertize "`completing-read-multiple' separator is" 'face 'shadow)
+                (propertize
+                 (format " %s "
+                         (replace-regexp-in-string
+                          "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                          crm-separator))
+                 'face '(highlight bold))
+                (car args))
+        (cdr args)))
+
 (defun mct--regex-to-separator (regex)
   "Parse REGEX of `crm-separator' in `mct-choose-completion-dwim'."
   (save-match-data
@@ -1023,12 +1071,15 @@ This value means that it is overriden by the active region.")
         (add-hook 'minibuffer-setup-hook #'mct--setup-passlist)
         (advice-add #'completing-read-default :around #'mct--completing-read-advice)
         (advice-add #'completing-read-multiple :around #'mct--completing-read-advice)
+        (when mct-completing-read-multiple-indicator
+          (advice-add #'completing-read-multiple :filter-args #'mct--crm-indicator))
         (advice-add #'minibuffer-completion-help :around #'mct--minibuffer-completion-help-advice)
         (advice-add #'minibuf-eldef-setup-minibuffer :around #'mct--stealthily))
     (remove-hook 'completion-list-mode-hook #'mct--setup-completion-list)
     (remove-hook 'minibuffer-setup-hook #'mct--setup-passlist)
     (advice-remove #'completing-read-default #'mct--completing-read-advice)
     (advice-remove #'completing-read-multiple #'mct--completing-read-advice)
+    (advice-remove #'completing-read-multiple #'mct--crm-indicator)
     (advice-remove #'minibuffer-completion-help #'mct--minibuffer-completion-help-advice)
     (advice-remove #'minibuf-eldef-setup-minibuffer #'mct--stealthily))
   (mct--setup-dynamic-completion-persist)
