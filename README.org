@@ -1,21 +1,21 @@
-#+title:                 Minibuffer Confines Transcended (mct.el)
-#+author:                Protesilaos Stavrou
-#+email:                 info@protesilaos.com
-#+language:              en
-#+options:               ':t toc:nil author:t email:t num:t
-#+startup:               content
-#+macro:                 stable-version 1.0.0
-#+macro:                 release-date 2023-09-24
-#+macro:                 development-version 1.1.0-dev
-#+export_file_name:      mct.texi
-#+texinfo_filename:      mct.info
-#+texinfo_dir_category:  Emacs misc features
-#+texinfo_dir_title:     MCT: (mct)
-#+texinfo_dir_desc:      Enhancement of the default minibuffer completion
-#+texinfo_header:        @set MAINTAINERSITE @uref{https://protesilaos.com,maintainer webpage}
-#+texinfo_header:        @set MAINTAINER Protesilaos Stavrou
-#+texinfo_header:        @set MAINTAINEREMAIL @email{info@protesilaos.com}
-#+texinfo_header:        @set MAINTAINERCONTACT @uref{mailto:info@protesilaos.com,contact the maintainer}
+#+title: Minibuffer Confines Transcended (mct.el)
+#+author: Protesilaos Stavrou
+#+email: info@protesilaos.com
+#+language: en
+#+options: ':t toc:nil author:t email:t num:t
+#+startup: content
+#+macro: stable-version 1.0.0
+#+macro: release-date 2023-09-24
+#+macro: development-version 1.1.0-dev
+#+export_file_name: mct.texi
+#+texinfo_filename: mct.info
+#+texinfo_dir_category: Emacs misc features
+#+texinfo_dir_title: MCT: (mct)
+#+texinfo_dir_desc: Enhancement of the default minibuffer completion
+#+texinfo_header: @set MAINTAINERSITE @uref{https://protesilaos.com,maintainer webpage}
+#+texinfo_header: @set MAINTAINER Protesilaos Stavrou
+#+texinfo_header: @set MAINTAINEREMAIL @email{info@protesilaos.com}
+#+texinfo_header: @set MAINTAINERCONTACT @uref{mailto:info@protesilaos.com,contact the maintainer}
 
 #+texinfo: @insertcopying
 
@@ -363,61 +363,6 @@ number.
 If nil, do not try to fit the Completions' buffer to its window.
 
 [[#h:1a85ed4c-f54d-482b-9915-563f60c64f15][Live completion]].
-
-** Dynamic completion tables in mct-mode
-:PROPERTIES:
-:CUSTOM_ID: h:28dc0355-c461-4e3a-bc3a-479d67827cac
-:END:
-#+cindex: Persistent dynamic completion in the minibuffer
-#+vindex: mct-persist-dynamic-completion
-
-Brief: Whether to keep dynamic completion live.
-
-Symbol: ~mct-persist-dynamic-completion~ (=boolean= type)
-
-Possible values:
-
-1. ~nil~
-2. ~t~ (default)
-
-Without any intervention from MCT, the default Emacs behavior for
-commands such as ~find-file~ or for a ~file~ completion category is to hide
-the =*Completions*= buffer after updating the list of candidates in a
-non-exiting fashion (e.g. select a directory and expect to continue
-typing the path).  This, however, runs contrary to the interaction model
-of MCT when it performs live completions, because the user expects the
-Completions' buffer to remain visible while typing out the path to the
-file ([[#h:1a85ed4c-f54d-482b-9915-563f60c64f15][Live completion]]).
-
-When this user option is non-nil (the default) it makes all non-exiting
-commands keep the =*Completions*= visible when updating the list of
-candidates.
-
-This applies to prompts in the ~file~ completion category whenever the
-user selects a candidate with ~mct-choose-completion-no-exit~,
-~mct-edit-completion~, ~minibuffer-complete~, ~minibuffer-force-complete~
-(i.e. any command that does not exit the minibuffer).
-
-[[#h:bb445062-2e39-4082-a868-2123bfb793cc][Selecting candidates with mct-mode]].
-
-The two  exceptions are (i) when the current completion
-session runs a command or category that is blocked by the
-~mct-completion-blocklist~ or (ii) the user option ~mct-live-completion~ is
-nil.
-
-[[#h:36f56245-281a-4389-a998-66778de100db][Blocklist for commands or completion categories]].
-
-The underlying rationale:
-
-Most completion commands present a flat list of candidates to choose
-from.  Picking a candidate concludes the session.  Some prompts,
-however, can recalculate the list of completions based on the selected
-candidate.  A case in point is ~find-file~ (or any command with the ~file~
-completion category) which dynamically adjusts the completions to show
-only the elements which extend the given file system path.  We call such
-cases "dynamic completion".  Due to their particular nature, these need
-to be handled explicitly.  The present user option is provided primarily
-to raise awareness about this state of affairs.
 
 ** Hide the Completions mode line
 :PROPERTIES:
@@ -786,7 +731,6 @@ And with more options:
 (setq mct-minimum-input 3)
 (setq mct-live-completion t)
 (setq mct-live-update-delay 0.6)
-(setq mct-persist-dynamic-completion t)
 
 ;; This is for commands or completion categories that should always pop
 ;; up the completions' buffer.  It circumvents the default method of
@@ -801,6 +745,7 @@ And with more options:
         ;; Some completion categories
         imenu
         file
+        project-file
         buffer
         kill-ring
         consult-location))
