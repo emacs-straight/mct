@@ -729,7 +729,7 @@ Table of Contents
   │ cd manual-packages
   │ 
   │ # Clone this repo and name it "mct"
-  │ git clone https://git.sr.ht/~protesilaos/mct mct
+  │ git clone https://github.com/protesilaos/mct mct
   └────
 
   Finally, in your `init.el' (or equivalent) evaluate this:
@@ -1193,7 +1193,7 @@ Table of Contents
   Change log
         <https://protesilaos.com/emacs/mct-changelog>
   Source code
-        <https://git.sr.ht/~protesilaos/mct>
+        <https://github.com/protesilaos/mct>
   Mailing list
         <https://lists.sr.ht/~protesilaos/mct>
 
