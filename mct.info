@@ -1,4 +1,4 @@
-This is doc4VQV6P.info, produced by makeinfo version 6.8 from mct.texi.
+This is docP0sjhb.info, produced by makeinfo version 6.8 from mct.texi.
 
 Copyright (C) 2021 Free Software Foundation, Inc.
 
@@ -19,7 +19,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: doc4VQV6P.info,  Node: Top,  Next: Overview of MCT,  Up: (dir)
+File: docP0sjhb.info,  Node: Top,  Next: Overview of MCT,  Up: (dir)
 
 Minibuffer Confines Transcended (mct.el)
 ****************************************
@@ -128,7 +128,7 @@ Indices
 
 
 
-File: doc4VQV6P.info,  Node: Overview of MCT,  Next: Customizations,  Prev: Top,  Up: Top
+File: docP0sjhb.info,  Node: Overview of MCT,  Next: Customizations,  Prev: Top,  Up: Top
 
 1 Overview of MCT
 *****************
@@ -154,7 +154,7 @@ input threshold as well as a slight delay before it pops up the
 ‘*Completions*’ buffer and starts updating it to respond to user input.
 
 
-File: doc4VQV6P.info,  Node: Customizations,  Next: Usage,  Prev: Overview of MCT,  Up: Top
+File: docP0sjhb.info,  Node: Customizations,  Next: Usage,  Prev: Overview of MCT,  Up: Top
 
 2 Customizations
 ****************
@@ -175,7 +175,7 @@ section documents each user option.
 * MCT in the minibuffer and completion in regular buffers::
 
 
-File: doc4VQV6P.info,  Node: Live completion,  Next: Minimum input threshold,  Up: Customizations
+File: docP0sjhb.info,  Node: Live completion,  Next: Minimum input threshold,  Up: Customizations
 
 2.1 Live completion
 ===================
@@ -225,7 +225,7 @@ categories::).
    *note Size boundaries of the Completions::.
 
 
-File: doc4VQV6P.info,  Node: Minimum input threshold,  Next: Delay between live updates,  Prev: Live completion,  Up: Customizations
+File: docP0sjhb.info,  Node: Minimum input threshold,  Next: Delay between live updates,  Prev: Live completion,  Up: Customizations
 
 2.2 Minimum input threshold
 ===========================
@@ -255,7 +255,7 @@ are specified in the ‘mct-completion-passlist’ and
    *note Live updates per command or completion category::.
 
 
-File: doc4VQV6P.info,  Node: Delay between live updates,  Next: Live updates per command or completion category,  Prev: Minimum input threshold,  Up: Customizations
+File: docP0sjhb.info,  Node: Delay between live updates,  Next: Live updates per command or completion category,  Prev: Minimum input threshold,  Up: Customizations
 
 2.3 Delay between live updates
 ==============================
@@ -274,7 +274,7 @@ are specified in the ‘mct-completion-passlist’ and
    *note Live updates per command or completion category::.
 
 
-File: doc4VQV6P.info,  Node: Live updates per command or completion category,  Next: Size boundaries of the Completions,  Prev: Delay between live updates,  Up: Customizations
+File: docP0sjhb.info,  Node: Live updates per command or completion category,  Next: Size boundaries of the Completions,  Prev: Delay between live updates,  Up: Customizations
 
 2.4 Live updates per command or completion category
 ===================================================
@@ -303,7 +303,7 @@ commands or categories specified.
 * Find completion category::
 
 
-File: doc4VQV6P.info,  Node: Passlist for commands or completion categories,  Next: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
+File: docP0sjhb.info,  Node: Passlist for commands or completion categories,  Next: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
 
 2.4.1 Passlist for commands or completion categories
 ----------------------------------------------------
@@ -329,7 +329,7 @@ are in conflict, the former takes precedence.
    *note Known completion categories::.
 
 
-File: doc4VQV6P.info,  Node: Blocklist for commands or completion categories,  Next: Known completion categories,  Prev: Passlist for commands or completion categories,  Up: Live updates per command or completion category
+File: docP0sjhb.info,  Node: Blocklist for commands or completion categories,  Next: Known completion categories,  Prev: Passlist for commands or completion categories,  Up: Live updates per command or completion category
 
 2.4.2 Blocklist for commands or completion categories
 -----------------------------------------------------
@@ -360,7 +360,7 @@ appropriate value.  Or better use ‘mct-completion-passlist’.
    *note Known completion categories::.
 
 
-File: doc4VQV6P.info,  Node: Known completion categories,  Next: Find completion category,  Prev: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
+File: docP0sjhb.info,  Node: Known completion categories,  Next: Find completion category,  Prev: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
 
 2.4.3 Known completion categories
 ---------------------------------
@@ -418,7 +418,7 @@ list.
    *note Find completion category::.
 
 
-File: doc4VQV6P.info,  Node: Find completion category,  Prev: Known completion categories,  Up: Live updates per command or completion category
+File: docP0sjhb.info,  Node: Find completion category,  Prev: Known completion categories,  Up: Live updates per command or completion category
 
 2.4.4 Find completion category
 ------------------------------
@@ -434,7 +434,7 @@ works when the variable ‘enable-recursive-minibuffers’ is non-nil.
    *note Known completion categories::.
 
 
-File: doc4VQV6P.info,  Node: Size boundaries of the Completions,  Next: Hide the Completions mode line,  Prev: Live updates per command or completion category,  Up: Customizations
+File: docP0sjhb.info,  Node: Size boundaries of the Completions,  Next: Hide the Completions mode line,  Prev: Live updates per command or completion category,  Up: Customizations
 
 2.5 Size boundaries of the Completions
 ======================================
@@ -461,7 +461,7 @@ the same number.
    *note Live completion::.
 
 
-File: doc4VQV6P.info,  Node: Hide the Completions mode line,  Next: Remove shadowed file paths,  Prev: Size boundaries of the Completions,  Up: Customizations
+File: docP0sjhb.info,  Node: Hide the Completions mode line,  Next: Remove shadowed file paths,  Prev: Size boundaries of the Completions,  Up: Customizations
 
 2.6 Hide the Completions mode line
 ==================================
@@ -475,7 +475,7 @@ like every other window.  Set this user option to non-nil to remove the
 mode line.
 
 
-File: doc4VQV6P.info,  Node: Remove shadowed file paths,  Next: Show an indicator for completing-read-multiple prompts,  Prev: Hide the Completions mode line,  Up: Customizations
+File: docP0sjhb.info,  Node: Remove shadowed file paths,  Next: Show an indicator for completing-read-multiple prompts,  Prev: Hide the Completions mode line,  Up: Customizations
 
 2.7 Remove shadowed file paths
 ==============================
@@ -493,7 +493,7 @@ everything preceding the ‘~/’ is removed so the interactive selection
 process starts again from the user’s ‘$HOME’.
 
 
-File: doc4VQV6P.info,  Node: Show an indicator for completing-read-multiple prompts,  Next: MCT in the minibuffer and completion in regular buffers,  Prev: Remove shadowed file paths,  Up: Customizations
+File: docP0sjhb.info,  Node: Show an indicator for completing-read-multiple prompts,  Next: MCT in the minibuffer and completion in regular buffers,  Prev: Remove shadowed file paths,  Up: Customizations
 
 2.8 Show an indicator for ‘completing-read-multiple’ prompts
 ============================================================
@@ -512,7 +512,7 @@ the generic ones.
 prompt and also shows the ‘crm-separator’, which is usually a comma.
 
 
-File: doc4VQV6P.info,  Node: MCT in the minibuffer and completion in regular buffers,  Prev: Show an indicator for completing-read-multiple prompts,  Up: Customizations
+File: docP0sjhb.info,  Node: MCT in the minibuffer and completion in regular buffers,  Prev: Show an indicator for completing-read-multiple prompts,  Up: Customizations
 
 2.9 MCT in the minibuffer and completion in regular buffers
 ===========================================================
@@ -584,7 +584,7 @@ the use of a popup box is better.  Consider the ‘corfu’ package by
 Daniel Mendler, which uses such a popup (*note Alternatives::).
 
 
-File: doc4VQV6P.info,  Node: Usage,  Next: Installation,  Prev: Customizations,  Up: Top
+File: docP0sjhb.info,  Node: Usage,  Next: Installation,  Prev: Customizations,  Up: Top
 
 3 Usage
 *******
@@ -598,7 +598,7 @@ establishes.
 * Selecting candidates with mct-mode::
 
 
-File: doc4VQV6P.info,  Node: Cyclic behaviour for mct-mode,  Next: Selecting candidates with mct-mode,  Up: Usage
+File: docP0sjhb.info,  Node: Cyclic behaviour for mct-mode,  Next: Selecting candidates with mct-mode,  Up: Usage
 
 3.1 Cyclic behaviour for mct-mode
 =================================
@@ -648,7 +648,7 @@ inside the minibuffer with ‘C-l’ (mnemonic is “[l]ist completions” and
 the command is ‘mct-list-completions-toggle’).
 
 
-File: doc4VQV6P.info,  Node: Selecting candidates with mct-mode,  Prev: Cyclic behaviour for mct-mode,  Up: Usage
+File: docP0sjhb.info,  Node: Selecting candidates with mct-mode,  Prev: Cyclic behaviour for mct-mode,  Up: Usage
 
 3.2 Selecting candidates with mct-mode
 ======================================
@@ -740,7 +740,7 @@ There are several ways to select a completion candidate with ‘mct-mode’.
      they stop at the first or last heading.
 
 
-File: doc4VQV6P.info,  Node: Installation,  Next: Sample setup,  Prev: Usage,  Up: Top
+File: docP0sjhb.info,  Node: Installation,  Next: Sample setup,  Prev: Usage,  Up: Top
 
 4 Installation
 **************
@@ -751,7 +751,7 @@ File: doc4VQV6P.info,  Node: Installation,  Next: Sample setup,  Prev: Usage,  U
 * Manual installation method::
 
 
-File: doc4VQV6P.info,  Node: Install the package,  Next: Manual installation method,  Up: Installation
+File: docP0sjhb.info,  Node: Install the package,  Next: Manual installation method,  Up: Installation
 
 4.1 Install the package
 =======================
@@ -768,7 +768,7 @@ configuration.  The following commands shall suffice:
      guix package -i emacs-mct
 
 
-File: doc4VQV6P.info,  Node: Manual installation method,  Prev: Install the package,  Up: Installation
+File: docP0sjhb.info,  Node: Manual installation method,  Prev: Install the package,  Up: Installation
 
 4.2 Manual installation method
 ==============================
@@ -795,7 +795,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: doc4VQV6P.info,  Node: Sample setup,  Next: Keymaps,  Prev: Installation,  Up: Top
+File: docP0sjhb.info,  Node: Sample setup,  Next: Keymaps,  Prev: Installation,  Up: Top
 
 5 Sample setup
 **************
@@ -906,7 +906,7 @@ strings):
            '((file (styles . (basic partial-completion orderless)))))
 
 
-File: doc4VQV6P.info,  Node: Keymaps,  Next: User-level tweaks or custom code,  Prev: Sample setup,  Up: Top
+File: docP0sjhb.info,  Node: Keymaps,  Next: User-level tweaks or custom code,  Prev: Sample setup,  Up: Top
 
 6 Keymaps
 *********
@@ -924,7 +924,7 @@ those they extend and override (the names of the original ones are the
 same as above, minus the ‘mct-’ prefix).
 
 
-File: doc4VQV6P.info,  Node: User-level tweaks or custom code,  Next: Third-party extensions,  Prev: Keymaps,  Up: Top
+File: docP0sjhb.info,  Node: User-level tweaks or custom code,  Next: Third-party extensions,  Prev: Keymaps,  Up: Top
 
 7 User-level tweaks or custom code
 **********************************
@@ -938,7 +938,7 @@ In this section we cover custom code that builds on what MCT offers.
 * Ido-style navigation through directories::
 
 
-File: doc4VQV6P.info,  Node: Sort completion candidates on Emacs 29,  Next: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
+File: docP0sjhb.info,  Node: Sort completion candidates on Emacs 29,  Next: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
 
 7.1 Sort completion candidates on Emacs 29
 ==========================================
@@ -977,7 +977,7 @@ accepts a custom function.  Consider any of the following examples:
    *note Known completion categories::.
 
 
-File: doc4VQV6P.info,  Node: Indicator for completing-read-multiple,  Next: Ido-style navigation through directories,  Prev: Sort completion candidates on Emacs 29,  Up: User-level tweaks or custom code
+File: docP0sjhb.info,  Node: Indicator for completing-read-multiple,  Next: Ido-style navigation through directories,  Prev: Sort completion candidates on Emacs 29,  Up: User-level tweaks or custom code
 
 7.2 Indicator for completing-read-multiple
 ==========================================
@@ -1012,7 +1012,7 @@ instead:
      (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
 
-File: doc4VQV6P.info,  Node: Ido-style navigation through directories,  Prev: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
+File: docP0sjhb.info,  Node: Ido-style navigation through directories,  Prev: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
 
 7.3 Ido-style navigation through directories
 ============================================
@@ -1043,7 +1043,7 @@ Add this to your own configuration file instead:
      (define-key minibuffer-local-filename-completion-map (kbd "DEL") #'my-backward-updir)
 
 
-File: doc4VQV6P.info,  Node: Third-party extensions,  Next: Alternatives,  Prev: User-level tweaks or custom code,  Up: Top
+File: docP0sjhb.info,  Node: Third-party extensions,  Next: Alternatives,  Prev: User-level tweaks or custom code,  Up: Top
 
 8 Third-party extensions
 ************************
@@ -1097,7 +1097,7 @@ Cape (https://github.com/minad/cape) also by Daniel
 * Enable Consult previews::
 
 
-File: doc4VQV6P.info,  Node: Enable Consult previews,  Up: Third-party extensions
+File: docP0sjhb.info,  Node: Enable Consult previews,  Up: Third-party extensions
 
 8.1 Enable Consult previews
 ===========================
@@ -1109,7 +1109,7 @@ preview the candidate at point.  All we need to enable it in the
      (add-hook 'completion-list-mode-hook #'consult-preview-at-point-mode)
 
 
-File: doc4VQV6P.info,  Node: Alternatives,  Next: Acknowledgements,  Prev: Third-party extensions,  Up: Top
+File: docP0sjhb.info,  Node: Alternatives,  Next: Acknowledgements,  Prev: Third-party extensions,  Up: Top
 
 9 Alternatives
 **************
@@ -1193,7 +1193,7 @@ Icomplete and fido-mode (built-in, multiple authors)
      layer over the built-in infrastructure.
 
 
-File: doc4VQV6P.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alternatives,  Up: Top
+File: docP0sjhb.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alternatives,  Up: Top
 
 10 Acknowledgements
 *******************
@@ -1221,7 +1221,7 @@ Inspiration for certain features
      (‘vertico’), Omar Antolín Camarena (‘embark’, ‘live-completions’).
 
 
-File: doc4VQV6P.info,  Node: Official sources,  Next: GNU Free Documentation License,  Prev: Acknowledgements,  Up: Top
+File: docP0sjhb.info,  Node: Official sources,  Next: GNU Free Documentation License,  Prev: Acknowledgements,  Up: Top
 
 11 Official sources
 *******************
@@ -1236,7 +1236,7 @@ Mailing list
      <https://lists.sr.ht/~protesilaos/mct>
 
 
-File: doc4VQV6P.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Official sources,  Up: Top
+File: docP0sjhb.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Official sources,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -1718,7 +1718,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: doc4VQV6P.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docP0sjhb.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -1730,7 +1730,7 @@ B Indices
 * Concept index::
 
 
-File: doc4VQV6P.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docP0sjhb.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -1768,7 +1768,7 @@ B.1 Function index
                                                                (line 28)
 
 
-File: doc4VQV6P.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docP0sjhb.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -1797,7 +1797,7 @@ B.2 Variable index
                                                                 (line 6)
 
 
-File: doc4VQV6P.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docP0sjhb.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
