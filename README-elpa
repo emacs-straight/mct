@@ -467,6 +467,10 @@ Table of Contents
   The indicator informs the user this is a `completing-read-multiple'
   prompt and also shows the `crm-separator', which is usually a comma.
 
+  The `mct-completing-read-multiple-indicator' has no effect on versions
+  of Emacs >= 31, as those have the user option `crm-prompt' which
+  covers the same use-case.
+
 
 3.9 MCT in the minibuffer and completion in regular buffers
 ───────────────────────────────────────────────────────────
