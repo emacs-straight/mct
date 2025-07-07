@@ -1,6 +1,6 @@
 ;;; mct.el --- Minibuffer Confines Transcended -*- lexical-binding: t -*-
 
-;; Copyright (C) 2021-2024  Free Software Foundation, Inc.
+;; Copyright (C) 2021-2025  Free Software Foundation, Inc.
 
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; Maintainer: Protesilaos Stavrou <info@protesilaos.com>
@@ -39,7 +39,10 @@
   "Minibuffer Confines Transcended.
 A layer of interactivity that integrates the standard minibuffer
 and the Completions."
-  :group 'minibuffer)
+  :group 'minibuffer
+  :link '(info-link "(mct) Top")
+  :link '(url-link :tag "Homepage" "https://protesilaos.com/emacs/mct"))
+
 
 (make-obsolete 'mct-completion-windows-regexp 'mct--completions-window-name "0.5.0")
 
@@ -198,6 +201,45 @@ Read the manual for known completion categories."
   :type '(repeat symbol)
   :group 'mct)
 
+(defcustom mct-sort-by-command-or-category
+  '((file . mct-sort-by-directory-then-by-file)
+    ((magit-checkout vc-retrieve-tag) . mct-sort-by-alpha-then-by-length)
+    ((kill-ring imenu consult-location Info-goto-node Info-index Info-menu) . nil)
+    (t . mct-sort-by-history))
+  "Sort completion candidates based on the command or completion category.
+This is an alist where each element is of the form (SYMBOLS . SORT-FUNCTION).
+
+SYMBOLS is either a symbol or a list of symbols.  SYMBOLS can refer to
+the symbol of a function or completion category.  It can also be t,
+which refers to the fallback value.
+
+SORT-FUNCTION is a function that takes a list of strings and returns a
+list of strings, sorting them accordingly.  Examples of a SORT-FUNCTION
+are:
+
+- `mct-sort-by-alpha'
+- `mct-sort-by-alpha-then-by-length'
+- `mct-sort-by-history'
+- `mct-sort-by-directory-then-by-file'
+
+To not perform any sorting on the completion candidates that match
+SYMBOLS set SORT-FUNCTION to nil.
+
+If there are conflicting configurations between a SYMBOLS function or
+completion category, then the function takes precedence (for example
+`find-file' is set to sort directories first whereas the `file'
+completion category is set to sort by history)."
+  :type '(alist
+          :key-type (choice symbol (repeat symbol))
+          :value-type (choice
+                       (const :tag "Sort A-Z" mct-sort-by-alpha)
+                       (const :tag "Sort A-Z then from short to long" mct-sort-by-alpha-then-by-length)
+                       (const :tag "Sort by minibuffer history" mct-sort-by-history)
+                       (const :tag "Sort by directory then by file" mct-sort-by-directory-then-by-file)
+                       (function :tag "Custom sort function accepting COMPLETIONS argument")))
+  :package-version '(mct . "1.1.0")
+  :group 'mct)
+
 (make-obsolete-variable 'mct-display-buffer-action nil "1.0.0")
 (make-obsolete-variable 'mct-completions-format nil "1.0.0")
 (make-obsolete-variable 'mct-persist-dynamic-completion 'mct-completion-passlist "1.1.0")
@@ -235,7 +277,7 @@ Read the manual for known completion categories."
 
 ;;;; Sorting functions for `completions-sort' (Emacs 29)
 
-(defvar mct-sort-alpha-function #'string-version-lessp
+(defvar mct-sort-alpha-function #'string-collate-lessp
   "Function to perform alphabetic sorting between two strings.")
 
 (defun mct-sort-by-alpha (completions)
@@ -247,7 +289,7 @@ This function can be used as the value of the user option
    (lambda (string1 string2)
      (funcall mct-sort-alpha-function string1 string2))))
 
-(defun mct-sort-by-alpha-length (completions)
+(defun mct-sort-by-alpha-then-by-length (completions)
   "Sort COMPLETIONS first alphabetically, then by length.
 This function can be used as the value of the user option
 `completions-sort'."
@@ -256,6 +298,9 @@ This function can be used as the value of the user option
    (lambda (string1 string2)
      (or (funcall mct-sort-alpha-function string1 string2)
          (< (length string1) (length string2))))))
+
+(defalias 'mct-sort-by-alpha-length 'mct-sort-by-alpha-then-by-length
+  "Alias for `mct-sort-by-alpha-then-by-length'.")
 
 ;; Based on `minibuffer-sort-by-history' from Emacs 30.
 (defun mct-sort-by-history (completions)
@@ -271,21 +316,35 @@ This function can be used as the value of the user option
        (minibuffer--sort-preprocess-history minibuffer-completion-base)
        alphabetized))))
 
-(defun mct-sort-directories-then-files (completions)
-  "Sort COMPLETIONS with `mct-sort-by-alpha-length' with directories first."
+(defun mct-sort-by-directory-then-by-file (completions)
+  "Sort COMPLETIONS with `mct-sort-by-alpha-then-by-length' with directories first."
   (setq completions (mct-sort-by-alpha completions))
   ;; But then move directories first
   (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) completions)
          (seq-remove (lambda (x) (string-suffix-p "/" x)) completions)))
 
+(defalias 'mct-sort-directories-then-files 'mct-sort-by-directory-then-by-file
+  "Alias for `mct-sort-by-directory-then-by-file'.")
+
+(defun mct--sort-multi-category-get-function (function-and-category)
+  "Return the first sort function among FUNCTION-AND-CATEGORY."
+  (catch 'found
+    (dolist (element function-and-category)
+      (pcase-dolist (`(,symbols . ,sort) mct-sort-by-command-or-category)
+        (when (if (listp symbols)
+                  (memq element symbols)
+                (eq element symbols))
+          (throw 'found sort))))))
+
 (defun mct-sort-multi-category (completions)
-  "Sort COMPLETIONS per completion category.
-This function can be used as the value of the user option
-`completions-sort'."
-  (pcase (mct--completion-category)
-    ('kill-ring completions) ; no sorting
-    ('file (mct-sort-directories-then-files completions))
-    (_ (mct-sort-by-history completions))))
+  "Sort COMPLETIONS per command or completion category.
+Do it in accordance with the user option `mct-sort-by-command-or-category'."
+  (if-let* ((symbols (list (mct--this-command) (mct--completion-category)))
+            (sort-fn (or (mct--sort-multi-category-get-function symbols)
+                         (alist-get t mct-sort-by-command-or-category)))
+            (_ (functionp sort-fn)))
+      (funcall sort-fn completions)
+    completions))
 
 ;;;; Basics of intersection between minibuffer and Completions buffer
 
@@ -529,7 +588,7 @@ command will first move per invocation to the former, then the
 latter, and then continue to switch between the two.
 
 The continuous switch is essentially the same as running
-`mct-focus-minibuffer' and `switch-to-Completions in
+`mct-focus-minibuffer' and `switch-to-completions' in
 succession.
 
 What constitutes a Completions window is ultimately determined
@@ -837,8 +896,7 @@ this command is then required to abort the session."
 ;;;;; Stylistic tweaks and refinements
 
 ;; Note that this solves bug#45686:
-;; <https://debbugs.gnu.org/cgi/bugreport.cgi?bug=45686>
-;; TODO review that stealthily does not affect the region mode, it seems intrusive.
+;; <https://debbugs.gnu.org/cgi/bugreport.cgi?bug=45686>.
 (defun mct--stealthily (&rest app)
   "Prevent minibuffer default from counting as a modification.
 Apply APP while inhibiting modification hooks."
@@ -851,6 +909,13 @@ Apply APP while inhibiting modification hooks."
     (setq-local mode-line-format nil))
   (when completions-header-format
     (setq-local display-line-numbers-offset -1)))
+
+(defun mct--completion--insert-strings (&rest _)
+  "Make `completion--insert-strings' not show the truncation message."
+  (when-let* ((_ (bound-and-true-p completions--lazy-insert-button))
+              (button completions--lazy-insert-button))
+    ;; (replace-region-contents (button-start button) (button-end button) "​"))) ; zero-width space here
+    (overlay-put (car (overlays-at (button-start button))) 'invisible t)))
 
 ;;;;; Shadowed path
 
@@ -1001,50 +1066,7 @@ Do this under any of the following conditions:
     (mct-focus-minibuffer)
     (mct--show-completions)))
 
-(defun mct--setup-persistent-completions ()
-  "Set up `mct-persist-completions-buffer'."
-  (let ((commands '(choose-completion minibuffer-complete minibuffer-force-complete)))
-    (if (bound-and-true-p mct-mode)
-        (dolist (fn commands)
-          (advice-add fn :after #'mct-persist-completions-buffer))
-      (dolist (fn commands)
-        (advice-remove fn #'mct-persist-completions-buffer)))))
-
 ;;;;; mct-mode declaration
-
-(declare-function minibuf-eldef-setup-minibuffer "minibuf-eldef")
-
-;;;###autoload
-(define-minor-mode mct-mode
-  "Set up opinionated default completion UI."
-  :global t
-  :group 'mct
-  (if mct-mode
-      (progn
-        (add-hook 'completion-list-mode-hook #'mct--setup-completion-list)
-        (add-hook 'minibuffer-setup-hook #'mct--setup-passlist)
-        (advice-add #'completing-read-default :around #'mct--completing-read-advice)
-        (advice-add #'completing-read-multiple :around #'mct--completing-read-advice)
-        (when (and mct-completing-read-multiple-indicator (< emacs-major-version 31))
-          (advice-add #'completing-read-multiple :filter-args #'mct--crm-indicator))
-        (advice-add #'minibuffer-completion-help :around #'mct--minibuffer-completion-help-advice)
-        (advice-add #'minibuf-eldef-setup-minibuffer :around #'mct--stealthily))
-    (remove-hook 'completion-list-mode-hook #'mct--setup-completion-list)
-    (remove-hook 'minibuffer-setup-hook #'mct--setup-passlist)
-    (advice-remove #'completing-read-default #'mct--completing-read-advice)
-    (advice-remove #'completing-read-multiple #'mct--completing-read-advice)
-    (advice-remove #'completing-read-multiple #'mct--crm-indicator)
-    (advice-remove #'minibuffer-completion-help #'mct--minibuffer-completion-help-advice)
-    (advice-remove #'minibuf-eldef-setup-minibuffer #'mct--stealthily))
-  (mct--setup-persistent-completions)
-  (mct--setup-message-advices))
-
-(define-obsolete-function-alias
-  'mct-minibuffer-mode
-  'mct-mode
-  "1.0.0")
-
-(make-obsolete 'mct-region-mode nil "1.0.0")
 
 ;; Adapted from Omar Antolín Camarena's live-completions library:
 ;; <https://github.com/oantolin/live-completions>.
@@ -1062,10 +1084,30 @@ Do this under any of the following conditions:
         (apply app))
     (apply app)))
 
-(defun mct--setup-message-advices ()
-  "Silence the minibuffer and the Completions."
+(defvar mct-last-completions-sort-value (bound-and-true-p completions-sort)
+  "Last value of `completions-sort'.")
+
+(declare-function minibuf-eldef-setup-minibuffer "minibuf-eldef")
+
+;;;###autoload
+(define-minor-mode mct-mode
+  "Set up opinionated default completion UI."
+  :global t
+  :group 'mct
   (if mct-mode
       (progn
+        (setq completions-sort #'mct-sort-multi-category)
+        (add-hook 'completion-list-mode-hook #'mct--setup-completion-list)
+        (add-hook 'minibuffer-setup-hook #'mct--setup-passlist)
+        (advice-add #'completing-read-default :around #'mct--completing-read-advice)
+        (advice-add #'completing-read-multiple :around #'mct--completing-read-advice)
+        (when (and mct-completing-read-multiple-indicator (< emacs-major-version 31))
+          (advice-add #'completing-read-multiple :filter-args #'mct--crm-indicator))
+        (advice-add #'minibuffer-completion-help :around #'mct--minibuffer-completion-help-advice)
+        (advice-add #'minibuf-eldef-setup-minibuffer :around #'mct--stealthily)
+        (advice-add #'completion--insert-strings :after #'mct--completion--insert-strings)
+        (dolist (fn '(choose-completion minibuffer-complete minibuffer-force-complete))
+          (advice-add fn :after #'mct-persist-completions-buffer))
         (dolist (fn '(exit-minibuffer
                       choose-completion
                       minibuffer-force-complete
@@ -1073,6 +1115,17 @@ Do this under any of the following conditions:
                       minibuffer-force-complete-and-exit))
           (advice-add fn :around #'mct--messageless))
         (advice-add #'minibuffer-message :around #'mct--honor-inhibit-message))
+    (setq completions-sort mct-last-completions-sort-value)
+    (remove-hook 'completion-list-mode-hook #'mct--setup-completion-list)
+    (remove-hook 'minibuffer-setup-hook #'mct--setup-passlist)
+    (advice-remove #'completing-read-default #'mct--completing-read-advice)
+    (advice-remove #'completing-read-multiple #'mct--completing-read-advice)
+    (advice-remove #'completing-read-multiple #'mct--crm-indicator)
+    (advice-remove #'minibuffer-completion-help #'mct--minibuffer-completion-help-advice)
+    (advice-remove #'minibuf-eldef-setup-minibuffer #'mct--stealthily)
+    (advice-remove #'completion--insert-strings #'mct--completion--insert-strings)
+    (dolist (fn '(choose-completion minibuffer-complete minibuffer-force-complete))
+      (advice-remove fn #'mct-persist-completions-buffer))
     (dolist (fn '(exit-minibuffer
                   choose-completion
                   minibuffer-force-complete
@@ -1080,6 +1133,13 @@ Do this under any of the following conditions:
                   minibuffer-force-complete-and-exit))
       (advice-remove fn #'mct--messageless))
     (advice-remove #'minibuffer-message #'mct--honor-inhibit-message)))
+
+(define-obsolete-function-alias
+  'mct-minibuffer-mode
+  'mct-mode
+  "1.0.0")
+
+(make-obsolete 'mct-region-mode nil "1.0.0")
 
 (provide 'mct)
 ;;; mct.el ends here

@@ -1,6 +1,6 @@
-This is dociB3Ts4.info, produced by makeinfo version 6.8 from mct.texi.
+This is docaHMTh8.info, produced by makeinfo version 6.8 from mct.texi.
 
-Copyright (C) 2021 Free Software Foundation, Inc.
+Copyright (C) 2021-2025 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -19,12 +19,12 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: dociB3Ts4.info,  Node: Top,  Next: Overview of MCT,  Up: (dir)
+File: docaHMTh8.info,  Node: Top,  Next: Overview of MCT,  Up: (dir)
 
 Minibuffer Confines Transcended (mct.el)
 ****************************************
 
-Copyright (C) 2021 Free Software Foundation, Inc.
+Copyright (C) 2021-2025 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -87,6 +87,7 @@ Customizations
 * Minimum input threshold::
 * Delay between live updates::
 * Live updates per command or completion category::
+* Sort completions based on the command or completion category::
 * Size boundaries of the Completions::
 * Hide the Completions mode line::
 * Remove shadowed file paths::
@@ -128,7 +129,7 @@ Indices
 
 
 
-File: dociB3Ts4.info,  Node: Overview of MCT,  Next: Customizations,  Prev: Top,  Up: Top
+File: docaHMTh8.info,  Node: Overview of MCT,  Next: Customizations,  Prev: Top,  Up: Top
 
 1 Overview of MCT
 *****************
@@ -154,7 +155,7 @@ input threshold as well as a slight delay before it pops up the
 ‘*Completions*’ buffer and starts updating it to respond to user input.
 
 
-File: dociB3Ts4.info,  Node: Customizations,  Next: Usage,  Prev: Overview of MCT,  Up: Top
+File: docaHMTh8.info,  Node: Customizations,  Next: Usage,  Prev: Overview of MCT,  Up: Top
 
 2 Customizations
 ****************
@@ -168,6 +169,7 @@ section documents each user option.
 * Minimum input threshold::
 * Delay between live updates::
 * Live updates per command or completion category::
+* Sort completions based on the command or completion category::
 * Size boundaries of the Completions::
 * Hide the Completions mode line::
 * Remove shadowed file paths::
@@ -175,7 +177,7 @@ section documents each user option.
 * MCT in the minibuffer and completion in regular buffers::
 
 
-File: dociB3Ts4.info,  Node: Live completion,  Next: Minimum input threshold,  Up: Customizations
+File: docaHMTh8.info,  Node: Live completion,  Next: Minimum input threshold,  Up: Customizations
 
 2.1 Live completion
 ===================
@@ -225,7 +227,7 @@ categories::).
    *note Size boundaries of the Completions::.
 
 
-File: dociB3Ts4.info,  Node: Minimum input threshold,  Next: Delay between live updates,  Prev: Live completion,  Up: Customizations
+File: docaHMTh8.info,  Node: Minimum input threshold,  Next: Delay between live updates,  Prev: Live completion,  Up: Customizations
 
 2.2 Minimum input threshold
 ===========================
@@ -255,7 +257,7 @@ are specified in the ‘mct-completion-passlist’ and
    *note Live updates per command or completion category::.
 
 
-File: dociB3Ts4.info,  Node: Delay between live updates,  Next: Live updates per command or completion category,  Prev: Minimum input threshold,  Up: Customizations
+File: docaHMTh8.info,  Node: Delay between live updates,  Next: Live updates per command or completion category,  Prev: Minimum input threshold,  Up: Customizations
 
 2.3 Delay between live updates
 ==============================
@@ -274,7 +276,7 @@ are specified in the ‘mct-completion-passlist’ and
    *note Live updates per command or completion category::.
 
 
-File: dociB3Ts4.info,  Node: Live updates per command or completion category,  Next: Size boundaries of the Completions,  Prev: Delay between live updates,  Up: Customizations
+File: docaHMTh8.info,  Node: Live updates per command or completion category,  Next: Sort completions based on the command or completion category,  Prev: Delay between live updates,  Up: Customizations
 
 2.4 Live updates per command or completion category
 ===================================================
@@ -303,7 +305,7 @@ commands or categories specified.
 * Find completion category::
 
 
-File: dociB3Ts4.info,  Node: Passlist for commands or completion categories,  Next: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
+File: docaHMTh8.info,  Node: Passlist for commands or completion categories,  Next: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
 
 2.4.1 Passlist for commands or completion categories
 ----------------------------------------------------
@@ -329,7 +331,7 @@ are in conflict, the former takes precedence.
    *note Known completion categories::.
 
 
-File: dociB3Ts4.info,  Node: Blocklist for commands or completion categories,  Next: Known completion categories,  Prev: Passlist for commands or completion categories,  Up: Live updates per command or completion category
+File: docaHMTh8.info,  Node: Blocklist for commands or completion categories,  Next: Known completion categories,  Prev: Passlist for commands or completion categories,  Up: Live updates per command or completion category
 
 2.4.2 Blocklist for commands or completion categories
 -----------------------------------------------------
@@ -360,7 +362,7 @@ appropriate value.  Or better use ‘mct-completion-passlist’.
    *note Known completion categories::.
 
 
-File: dociB3Ts4.info,  Node: Known completion categories,  Next: Find completion category,  Prev: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
+File: docaHMTh8.info,  Node: Known completion categories,  Next: Find completion category,  Prev: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
 
 2.4.3 Known completion categories
 ---------------------------------
@@ -418,7 +420,7 @@ list.
    *note Find completion category::.
 
 
-File: dociB3Ts4.info,  Node: Find completion category,  Prev: Known completion categories,  Up: Live updates per command or completion category
+File: docaHMTh8.info,  Node: Find completion category,  Prev: Known completion categories,  Up: Live updates per command or completion category
 
 2.4.4 Find completion category
 ------------------------------
@@ -434,9 +436,49 @@ works when the variable ‘enable-recursive-minibuffers’ is non-nil.
    *note Known completion categories::.
 
 
-File: dociB3Ts4.info,  Node: Size boundaries of the Completions,  Next: Hide the Completions mode line,  Prev: Live updates per command or completion category,  Up: Customizations
+File: docaHMTh8.info,  Node: Sort completions based on the command or completion category,  Next: Size boundaries of the Completions,  Prev: Live updates per command or completion category,  Up: Customizations
 
-2.5 Size boundaries of the Completions
+2.5 Sort completions based on the command or completion category
+================================================================
+
+[ This is part of 1.1.0-dev.  ]
+
+   Brief: Sort completion candidates based on the command or completion
+category.
+
+   Symbol: ‘mct-sort-by-command-or-category’ (‘alist’ type)
+
+   This is an alist where each element is of the form ‘(SYMBOLS .
+SORT-FUNCTION)’.
+
+   ‘SYMBOLS’ is either a symbol or a list of symbols.  ‘SYMBOLS’ can
+refer to the symbol of a function or completion category.  It can also
+be ‘t’, which refers to the fallback value.
+
+   ‘SORT-FUNCTION’ is a function that takes a list of strings and
+returns a list of strings, sorting them accordingly.  Examples of a
+‘SORT-FUNCTION’ are:
+
+   • ‘mct-sort-by-alpha’
+
+   • ‘mct-sort-by-alpha-then-by-length’
+
+   • ‘mct-sort-by-history’
+
+   • ‘mct-sort-by-directory-then-by-file’
+
+   To not perform any sorting on the completion candidates that match
+‘SYMBOLS’ set ‘SORT-FUNCTION’ to ‘nil’.
+
+   If there are conflicting configurations between a ‘SYMBOLS’ function
+or completion category, then the function takes precedence (for example
+‘find-file’ is set to sort directories first whereas the ‘file’
+completion category is set to sort by history).
+
+
+File: docaHMTh8.info,  Node: Size boundaries of the Completions,  Next: Hide the Completions mode line,  Prev: Sort completions based on the command or completion category,  Up: Customizations
+
+2.6 Size boundaries of the Completions
 ======================================
 
 Brief: Set the maximum and minimum height of the Completions’ buffer.
@@ -461,9 +503,9 @@ the same number.
    *note Live completion::.
 
 
-File: dociB3Ts4.info,  Node: Hide the Completions mode line,  Next: Remove shadowed file paths,  Prev: Size boundaries of the Completions,  Up: Customizations
+File: docaHMTh8.info,  Node: Hide the Completions mode line,  Next: Remove shadowed file paths,  Prev: Size boundaries of the Completions,  Up: Customizations
 
-2.6 Hide the Completions mode line
+2.7 Hide the Completions mode line
 ==================================
 
 Brief: Do not show a mode line in the Completions’ buffer.
@@ -475,9 +517,9 @@ like every other window.  Set this user option to non-nil to remove the
 mode line.
 
 
-File: dociB3Ts4.info,  Node: Remove shadowed file paths,  Next: Show an indicator for completing-read-multiple prompts,  Prev: Hide the Completions mode line,  Up: Customizations
+File: docaHMTh8.info,  Node: Remove shadowed file paths,  Next: Show an indicator for completing-read-multiple prompts,  Prev: Hide the Completions mode line,  Up: Customizations
 
-2.7 Remove shadowed file paths
+2.8 Remove shadowed file paths
 ==============================
 
 Brief: Delete shadowed parts of file names from the minibuffer.
@@ -493,9 +535,9 @@ everything preceding the ‘~/’ is removed so the interactive selection
 process starts again from the user’s ‘$HOME’.
 
 
-File: dociB3Ts4.info,  Node: Show an indicator for completing-read-multiple prompts,  Next: MCT in the minibuffer and completion in regular buffers,  Prev: Remove shadowed file paths,  Up: Customizations
+File: docaHMTh8.info,  Node: Show an indicator for completing-read-multiple prompts,  Next: MCT in the minibuffer and completion in regular buffers,  Prev: Remove shadowed file paths,  Up: Customizations
 
-2.8 Show an indicator for ‘completing-read-multiple’ prompts
+2.9 Show an indicator for ‘completing-read-multiple’ prompts
 ============================================================
 
 [ Part of 1.1.0-dev.  ]
@@ -516,10 +558,10 @@ versions of Emacs >= 31, as those have the user option ‘crm-prompt’
 which covers the same use-case.
 
 
-File: dociB3Ts4.info,  Node: MCT in the minibuffer and completion in regular buffers,  Prev: Show an indicator for completing-read-multiple prompts,  Up: Customizations
+File: docaHMTh8.info,  Node: MCT in the minibuffer and completion in regular buffers,  Prev: Show an indicator for completing-read-multiple prompts,  Up: Customizations
 
-2.9 MCT in the minibuffer and completion in regular buffers
-===========================================================
+2.10 MCT in the minibuffer and completion in regular buffers
+============================================================
 
 Emacs draws a distinction between two types of completion sessions:
 
@@ -588,7 +630,7 @@ the use of a popup box is better.  Consider the ‘corfu’ package by
 Daniel Mendler, which uses such a popup (*note Alternatives::).
 
 
-File: dociB3Ts4.info,  Node: Usage,  Next: Installation,  Prev: Customizations,  Up: Top
+File: docaHMTh8.info,  Node: Usage,  Next: Installation,  Prev: Customizations,  Up: Top
 
 3 Usage
 *******
@@ -602,7 +644,7 @@ establishes.
 * Selecting candidates with mct-mode::
 
 
-File: dociB3Ts4.info,  Node: Cyclic behaviour for mct-mode,  Next: Selecting candidates with mct-mode,  Up: Usage
+File: docaHMTh8.info,  Node: Cyclic behaviour for mct-mode,  Next: Selecting candidates with mct-mode,  Up: Usage
 
 3.1 Cyclic behaviour for mct-mode
 =================================
@@ -652,7 +694,7 @@ inside the minibuffer with ‘C-l’ (mnemonic is “[l]ist completions” and
 the command is ‘mct-list-completions-toggle’).
 
 
-File: dociB3Ts4.info,  Node: Selecting candidates with mct-mode,  Prev: Cyclic behaviour for mct-mode,  Up: Usage
+File: docaHMTh8.info,  Node: Selecting candidates with mct-mode,  Prev: Cyclic behaviour for mct-mode,  Up: Usage
 
 3.2 Selecting candidates with mct-mode
 ======================================
@@ -744,7 +786,7 @@ There are several ways to select a completion candidate with ‘mct-mode’.
      they stop at the first or last heading.
 
 
-File: dociB3Ts4.info,  Node: Installation,  Next: Sample setup,  Prev: Usage,  Up: Top
+File: docaHMTh8.info,  Node: Installation,  Next: Sample setup,  Prev: Usage,  Up: Top
 
 4 Installation
 **************
@@ -755,7 +797,7 @@ File: dociB3Ts4.info,  Node: Installation,  Next: Sample setup,  Prev: Usage,  U
 * Manual installation method::
 
 
-File: dociB3Ts4.info,  Node: Install the package,  Next: Manual installation method,  Up: Installation
+File: docaHMTh8.info,  Node: Install the package,  Next: Manual installation method,  Up: Installation
 
 4.1 Install the package
 =======================
@@ -772,7 +814,7 @@ configuration.  The following commands shall suffice:
      guix package -i emacs-mct
 
 
-File: dociB3Ts4.info,  Node: Manual installation method,  Prev: Install the package,  Up: Installation
+File: docaHMTh8.info,  Node: Manual installation method,  Prev: Install the package,  Up: Installation
 
 4.2 Manual installation method
 ==============================
@@ -799,7 +841,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: dociB3Ts4.info,  Node: Sample setup,  Next: Keymaps,  Prev: Installation,  Up: Top
+File: docaHMTh8.info,  Node: Sample setup,  Next: Keymaps,  Prev: Installation,  Up: Top
 
 5 Sample setup
 **************
@@ -910,7 +952,7 @@ strings):
            '((file (styles . (basic partial-completion orderless)))))
 
 
-File: dociB3Ts4.info,  Node: Keymaps,  Next: User-level tweaks or custom code,  Prev: Sample setup,  Up: Top
+File: docaHMTh8.info,  Node: Keymaps,  Next: User-level tweaks or custom code,  Prev: Sample setup,  Up: Top
 
 6 Keymaps
 *********
@@ -928,7 +970,7 @@ those they extend and override (the names of the original ones are the
 same as above, minus the ‘mct-’ prefix).
 
 
-File: dociB3Ts4.info,  Node: User-level tweaks or custom code,  Next: Third-party extensions,  Prev: Keymaps,  Up: Top
+File: docaHMTh8.info,  Node: User-level tweaks or custom code,  Next: Third-party extensions,  Prev: Keymaps,  Up: Top
 
 7 User-level tweaks or custom code
 **********************************
@@ -942,12 +984,18 @@ In this section we cover custom code that builds on what MCT offers.
 * Ido-style navigation through directories::
 
 
-File: dociB3Ts4.info,  Node: Sort completion candidates on Emacs 29,  Next: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
+File: docaHMTh8.info,  Node: Sort completion candidates on Emacs 29,  Next: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
 
 7.1 Sort completion candidates on Emacs 29
 ==========================================
 
-Starting with Emacs 29 (current development target), the user option
+[ As part of 1.1.0-dev, MCT provides the user option
+‘mct-sort-by-command-or-category’ and sets the ‘completions-sort’
+accordingly (*note Sort completions based on the command or completion
+category::).  The information herein is thus not needed, but may still
+be useful in writing a custom sort function.  ]
+
+   Starting with Emacs 29 (current development target), the user option
 ‘completions-sort’ controls the sorting method of candidates in the
 ‘*Completions*’ buffer.  Beside the default of using ‘string-lessp’, it
 accepts a custom function.  Consider any of the following examples:
@@ -981,7 +1029,7 @@ accepts a custom function.  Consider any of the following examples:
    *note Known completion categories::.
 
 
-File: dociB3Ts4.info,  Node: Indicator for completing-read-multiple,  Next: Ido-style navigation through directories,  Prev: Sort completion candidates on Emacs 29,  Up: User-level tweaks or custom code
+File: docaHMTh8.info,  Node: Indicator for completing-read-multiple,  Next: Ido-style navigation through directories,  Prev: Sort completion candidates on Emacs 29,  Up: User-level tweaks or custom code
 
 7.2 Indicator for completing-read-multiple
 ==========================================
@@ -1016,7 +1064,7 @@ instead:
      (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
 
-File: dociB3Ts4.info,  Node: Ido-style navigation through directories,  Prev: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
+File: docaHMTh8.info,  Node: Ido-style navigation through directories,  Prev: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
 
 7.3 Ido-style navigation through directories
 ============================================
@@ -1047,7 +1095,7 @@ Add this to your own configuration file instead:
      (define-key minibuffer-local-filename-completion-map (kbd "DEL") #'my-backward-updir)
 
 
-File: dociB3Ts4.info,  Node: Third-party extensions,  Next: Alternatives,  Prev: User-level tweaks or custom code,  Up: Top
+File: docaHMTh8.info,  Node: Third-party extensions,  Next: Alternatives,  Prev: User-level tweaks or custom code,  Up: Top
 
 8 Third-party extensions
 ************************
@@ -1101,7 +1149,7 @@ Cape (https://github.com/minad/cape) also by Daniel
 * Enable Consult previews::
 
 
-File: dociB3Ts4.info,  Node: Enable Consult previews,  Up: Third-party extensions
+File: docaHMTh8.info,  Node: Enable Consult previews,  Up: Third-party extensions
 
 8.1 Enable Consult previews
 ===========================
@@ -1113,7 +1161,7 @@ preview the candidate at point.  All we need to enable it in the
      (add-hook 'completion-list-mode-hook #'consult-preview-at-point-mode)
 
 
-File: dociB3Ts4.info,  Node: Alternatives,  Next: Acknowledgements,  Prev: Third-party extensions,  Up: Top
+File: docaHMTh8.info,  Node: Alternatives,  Next: Acknowledgements,  Prev: Third-party extensions,  Up: Top
 
 9 Alternatives
 **************
@@ -1197,7 +1245,7 @@ Icomplete and fido-mode (built-in, multiple authors)
      layer over the built-in infrastructure.
 
 
-File: dociB3Ts4.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alternatives,  Up: Top
+File: docaHMTh8.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alternatives,  Up: Top
 
 10 Acknowledgements
 *******************
@@ -1225,7 +1273,7 @@ Inspiration for certain features
      (‘vertico’), Omar Antolín Camarena (‘embark’, ‘live-completions’).
 
 
-File: dociB3Ts4.info,  Node: Official sources,  Next: GNU Free Documentation License,  Prev: Acknowledgements,  Up: Top
+File: docaHMTh8.info,  Node: Official sources,  Next: GNU Free Documentation License,  Prev: Acknowledgements,  Up: Top
 
 11 Official sources
 *******************
@@ -1240,7 +1288,7 @@ Mailing list
      <https://lists.sr.ht/~protesilaos/mct>
 
 
-File: dociB3Ts4.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Official sources,  Up: Top
+File: docaHMTh8.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Official sources,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -1722,7 +1770,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: dociB3Ts4.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docaHMTh8.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -1734,7 +1782,7 @@ B Indices
 * Concept index::
 
 
-File: dociB3Ts4.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docaHMTh8.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -1766,13 +1814,21 @@ B.1 Function index
                                                                (line 79)
 * mct-previous-completion-or-mini:       Cyclic behaviour for mct-mode.
                                                                (line 35)
+* mct-sort-by-alpha:                     Sort completions based on the command or completion category.
+                                                               (line 24)
+* mct-sort-by-alpha-then-by-length:      Sort completions based on the command or completion category.
+                                                               (line 26)
+* mct-sort-by-directory-then-by-file:    Sort completions based on the command or completion category.
+                                                               (line 30)
+* mct-sort-by-history:                   Sort completions based on the command or completion category.
+                                                               (line 28)
 * mct-switch-to-completions-bottom:      Cyclic behaviour for mct-mode.
                                                                (line 28)
 * mct-switch-to-completions-top:         Cyclic behaviour for mct-mode.
                                                                (line 28)
 
 
-File: dociB3Ts4.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docaHMTh8.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -1801,9 +1857,11 @@ B.2 Variable index
                                                                (line  6)
 * mct-remove-shadowed-file-name:         Remove shadowed file paths.
                                                                (line  6)
+* mct-sort-by-command-or-category:       Sort completions based on the command or completion category.
+                                                               (line  6)
 
 
-File: dociB3Ts4.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docaHMTh8.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
@@ -1834,44 +1892,45 @@ B.3 Concept index
 
 
 Tag Table:
-Node: Top848
-Node: Overview of MCT4056
-Node: Customizations5268
-Node: Live completion5873
-Node: Minimum input threshold7984
-Node: Delay between live updates9217
-Node: Live updates per command or completion category9904
-Node: Passlist for commands or completion categories10940
-Node: Blocklist for commands or completion categories12094
-Node: Known completion categories13458
-Node: Find completion category15356
-Node: Size boundaries of the Completions15986
-Node: Hide the Completions mode line17120
-Node: Remove shadowed file paths17642
-Node: Show an indicator for completing-read-multiple prompts18420
-Node: MCT in the minibuffer and completion in regular buffers19411
-Node: Usage22679
-Node: Cyclic behaviour for mct-mode22952
-Node: Selecting candidates with mct-mode25023
-Node: Installation30323
-Node: Install the package30509
-Node: Manual installation method31007
-Node: Sample setup31789
-Node: Keymaps35574
-Node: User-level tweaks or custom code36188
-Node: Sort completion candidates on Emacs 2936592
-Node: Indicator for completing-read-multiple38224
-Node: Ido-style navigation through directories39871
-Node: Third-party extensions41253
-Node: Enable Consult previews43675
-Node: Alternatives44078
-Node: Acknowledgements48564
-Node: Official sources49558
-Node: GNU Free Documentation License49944
-Node: Indices75305
-Node: Function index75481
-Node: Variable index77722
-Node: Concept index79493
+Node: Top853
+Node: Overview of MCT4131
+Node: Customizations5343
+Node: Live completion6013
+Node: Minimum input threshold8124
+Node: Delay between live updates9357
+Node: Live updates per command or completion category10044
+Node: Passlist for commands or completion categories11106
+Node: Blocklist for commands or completion categories12260
+Node: Known completion categories13624
+Node: Find completion category15522
+Node: Sort completions based on the command or completion category16152
+Node: Size boundaries of the Completions17684
+Node: Hide the Completions mode line18831
+Node: Remove shadowed file paths19353
+Node: Show an indicator for completing-read-multiple prompts20131
+Node: MCT in the minibuffer and completion in regular buffers21122
+Node: Usage24392
+Node: Cyclic behaviour for mct-mode24665
+Node: Selecting candidates with mct-mode26736
+Node: Installation32036
+Node: Install the package32222
+Node: Manual installation method32720
+Node: Sample setup33502
+Node: Keymaps37287
+Node: User-level tweaks or custom code37901
+Node: Sort completion candidates on Emacs 2938305
+Node: Indicator for completing-read-multiple40258
+Node: Ido-style navigation through directories41905
+Node: Third-party extensions43287
+Node: Enable Consult previews45709
+Node: Alternatives46112
+Node: Acknowledgements50598
+Node: Official sources51592
+Node: GNU Free Documentation License51978
+Node: Indices77339
+Node: Function index77515
+Node: Variable index80460
+Node: Concept index82407
 
 End Tag Table
 

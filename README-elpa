@@ -44,11 +44,12 @@ Table of Contents
 ..... 2. Blocklist for commands or completion categories
 ..... 3. Known completion categories
 ..... 4. Find completion category
-.. 5. Size boundaries of the Completions
-.. 6. Hide the Completions mode line
-.. 7. Remove shadowed file paths
-.. 8. Show an indicator for `completing-read-multiple' prompts
-.. 9. MCT in the minibuffer and completion in regular buffers
+.. 5. Sort completions based on the command or completion category
+.. 6. Size boundaries of the Completions
+.. 7. Hide the Completions mode line
+.. 8. Remove shadowed file paths
+.. 9. Show an indicator for `completing-read-multiple' prompts
+.. 10. MCT in the minibuffer and completion in regular buffers
 4. Usage
 .. 1. Cyclic behaviour for mct-mode
 .. 2. Selecting candidates with mct-mode
@@ -76,7 +77,7 @@ Table of Contents
 1 COPYING
 ═════════
 
-  Copyright (C) 2021 Free Software Foundation, Inc.
+  Copyright (C) 2021-2025 Free Software Foundation, Inc.
 
         Permission is granted to copy, distribute and/or modify
         this document under the terms of the GNU Free
@@ -182,7 +183,7 @@ Table of Contents
 
 [Blocklist for commands or completion categories] See section 3.4.2
 
-[Size boundaries of the Completions] See section 3.5
+[Size boundaries of the Completions] See section 3.6
 
 
 3.2 Minimum input threshold
@@ -395,7 +396,45 @@ Table of Contents
 [Known completion categories] See section 3.4.3
 
 
-3.5 Size boundaries of the Completions
+3.5 Sort completions based on the command or completion category
+────────────────────────────────────────────────────────────────
+
+  [ This is part of 1.1.0-dev. ]
+
+  Brief: Sort completion candidates based on the command or completion
+  category.
+
+  Symbol: `mct-sort-by-command-or-category' (`alist' type)
+
+  This is an alist where each element is of the form `(SYMBOLS
+  . SORT-FUNCTION)'.
+
+  `SYMBOLS' is either a symbol or a list of symbols. `SYMBOLS' can refer
+  to the symbol of a function or completion category. It can also be
+  `t', which refers to the fallback value.
+
+  `SORT-FUNCTION' is a function that takes a list of strings and returns
+  a list of strings, sorting them accordingly. Examples of a
+  `SORT-FUNCTION' are:
+
+  • `mct-sort-by-alpha'
+
+  • `mct-sort-by-alpha-then-by-length'
+
+  • `mct-sort-by-history'
+
+  • `mct-sort-by-directory-then-by-file'
+
+  To not perform any sorting on the completion candidates that match
+  `SYMBOLS' set `SORT-FUNCTION' to `nil'.
+
+  If there are conflicting configurations between a `SYMBOLS' function
+  or completion category, then the function takes precedence (for
+  example `find-file' is set to sort directories first whereas the
+  `file' completion category is set to sort by history).
+
+
+3.6 Size boundaries of the Completions
 ──────────────────────────────────────
 
   Brief: Set the maximum and minimum height of the Completions’ buffer.
@@ -423,7 +462,7 @@ Table of Contents
 [Live completion] See section 3.1
 
 
-3.6 Hide the Completions mode line
+3.7 Hide the Completions mode line
 ──────────────────────────────────
 
   Brief: Do not show a mode line in the Completions’ buffer.
@@ -435,7 +474,7 @@ Table of Contents
   the mode line.
 
 
-3.7 Remove shadowed file paths
+3.8 Remove shadowed file paths
 ──────────────────────────────
 
   Brief: Delete shadowed parts of file names from the minibuffer.
@@ -451,7 +490,7 @@ Table of Contents
   starts again from the user’s `$HOME'.
 
 
-3.8 Show an indicator for `completing-read-multiple' prompts
+3.9 Show an indicator for `completing-read-multiple' prompts
 ────────────────────────────────────────────────────────────
 
   [ Part of 1.1.0-dev. ]
@@ -472,8 +511,8 @@ Table of Contents
   covers the same use-case.
 
 
-3.9 MCT in the minibuffer and completion in regular buffers
-───────────────────────────────────────────────────────────
+3.10 MCT in the minibuffer and completion in regular buffers
+────────────────────────────────────────────────────────────
 
   Emacs draws a distinction between two types of completion sessions:
 
@@ -886,6 +925,12 @@ Table of Contents
 8.1 Sort completion candidates on Emacs 29
 ──────────────────────────────────────────
 
+  [ As part of 1.1.0-dev, MCT provides the user option
+    `mct-sort-by-command-or-category' and sets the `completions-sort'
+    accordingly ([Sort completions based on the command or completion
+    category]).  The information herein is thus not needed, but may
+    still be useful in writing a custom sort function. ]
+
   Starting with Emacs 29 (current development target), the user option
   `completions-sort' controls the sorting method of candidates in the
   `*Completions*' buffer.  Beside the default of using `string-lessp',
@@ -921,6 +966,9 @@ Table of Contents
 
   [Known completion categories].
 
+
+[Sort completions based on the command or completion category] See
+section 3.5
 
 [Known completion categories] See section 3.4.3
 
@@ -960,7 +1008,7 @@ Table of Contents
 
 
 [Show an indicator for `completing-read-multiple' prompts] See section
-3.8
+3.9
 
 
 8.3 Ido-style navigation through directories
