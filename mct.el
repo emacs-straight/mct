@@ -5,7 +5,7 @@
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; Maintainer: Protesilaos Stavrou <info@protesilaos.com>
 ;; URL: https://github.com/protesilaos/mct
-;; Version: 1.0.0
+;; Version: 1.1.0
 ;; Package-Requires: ((emacs "29.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -25,11 +25,28 @@
 
 ;;; Commentary:
 ;;
-;; Enhancements for the default minibuffer completion UI of Emacs.  In
-;; essence, MCT is (i) a very thin layer of interactivity on top of the
-;; out-of-the-box completion experience, and (ii) glue code that combines
-;; built-in functionalities to make the default completion framework work
-;; like that of more featureful third-party options.
+;; Opinionated changes and enhancements to the default minibuffer
+;; completion UI of Emacs:
+;;
+;; - Live completions to update the results as you type.
+;;
+;; - Passlist and blocklist of commands or completion categories to
+;;   control whether the *Completions* buffer shows up eagerly.
+;;
+;; - Other relevant options to control when the *Completions* are
+;;   displayed.
+;;
+;; - Per command or completion category sorting methods.
+;;
+;; - A cleaner *Completions* buffer, optionally without a mode line.
+;;
+;; - Commands to cycle from the minibuffer to the *Completions* and
+;;   vice versa.
+;;
+;; In essence, MCT is (i) a layer of interactivity on top of the
+;; out-of-the-box completion experience, and (ii) glue code that
+;; combines built-in functionalities to make the default completion
+;; framework work like that of more featureful third-party options.
 
 ;;; Code:
 
@@ -225,7 +242,7 @@ are:
 To not perform any sorting on the completion candidates that match
 SYMBOLS set SORT-FUNCTION to nil.
 
-If there are conflicting configurations between a SYMBOLS function or
+If there are conflicting configurations between a SYMBOLS function and
 completion category, then the function takes precedence (for example
 `find-file' is set to sort directories first whereas the `file'
 completion category is set to sort by history)."
@@ -277,7 +294,7 @@ completion category is set to sort by history)."
 
 ;;;; Sorting functions for `completions-sort' (Emacs 29)
 
-(defvar mct-sort-alpha-function #'string-collate-lessp
+(defvar mct-sort-alpha-function #'string-version-lessp
   "Function to perform alphabetic sorting between two strings.")
 
 (defun mct-sort-by-alpha (completions)
@@ -317,9 +334,10 @@ This function can be used as the value of the user option
        alphabetized))))
 
 (defun mct-sort-by-directory-then-by-file (completions)
-  "Sort COMPLETIONS with `mct-sort-by-alpha-then-by-length' with directories first."
+  "Sort COMPLETIONS with `mct-sort-by-alpha-then-by-length' with directories first.
+Also remove the implicit directories . and .. from the COMPLETIONS."
+  (setq completions (seq-remove (lambda (x) (or (string= "./" x) (string= "../" x))) completions))
   (setq completions (mct-sort-by-alpha completions))
-  ;; But then move directories first
   (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) completions)
          (seq-remove (lambda (x) (string-suffix-p "/" x)) completions)))
 
@@ -626,8 +644,7 @@ by `mct--completions-window-name'."
   "Return the `point' of the first completion."
   (save-excursion
     (goto-char (point-max))
-    (when completions-header-format
-      (next-completion 1))
+    (next-completion 1)
     (point)))
 
 (defun mct--last-completion-point ()
