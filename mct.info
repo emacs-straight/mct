@@ -1,4 +1,4 @@
-This is docQI2WHa.info, produced by makeinfo version 6.8 from mct.texi.
+This is docprqT0A.info, produced by makeinfo version 6.8 from mct.texi.
 
 Copyright (C) 2021-2025 Free Software Foundation, Inc.
 
@@ -19,7 +19,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docQI2WHa.info,  Node: Top,  Next: Installation,  Up: (dir)
+File: docprqT0A.info,  Node: Top,  Next: Installation,  Up: (dir)
 
 Minibuffer Confines Transcended (mct.el)
 ****************************************
@@ -129,7 +129,7 @@ Indices
 
 
 
-File: docQI2WHa.info,  Node: Installation,  Next: Sample setup,  Prev: Top,  Up: Top
+File: docprqT0A.info,  Node: Installation,  Next: Sample setup,  Prev: Top,  Up: Top
 
 1 Installation
 **************
@@ -140,7 +140,7 @@ File: docQI2WHa.info,  Node: Installation,  Next: Sample setup,  Prev: Top,  Up:
 * Manual installation method::
 
 
-File: docQI2WHa.info,  Node: Install the package,  Next: Manual installation method,  Up: Installation
+File: docprqT0A.info,  Node: Install the package,  Next: Manual installation method,  Up: Installation
 
 1.1 Install the package
 =======================
@@ -157,7 +157,7 @@ configuration.  The following commands shall suffice:
      guix package -i emacs-mct
 
 
-File: docQI2WHa.info,  Node: Manual installation method,  Prev: Install the package,  Up: Installation
+File: docprqT0A.info,  Node: Manual installation method,  Prev: Install the package,  Up: Installation
 
 1.2 Manual installation method
 ==============================
@@ -184,7 +184,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docQI2WHa.info,  Node: Sample setup,  Next: Overview of MCT,  Prev: Installation,  Up: Top
+File: docprqT0A.info,  Node: Sample setup,  Next: Overview of MCT,  Prev: Installation,  Up: Top
 
 2 Sample setup
 **************
@@ -286,7 +286,7 @@ strings):
        (savehist-mode 1))
 
 
-File: docQI2WHa.info,  Node: Overview of MCT,  Next: Customizations,  Prev: Sample setup,  Up: Top
+File: docprqT0A.info,  Node: Overview of MCT,  Next: Customizations,  Prev: Sample setup,  Up: Top
 
 3 Overview of MCT
 *****************
@@ -317,7 +317,7 @@ appear, including a passlist and a blocklist:
    • *note Blocklist for commands or completion categories::
 
 
-File: docQI2WHa.info,  Node: Customizations,  Next: Usage,  Prev: Overview of MCT,  Up: Top
+File: docprqT0A.info,  Node: Customizations,  Next: Usage,  Prev: Overview of MCT,  Up: Top
 
 4 Customizations
 ****************
@@ -339,7 +339,7 @@ section documents each user option.
 * MCT in the minibuffer and completion in regular buffers::
 
 
-File: docQI2WHa.info,  Node: Live completion,  Next: Minimum input threshold,  Up: Customizations
+File: docprqT0A.info,  Node: Live completion,  Next: Minimum input threshold,  Up: Customizations
 
 4.1 Live completion
 ===================
@@ -389,7 +389,7 @@ categories::).
    *note Size boundaries of the Completions::.
 
 
-File: docQI2WHa.info,  Node: Minimum input threshold,  Next: Delay between live updates,  Prev: Live completion,  Up: Customizations
+File: docprqT0A.info,  Node: Minimum input threshold,  Next: Delay between live updates,  Prev: Live completion,  Up: Customizations
 
 4.2 Minimum input threshold
 ===========================
@@ -419,7 +419,7 @@ are specified in the ‘mct-completion-passlist’ and
    *note Live updates per command or completion category::.
 
 
-File: docQI2WHa.info,  Node: Delay between live updates,  Next: Live updates per command or completion category,  Prev: Minimum input threshold,  Up: Customizations
+File: docprqT0A.info,  Node: Delay between live updates,  Next: Live updates per command or completion category,  Prev: Minimum input threshold,  Up: Customizations
 
 4.3 Delay between live updates
 ==============================
@@ -438,7 +438,7 @@ are specified in the ‘mct-completion-passlist’ and
    *note Live updates per command or completion category::.
 
 
-File: docQI2WHa.info,  Node: Live updates per command or completion category,  Next: Sort completions based on the command or completion category,  Prev: Delay between live updates,  Up: Customizations
+File: docprqT0A.info,  Node: Live updates per command or completion category,  Next: Sort completions based on the command or completion category,  Prev: Delay between live updates,  Up: Customizations
 
 4.4 Live updates per command or completion category
 ===================================================
@@ -467,7 +467,7 @@ commands or categories specified.
 * Find completion category::
 
 
-File: docQI2WHa.info,  Node: Passlist for commands or completion categories,  Next: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
+File: docprqT0A.info,  Node: Passlist for commands or completion categories,  Next: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
 
 4.4.1 Passlist for commands or completion categories
 ----------------------------------------------------
@@ -493,7 +493,7 @@ are in conflict, the former takes precedence.
    *note Known completion categories::.
 
 
-File: docQI2WHa.info,  Node: Blocklist for commands or completion categories,  Next: Known completion categories,  Prev: Passlist for commands or completion categories,  Up: Live updates per command or completion category
+File: docprqT0A.info,  Node: Blocklist for commands or completion categories,  Next: Known completion categories,  Prev: Passlist for commands or completion categories,  Up: Live updates per command or completion category
 
 4.4.2 Blocklist for commands or completion categories
 -----------------------------------------------------
@@ -524,7 +524,7 @@ appropriate value.  Or better use ‘mct-completion-passlist’.
    *note Known completion categories::.
 
 
-File: docQI2WHa.info,  Node: Known completion categories,  Next: Find completion category,  Prev: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
+File: docprqT0A.info,  Node: Known completion categories,  Next: Find completion category,  Prev: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
 
 4.4.3 Known completion categories
 ---------------------------------
@@ -582,7 +582,7 @@ list.
    *note Find completion category::.
 
 
-File: docQI2WHa.info,  Node: Find completion category,  Prev: Known completion categories,  Up: Live updates per command or completion category
+File: docprqT0A.info,  Node: Find completion category,  Prev: Known completion categories,  Up: Live updates per command or completion category
 
 4.4.4 Find completion category
 ------------------------------
@@ -598,7 +598,7 @@ works when the variable ‘enable-recursive-minibuffers’ is non-nil.
    *note Known completion categories::.
 
 
-File: docQI2WHa.info,  Node: Sort completions based on the command or completion category,  Next: Size boundaries of the Completions,  Prev: Live updates per command or completion category,  Up: Customizations
+File: docprqT0A.info,  Node: Sort completions based on the command or completion category,  Next: Size boundaries of the Completions,  Prev: Live updates per command or completion category,  Up: Customizations
 
 4.5 Sort completions based on the command or completion category
 ================================================================
@@ -636,7 +636,7 @@ and completion category, then the function takes precedence (for example
 completion category is set to sort by history).
 
 
-File: docQI2WHa.info,  Node: Size boundaries of the Completions,  Next: Hide the Completions mode line,  Prev: Sort completions based on the command or completion category,  Up: Customizations
+File: docprqT0A.info,  Node: Size boundaries of the Completions,  Next: Hide the Completions mode line,  Prev: Sort completions based on the command or completion category,  Up: Customizations
 
 4.6 Size boundaries of the Completions
 ======================================
@@ -663,7 +663,7 @@ the same number.
    *note Live completion::.
 
 
-File: docQI2WHa.info,  Node: Hide the Completions mode line,  Next: Remove shadowed file paths,  Prev: Size boundaries of the Completions,  Up: Customizations
+File: docprqT0A.info,  Node: Hide the Completions mode line,  Next: Remove shadowed file paths,  Prev: Size boundaries of the Completions,  Up: Customizations
 
 4.7 Hide the Completions mode line
 ==================================
@@ -677,7 +677,7 @@ like every other window.  Set this user option to non-nil to remove the
 mode line.
 
 
-File: docQI2WHa.info,  Node: Remove shadowed file paths,  Next: Show an indicator for completing-read-multiple prompts,  Prev: Hide the Completions mode line,  Up: Customizations
+File: docprqT0A.info,  Node: Remove shadowed file paths,  Next: Show an indicator for completing-read-multiple prompts,  Prev: Hide the Completions mode line,  Up: Customizations
 
 4.8 Remove shadowed file paths
 ==============================
@@ -695,7 +695,7 @@ everything preceding the ‘~/’ is removed so the interactive selection
 process starts again from the user’s ‘$HOME’.
 
 
-File: docQI2WHa.info,  Node: Show an indicator for completing-read-multiple prompts,  Next: MCT in the minibuffer and completion in regular buffers,  Prev: Remove shadowed file paths,  Up: Customizations
+File: docprqT0A.info,  Node: Show an indicator for completing-read-multiple prompts,  Next: MCT in the minibuffer and completion in regular buffers,  Prev: Remove shadowed file paths,  Up: Customizations
 
 4.9 Show an indicator for ‘completing-read-multiple’ prompts
 ============================================================
@@ -716,7 +716,7 @@ versions of Emacs >= 31, as those have the user option ‘crm-prompt’
 which covers the same use-case.
 
 
-File: docQI2WHa.info,  Node: MCT in the minibuffer and completion in regular buffers,  Prev: Show an indicator for completing-read-multiple prompts,  Up: Customizations
+File: docprqT0A.info,  Node: MCT in the minibuffer and completion in regular buffers,  Prev: Show an indicator for completing-read-multiple prompts,  Up: Customizations
 
 4.10 MCT in the minibuffer and completion in regular buffers
 ============================================================
@@ -788,7 +788,7 @@ the use of a popup box is better.  Consider the ‘corfu’ package by
 Daniel Mendler, which uses such a popup (*note Alternatives::).
 
 
-File: docQI2WHa.info,  Node: Usage,  Next: Keymaps,  Prev: Customizations,  Up: Top
+File: docprqT0A.info,  Node: Usage,  Next: Keymaps,  Prev: Customizations,  Up: Top
 
 5 Usage
 *******
@@ -802,7 +802,7 @@ establishes.
 * Selecting candidates with mct-mode::
 
 
-File: docQI2WHa.info,  Node: Cyclic behaviour for mct-mode,  Next: Selecting candidates with mct-mode,  Up: Usage
+File: docprqT0A.info,  Node: Cyclic behaviour for mct-mode,  Next: Selecting candidates with mct-mode,  Up: Usage
 
 5.1 Cyclic behaviour for mct-mode
 =================================
@@ -852,7 +852,7 @@ inside the minibuffer with ‘C-l’ (mnemonic is “[l]ist completions” and
 the command is ‘mct-list-completions-toggle’).
 
 
-File: docQI2WHa.info,  Node: Selecting candidates with mct-mode,  Prev: Cyclic behaviour for mct-mode,  Up: Usage
+File: docprqT0A.info,  Node: Selecting candidates with mct-mode,  Prev: Cyclic behaviour for mct-mode,  Up: Usage
 
 5.2 Selecting candidates with mct-mode
 ======================================
@@ -944,7 +944,7 @@ There are several ways to select a completion candidate with ‘mct-mode’.
      they stop at the first or last heading.
 
 
-File: docQI2WHa.info,  Node: Keymaps,  Next: User-level tweaks or custom code,  Prev: Usage,  Up: Top
+File: docprqT0A.info,  Node: Keymaps,  Next: User-level tweaks or custom code,  Prev: Usage,  Up: Top
 
 6 Keymaps
 *********
@@ -962,7 +962,7 @@ those they extend and override (the names of the original ones are the
 same as above, minus the ‘mct-’ prefix).
 
 
-File: docQI2WHa.info,  Node: User-level tweaks or custom code,  Next: Third-party extensions,  Prev: Keymaps,  Up: Top
+File: docprqT0A.info,  Node: User-level tweaks or custom code,  Next: Third-party extensions,  Prev: Keymaps,  Up: Top
 
 7 User-level tweaks or custom code
 **********************************
@@ -976,7 +976,7 @@ In this section we cover custom code that builds on what MCT offers.
 * Ido-style navigation through directories::
 
 
-File: docQI2WHa.info,  Node: Sort completion candidates on Emacs 29,  Next: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
+File: docprqT0A.info,  Node: Sort completion candidates on Emacs 29,  Next: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
 
 7.1 Sort completion candidates on Emacs 29
 ==========================================
@@ -1021,7 +1021,7 @@ accepts a custom function.  Consider any of the following examples:
    *note Known completion categories::.
 
 
-File: docQI2WHa.info,  Node: Indicator for completing-read-multiple,  Next: Ido-style navigation through directories,  Prev: Sort completion candidates on Emacs 29,  Up: User-level tweaks or custom code
+File: docprqT0A.info,  Node: Indicator for completing-read-multiple,  Next: Ido-style navigation through directories,  Prev: Sort completion candidates on Emacs 29,  Up: User-level tweaks or custom code
 
 7.2 Indicator for completing-read-multiple
 ==========================================
@@ -1056,7 +1056,7 @@ instead:
      (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
 
-File: docQI2WHa.info,  Node: Ido-style navigation through directories,  Prev: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
+File: docprqT0A.info,  Node: Ido-style navigation through directories,  Prev: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
 
 7.3 Ido-style navigation through directories
 ============================================
@@ -1087,7 +1087,7 @@ Add this to your own configuration file instead:
      (define-key minibuffer-local-filename-completion-map (kbd "DEL") #'my-backward-updir)
 
 
-File: docQI2WHa.info,  Node: Third-party extensions,  Next: Alternatives,  Prev: User-level tweaks or custom code,  Up: Top
+File: docprqT0A.info,  Node: Third-party extensions,  Next: Alternatives,  Prev: User-level tweaks or custom code,  Up: Top
 
 8 Third-party extensions
 ************************
@@ -1141,7 +1141,7 @@ Cape (https://github.com/minad/cape) also by Daniel
 * Enable Consult previews::
 
 
-File: docQI2WHa.info,  Node: Enable Consult previews,  Up: Third-party extensions
+File: docprqT0A.info,  Node: Enable Consult previews,  Up: Third-party extensions
 
 8.1 Enable Consult previews
 ===========================
@@ -1153,7 +1153,7 @@ preview the candidate at point.  All we need to enable it in the
      (add-hook 'completion-list-mode-hook #'consult-preview-at-point-mode)
 
 
-File: docQI2WHa.info,  Node: Alternatives,  Next: Acknowledgements,  Prev: Third-party extensions,  Up: Top
+File: docprqT0A.info,  Node: Alternatives,  Next: Acknowledgements,  Prev: Third-party extensions,  Up: Top
 
 9 Alternatives
 **************
@@ -1237,7 +1237,7 @@ Icomplete and fido-mode (built-in, multiple authors)
      layer over the built-in infrastructure.
 
 
-File: docQI2WHa.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alternatives,  Up: Top
+File: docprqT0A.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alternatives,  Up: Top
 
 10 Acknowledgements
 *******************
@@ -1265,7 +1265,7 @@ Inspiration for certain features
      (‘vertico’), Omar Antolín Camarena (‘embark’, ‘live-completions’).
 
 
-File: docQI2WHa.info,  Node: Official sources,  Next: GNU Free Documentation License,  Prev: Acknowledgements,  Up: Top
+File: docprqT0A.info,  Node: Official sources,  Next: GNU Free Documentation License,  Prev: Acknowledgements,  Up: Top
 
 11 Official sources
 *******************
@@ -1280,7 +1280,7 @@ Mailing list
      <https://lists.sr.ht/~protesilaos/mct>
 
 
-File: docQI2WHa.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Official sources,  Up: Top
+File: docprqT0A.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Official sources,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -1762,7 +1762,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docQI2WHa.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docprqT0A.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -1774,7 +1774,7 @@ B Indices
 * Concept index::
 
 
-File: docQI2WHa.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docprqT0A.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -1820,7 +1820,7 @@ B.1 Function index
                                                                (line 28)
 
 
-File: docQI2WHa.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docprqT0A.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -1853,7 +1853,7 @@ B.2 Variable index
                                                                (line  6)
 
 
-File: docQI2WHa.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docprqT0A.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
