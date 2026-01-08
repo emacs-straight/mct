@@ -1,6 +1,7 @@
-This is docn9ps1j.info, produced by makeinfo version 6.8 from mct.texi.
+This is docY1FVBa.info, produced by makeinfo version 7.1.1 from
+mct.texi.
 
-Copyright (C) 2021-2025 Free Software Foundation, Inc.
+Copyright (C) 2021-2026 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -19,12 +20,12 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docn9ps1j.info,  Node: Top,  Next: Installation,  Up: (dir)
+File: docY1FVBa.info,  Node: Top,  Next: Installation,  Up: (dir)
 
 Minibuffer Confines Transcended (mct.el)
 ****************************************
 
-Copyright (C) 2021-2025 Free Software Foundation, Inc.
+Copyright (C) 2021-2026 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -79,7 +80,7 @@ of it.
 * GNU Free Documentation License::
 * Indices::
 
-— The Detailed Node Listing —
+-- The Detailed Node Listing --
 
 Installation
 
@@ -129,7 +130,7 @@ Indices
 
 
 
-File: docn9ps1j.info,  Node: Installation,  Next: Sample setup,  Prev: Top,  Up: Top
+File: docY1FVBa.info,  Node: Installation,  Next: Sample setup,  Prev: Top,  Up: Top
 
 1 Installation
 **************
@@ -140,7 +141,7 @@ File: docn9ps1j.info,  Node: Installation,  Next: Sample setup,  Prev: Top,  Up:
 * Manual installation method::
 
 
-File: docn9ps1j.info,  Node: Install the package,  Next: Manual installation method,  Up: Installation
+File: docY1FVBa.info,  Node: Install the package,  Next: Manual installation method,  Up: Installation
 
 1.1 Install the package
 =======================
@@ -157,7 +158,7 @@ configuration.  The following commands shall suffice:
      guix package -i emacs-mct
 
 
-File: docn9ps1j.info,  Node: Manual installation method,  Prev: Install the package,  Up: Installation
+File: docY1FVBa.info,  Node: Manual installation method,  Prev: Install the package,  Up: Installation
 
 1.2 Manual installation method
 ==============================
@@ -184,7 +185,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docn9ps1j.info,  Node: Sample setup,  Next: Overview of MCT,  Prev: Installation,  Up: Top
+File: docY1FVBa.info,  Node: Sample setup,  Next: Overview of MCT,  Prev: Installation,  Up: Top
 
 2 Sample setup
 **************
@@ -286,12 +287,12 @@ strings):
        (savehist-mode 1))
 
 
-File: docn9ps1j.info,  Node: Overview of MCT,  Next: Customizations,  Prev: Sample setup,  Up: Top
+File: docY1FVBa.info,  Node: Overview of MCT,  Next: Customizations,  Prev: Sample setup,  Up: Top
 
 3 Overview of MCT
 *****************
 
-Minibuffer and Completions in Tandem, also known as “MCT”, “Mct”, ‘mct’,
+Minibuffer and Completions in Tandem, also known as "MCT", "Mct", ‘mct’,
 or ‘mct.el’, is a package that enhances the default minibuffer and
 ‘*Completions*’ buffer of Emacs 29 (or higher) so that they work
 together as part of a unified framework.  The idea is to make the
@@ -317,7 +318,7 @@ appear, including a passlist and a blocklist:
    • *note Blocklist for commands or completion categories::
 
 
-File: docn9ps1j.info,  Node: Customizations,  Next: Usage,  Prev: Overview of MCT,  Up: Top
+File: docY1FVBa.info,  Node: Customizations,  Next: Usage,  Prev: Overview of MCT,  Up: Top
 
 4 Customizations
 ****************
@@ -339,7 +340,7 @@ section documents each user option.
 * MCT in the minibuffer and completion in regular buffers::
 
 
-File: docn9ps1j.info,  Node: Live completion,  Next: Minimum input threshold,  Up: Customizations
+File: docY1FVBa.info,  Node: Live completion,  Next: Minimum input threshold,  Up: Customizations
 
 4.1 Live completion
 ===================
@@ -356,40 +357,40 @@ buffer.
   3. ‘visible’
 
    This user option governs the overall behaviour of MCT with regard to
-how it uses the Completions’ buffer:
+how it uses the Completions' buffer:
 
    • When nil, the user has to manually request completions, using the
-     regular activating commands (*note Usage::).  The Completions’
+     regular activating commands (*note Usage::).  The Completions'
      buffer is never updated live to match user input.  Updating has to
      be handled manually.  This is like the out-of-the-box minibuffer
      completion experience.
 
-   • When set to ‘visible’, the Completions’ buffer is live updated only
+   • When set to ‘visible’, the Completions' buffer is live updated only
      if it is visible (present in a window).  The actual display of the
      completions is still handled manually.  For this reason, the
      ‘visible’ style does not read the ‘mct-minimum-input’, meaning that
      it will always try to live update the visible completions,
      regardless of input length (*note Minimum input threshold::).
 
-   • When non-nil (the default), the Completions’ buffer is
+   • When non-nil (the default), the Completions' buffer is
      automatically displayed once the ‘mct-minimum-input’ is met and is
      hidden if the input drops below that threshold.  While visible, the
-     buffer is updated live to match the user’s input.
+     buffer is updated live to match the user's input.
 
    Note that every command or completion category that is declared in
 the ‘mct-completion-passlist’ ignores this option altogether.  This
-means that every such symbol will always show the Completions’ buffer
+means that every such symbol will always show the Completions' buffer
 automatically and will always update its contents live to match any
 further user input (*note Passlist for commands or completion
 categories::).  Same principle for the ‘mct-completion-blocklist’, which
 will always disable both the automatic display and live updating of the
-Completions’ buffer (*note Blocklist for commands or completion
+Completions' buffer (*note Blocklist for commands or completion
 categories::).
 
    *note Size boundaries of the Completions::.
 
 
-File: docn9ps1j.info,  Node: Minimum input threshold,  Next: Delay between live updates,  Prev: Live completion,  Up: Customizations
+File: docY1FVBa.info,  Node: Minimum input threshold,  Next: Delay between live updates,  Prev: Live completion,  Up: Customizations
 
 4.2 Minimum input threshold
 ===========================
@@ -419,16 +420,16 @@ are specified in the ‘mct-completion-passlist’ and
    *note Live updates per command or completion category::.
 
 
-File: docn9ps1j.info,  Node: Delay between live updates,  Next: Live updates per command or completion category,  Prev: Minimum input threshold,  Up: Customizations
+File: docY1FVBa.info,  Node: Delay between live updates,  Next: Live updates per command or completion category,  Prev: Minimum input threshold,  Up: Customizations
 
 4.3 Delay between live updates
 ==============================
 
-Brief: Delay in seconds before updating the Completions’ buffer.
+Brief: Delay in seconds before updating the Completions' buffer.
 
    Symbol: ‘mct-live-update-delay’ (‘number’ type)
 
-   The delay in seconds between live updates of the Completions’ buffer.
+   The delay in seconds between live updates of the Completions' buffer.
 The default value is ‘0.3’.
 
    This variable is ignored for commands or completion categories that
@@ -438,7 +439,7 @@ are specified in the ‘mct-completion-passlist’ and
    *note Live updates per command or completion category::.
 
 
-File: docn9ps1j.info,  Node: Live updates per command or completion category,  Next: Sort completions based on the command or completion category,  Prev: Delay between live updates,  Up: Customizations
+File: docY1FVBa.info,  Node: Live updates per command or completion category,  Next: Sort completions based on the command or completion category,  Prev: Delay between live updates,  Up: Customizations
 
 4.4 Live updates per command or completion category
 ===================================================
@@ -467,7 +468,7 @@ commands or categories specified.
 * Find completion category::
 
 
-File: docn9ps1j.info,  Node: Passlist for commands or completion categories,  Next: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
+File: docY1FVBa.info,  Node: Passlist for commands or completion categories,  Next: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
 
 4.4.1 Passlist for commands or completion categories
 ----------------------------------------------------
@@ -478,7 +479,7 @@ Brief: List of symbols where live completions are always enabled.
 
    The value of this user option is a list of symbols.  Those can refer
 to commands like ‘find-file’ or completion categories such as ‘file’,
-‘buffer’, or what other packages define like Consult’s
+‘buffer’, or what other packages define like Consult's
 ‘consult-location’ category.
 
    Any entry in the passlist ignores the value of ‘mct-live-completion’
@@ -493,7 +494,7 @@ are in conflict, the former takes precedence.
    *note Known completion categories::.
 
 
-File: docn9ps1j.info,  Node: Blocklist for commands or completion categories,  Next: Known completion categories,  Prev: Passlist for commands or completion categories,  Up: Live updates per command or completion category
+File: docY1FVBa.info,  Node: Blocklist for commands or completion categories,  Next: Known completion categories,  Prev: Passlist for commands or completion categories,  Up: Live updates per command or completion category
 
 4.4.2 Blocklist for commands or completion categories
 -----------------------------------------------------
@@ -504,14 +505,14 @@ Brief: List of symbols where live completions are always disabled.
 
    The value of this user option is a list of symbols.  Those can refer
 to commands like ‘find-file’ or completion categories such as ‘file’,
-‘buffer’, or what other packages define like Consult’s
+‘buffer’, or what other packages define like Consult's
 ‘consult-location’ category.
 
    This means that they ignore ‘mct-live-completion’.  They do not
-automatically display the Completions’ buffer, nor do they update it to
+automatically display the Completions' buffer, nor do they update it to
 match user input.
 
-   The Completions’ buffer can still be accessed with commands that
+   The Completions' buffer can still be accessed with commands that
 place it in a window (such as ‘mct-list-completions-toggle’,
 ‘mct-switch-to-completions-top’).
 
@@ -524,7 +525,7 @@ appropriate value.  Or better use ‘mct-completion-passlist’.
    *note Known completion categories::.
 
 
-File: docn9ps1j.info,  Node: Known completion categories,  Next: Find completion category,  Prev: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
+File: docY1FVBa.info,  Node: Known completion categories,  Next: Find completion category,  Prev: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
 
 4.4.3 Known completion categories
 ---------------------------------
@@ -582,7 +583,7 @@ list.
    *note Find completion category::.
 
 
-File: docn9ps1j.info,  Node: Find completion category,  Prev: Known completion categories,  Up: Live updates per command or completion category
+File: docY1FVBa.info,  Node: Find completion category,  Prev: Known completion categories,  Up: Live updates per command or completion category
 
 4.4.4 Find completion category
 ------------------------------
@@ -598,7 +599,7 @@ works when the variable ‘enable-recursive-minibuffers’ is non-nil.
    *note Known completion categories::.
 
 
-File: docn9ps1j.info,  Node: Sort completions based on the command or completion category,  Next: Size boundaries of the Completions,  Prev: Live updates per command or completion category,  Up: Customizations
+File: docY1FVBa.info,  Node: Sort completions based on the command or completion category,  Next: Size boundaries of the Completions,  Prev: Live updates per command or completion category,  Up: Customizations
 
 4.5 Sort completions based on the command or completion category
 ================================================================
@@ -636,12 +637,12 @@ and completion category, then the function takes precedence (for example
 completion category is set to sort by history).
 
 
-File: docn9ps1j.info,  Node: Size boundaries of the Completions,  Next: Hide the Completions mode line,  Prev: Sort completions based on the command or completion category,  Up: Customizations
+File: docY1FVBa.info,  Node: Size boundaries of the Completions,  Next: Hide the Completions mode line,  Prev: Sort completions based on the command or completion category,  Up: Customizations
 
 4.6 Size boundaries of the Completions
 ======================================
 
-Brief: Set the maximum and minimum height of the Completions’ buffer.
+Brief: Set the maximum and minimum height of the Completions' buffer.
 
    Symbol: ‘mct-completion-window-size’ (‘choice’ type between nil and
 cons cell)
@@ -652,23 +653,23 @@ such a number.
 
    The default maximum height of the window is calculated by the
 function ‘mct--frame-height-fraction’, which finds the closest round
-number to 1/3 of the frame’s height.  While the default minimum height
-is 1.  This means that during live completions the Completions’ window
+number to 1/3 of the frame's height.  While the default minimum height
+is 1.  This means that during live completions the Completions' window
 will shrink or grow to show candidates within the specified boundaries.
 To disable this bouncing effect, set both max-height and min-height to
 the same number.
 
-   If nil, do not try to fit the Completions’ buffer to its window.
+   If nil, do not try to fit the Completions' buffer to its window.
 
    *note Live completion::.
 
 
-File: docn9ps1j.info,  Node: Hide the Completions mode line,  Next: Remove shadowed file paths,  Prev: Size boundaries of the Completions,  Up: Customizations
+File: docY1FVBa.info,  Node: Hide the Completions mode line,  Next: Remove shadowed file paths,  Prev: Size boundaries of the Completions,  Up: Customizations
 
 4.7 Hide the Completions mode line
 ==================================
 
-Brief: Do not show a mode line in the Completions’ buffer.
+Brief: Do not show a mode line in the Completions' buffer.
 
    Symbol: ‘mct-hide-completion-mode-line’ (‘boolean’ type)
 
@@ -677,7 +678,7 @@ like every other window.  Set this user option to non-nil to remove the
 mode line.
 
 
-File: docn9ps1j.info,  Node: Remove shadowed file paths,  Next: Show an indicator for completing-read-multiple prompts,  Prev: Hide the Completions mode line,  Up: Customizations
+File: docY1FVBa.info,  Node: Remove shadowed file paths,  Next: Show an indicator for completing-read-multiple prompts,  Prev: Hide the Completions mode line,  Up: Customizations
 
 4.8 Remove shadowed file paths
 ==============================
@@ -692,10 +693,10 @@ shadowed (meaning that it is overriden) by the given input.
 
    For example, if the user types ‘~/’ after a long path name,
 everything preceding the ‘~/’ is removed so the interactive selection
-process starts again from the user’s ‘$HOME’.
+process starts again from the user's ‘$HOME’.
 
 
-File: docn9ps1j.info,  Node: Show an indicator for completing-read-multiple prompts,  Next: MCT in the minibuffer and completion in regular buffers,  Prev: Remove shadowed file paths,  Up: Customizations
+File: docY1FVBa.info,  Node: Show an indicator for completing-read-multiple prompts,  Next: MCT in the minibuffer and completion in regular buffers,  Prev: Remove shadowed file paths,  Up: Customizations
 
 4.9 Show an indicator for ‘completing-read-multiple’ prompts
 ============================================================
@@ -716,7 +717,7 @@ versions of Emacs >= 31, as those have the user option ‘crm-prompt’
 which covers the same use-case.
 
 
-File: docn9ps1j.info,  Node: MCT in the minibuffer and completion in regular buffers,  Prev: Show an indicator for completing-read-multiple prompts,  Up: Customizations
+File: docY1FVBa.info,  Node: MCT in the minibuffer and completion in regular buffers,  Prev: Show an indicator for completing-read-multiple prompts,  Up: Customizations
 
 4.10 MCT in the minibuffer and completion in regular buffers
 ============================================================
@@ -727,7 +728,7 @@ Emacs draws a distinction between two types of completion sessions:
      buffers or find a file).
 
    • Completion in a regular buffer to expand the text before point.
-     The minibuffer is not active.  We call this “in-buffer completion”
+     The minibuffer is not active.  We call this "in-buffer completion"
      or allude to the underlying function: ‘completion-in-region’.
 
    The former scenario is what MCT has supported since its inception.
@@ -788,7 +789,7 @@ the use of a popup box is better.  Consider the ‘corfu’ package by
 Daniel Mendler, which uses such a popup (*note Alternatives::).
 
 
-File: docn9ps1j.info,  Node: Usage,  Next: Keymaps,  Prev: Customizations,  Up: Top
+File: docY1FVBa.info,  Node: Usage,  Next: Keymaps,  Prev: Customizations,  Up: Top
 
 5 Usage
 *******
@@ -802,7 +803,7 @@ establishes.
 * Selecting candidates with mct-mode::
 
 
-File: docn9ps1j.info,  Node: Cyclic behaviour for mct-mode,  Next: Selecting candidates with mct-mode,  Up: Usage
+File: docY1FVBa.info,  Node: Cyclic behaviour for mct-mode,  Next: Selecting candidates with mct-mode,  Up: Usage
 
 5.1 Cyclic behaviour for mct-mode
 =================================
@@ -845,14 +846,14 @@ then the left and right arrow keys perform the corresponding lateral
 motions).  The commands are ‘mct-previous-completion-or-mini’ and
 ‘mct-next-completion-or-mini’.  Both accept an optional numeric
 argument.  If the Nth line lies outside the boundaries of the
-completions’ buffer, they move the point to the minibuffer.
+completions' buffer, they move the point to the minibuffer.
 
    The display of the ‘*Completions*’ can be toggled at any time from
-inside the minibuffer with ‘C-l’ (mnemonic is “[l]ist completions” and
+inside the minibuffer with ‘C-l’ (mnemonic is "[l]ist completions" and
 the command is ‘mct-list-completions-toggle’).
 
 
-File: docn9ps1j.info,  Node: Selecting candidates with mct-mode,  Prev: Cyclic behaviour for mct-mode,  Up: Usage
+File: docY1FVBa.info,  Node: Selecting candidates with mct-mode,  Prev: Cyclic behaviour for mct-mode,  Up: Usage
 
 5.2 Selecting candidates with mct-mode
 ======================================
@@ -870,13 +871,13 @@ There are several ways to select a completion candidate with ‘mct-mode’.
      ‘completion-cycle-threshold’ hitting ‘TAB’ again will switch
      between them.
 
-  2. While cycling through the completions’ buffer, type ‘RET’ to select
+  2. While cycling through the completions' buffer, type ‘RET’ to select
      and confirm the current candidate (‘mct-choose-completion-exit’).
      This works for all types of completion prompts.
 
   3. Similar to the above, but without exiting the minibuffer (i.e.  to
      confirm your choice) is ‘mct-choose-completion-no-exit’ which is
-     bound to ‘TAB’ in the completions’ buffer.  This is particularly
+     bound to ‘TAB’ in the completions' buffer.  This is particularly
      useful for certain contexts where selecting a candidate does not
      necessarily mean that the process has to be finalised (e.g.  when
      using ‘find-file’).  In those cases, the event triggered by ‘TAB’
@@ -887,15 +888,15 @@ There are several ways to select a completion candidate with ‘mct-mode’.
      The command can correctly expand completion candidates even when
      the active style in ‘completion-styles’ is ‘partial-completion’.
      In other words, if the minibuffer contains input like ‘~/G/P/m’ and
-     the point is in the completions’ buffer over ‘Git/Projects/mct/’
-     the minibuffer’ contents will become ‘~/Git/Projects/mct/’ and then
+     the point is in the completions' buffer over ‘Git/Projects/mct/’
+     the minibuffer' contents will become ‘~/Git/Projects/mct/’ and then
      show the contents of that directory.
 
-  4. Type ‘M-e’ (‘mct-edit-completion’) in the completions’ buffer to
+  4. Type ‘M-e’ (‘mct-edit-completion’) in the completions' buffer to
      place the current candidate in the minibuffer, without exiting the
      session.  This allows you to edit the text before confirming it.
      If point is in the minibuffer before performing this action, the
-     current candidate is either the one at the top of the completions’
+     current candidate is either the one at the top of the completions'
      buffer or that which is under the last known point in said buffer
      (the last known position is reset when the window is deleted).
      Internally, ‘mct-edit-completion’ uses
@@ -904,7 +905,7 @@ There are several ways to select a completion candidate with ‘mct-mode’.
 
      Sometimes there is a need to switch to the minibuffer without
      selecting the candidate at point, such as to retype some part of
-     the input.  In those cases, type ‘e’ in the completions’ buffer to
+     the input.  In those cases, type ‘e’ in the completions' buffer to
      move to the minibuffer.  The command is called
      ‘mct-focus-minibuffer’, which can also be assigned to the global
      keymap, though MCT leaves such a decision up to the user (same for
@@ -931,10 +932,10 @@ There are several ways to select a completion candidate with ‘mct-mode’.
      selected one.
 
   7. Emacs 28 has the ability to group candidates inside the
-     completions’ buffer under headings.  For example, the Consult
+     completions' buffer under headings.  For example, the Consult
      package makes use of those (*note Third-party extensions::).  MCT
      provides motions that jump between such headings, placing the point
-     at the first candidate right below the heading’s text.  Use ‘M-n’
+     at the first candidate right below the heading's text.  Use ‘M-n’
      (‘mct-next-completion-group’) and ‘M-p’
      (‘mct-previous-completion-group’) to move to the next or previous
      one, respectively (also work with they keys for ‘forward-paragraph’
@@ -944,7 +945,7 @@ There are several ways to select a completion candidate with ‘mct-mode’.
      they stop at the first or last heading.
 
 
-File: docn9ps1j.info,  Node: Keymaps,  Next: User-level tweaks or custom code,  Prev: Usage,  Up: Top
+File: docY1FVBa.info,  Node: Keymaps,  Next: User-level tweaks or custom code,  Prev: Usage,  Up: Top
 
 6 Keymaps
 *********
@@ -962,7 +963,7 @@ those they extend and override (the names of the original ones are the
 same as above, minus the ‘mct-’ prefix).
 
 
-File: docn9ps1j.info,  Node: User-level tweaks or custom code,  Next: Third-party extensions,  Prev: Keymaps,  Up: Top
+File: docY1FVBa.info,  Node: User-level tweaks or custom code,  Next: Third-party extensions,  Prev: Keymaps,  Up: Top
 
 7 User-level tweaks or custom code
 **********************************
@@ -976,7 +977,7 @@ In this section we cover custom code that builds on what MCT offers.
 * Ido-style navigation through directories::
 
 
-File: docn9ps1j.info,  Node: Sort completion candidates on Emacs 29,  Next: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
+File: docY1FVBa.info,  Node: Sort completion candidates on Emacs 29,  Next: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
 
 7.1 Sort completion candidates on Emacs 29
 ==========================================
@@ -1021,7 +1022,7 @@ accepts a custom function.  Consider any of the following examples:
    *note Known completion categories::.
 
 
-File: docn9ps1j.info,  Node: Indicator for completing-read-multiple,  Next: Ido-style navigation through directories,  Prev: Sort completion candidates on Emacs 29,  Up: User-level tweaks or custom code
+File: docY1FVBa.info,  Node: Indicator for completing-read-multiple,  Next: Ido-style navigation through directories,  Prev: Sort completion candidates on Emacs 29,  Up: User-level tweaks or custom code
 
 7.2 Indicator for completing-read-multiple
 ==========================================
@@ -1056,7 +1057,7 @@ instead:
      (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
 
-File: docn9ps1j.info,  Node: Ido-style navigation through directories,  Prev: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
+File: docY1FVBa.info,  Node: Ido-style navigation through directories,  Prev: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
 
 7.3 Ido-style navigation through directories
 ============================================
@@ -1087,7 +1088,7 @@ Add this to your own configuration file instead:
      (define-key minibuffer-local-filename-completion-map (kbd "DEL") #'my-backward-updir)
 
 
-File: docn9ps1j.info,  Node: Third-party extensions,  Next: Alternatives,  Prev: User-level tweaks or custom code,  Up: Top
+File: docY1FVBa.info,  Node: Third-party extensions,  Next: Alternatives,  Prev: User-level tweaks or custom code,  Up: Top
 
 8 Third-party extensions
 ************************
@@ -1127,7 +1128,7 @@ not involve the minibuffer.  However, you may prefer:
 Corfu (https://github.com/minad/corfu/) by Daniel Mendler
      An interface for the ‘completion-in-region’ which uses a child
      frame (basically a pop-up) at the position of the cursor to display
-     candidates.  As with all of Daniel’s packages, Corfu aims for a
+     candidates.  As with all of Daniel's packages, Corfu aims for a
      clean implementation that does the right thing by being consistent
      with core Emacs mechanisms.
 
@@ -1141,7 +1142,7 @@ Cape (https://github.com/minad/cape) also by Daniel
 * Enable Consult previews::
 
 
-File: docn9ps1j.info,  Node: Enable Consult previews,  Up: Third-party extensions
+File: docY1FVBa.info,  Node: Enable Consult previews,  Up: Third-party extensions
 
 8.1 Enable Consult previews
 ===========================
@@ -1153,21 +1154,21 @@ preview the candidate at point.  All we need to enable it in the
      (add-hook 'completion-list-mode-hook #'consult-preview-at-point-mode)
 
 
-File: docn9ps1j.info,  Node: Alternatives,  Next: Acknowledgements,  Prev: Third-party extensions,  Up: Top
+File: docY1FVBa.info,  Node: Alternatives,  Next: Acknowledgements,  Prev: Third-party extensions,  Up: Top
 
 9 Alternatives
 **************
 
 In the grand scheme of things, it may be helpful to think of MCT as
 proof-of-concept on how the default Emacs completion can become more
-expressive.  MCT’s value rests in its potential to inspire developers to
+expressive.  MCT's value rests in its potential to inspire developers to
 (i) patch Emacs so that its out-of-the-box completion is more
 interactive, and (ii) expose the shortcomings in the current
 implementation of the ‘*Completions*’ buffer, which should again provide
 an impetus for further changes to Emacs.  Otherwise, MCT is meant for
 users who can tolerate the status quo and simply want a thin layer of
 interactivity for minibuffer completion, in-buffer completion, and their
-intersection with the Completions’ buffer.
+intersection with the Completions' buffer.
 
    Like MCT, these alternatives provide a thin layer of functionality
 over the built-in infrastructure.  Unlike MCT, they are not constrained
@@ -1186,7 +1187,7 @@ Vertico (https://github.com/minad/vertico) by Daniel Mendler
      displayed.  As such, MCT will be slower in scenaria where there are
      lots of candidates because core Emacs lacks those optimizations.
      One such case is with the ‘describe-symbol’ (‘C-h o’) prompt.  If
-     the user asks for the completions’ buffer without inputting any
+     the user asks for the completions' buffer without inputting any
      character (so without narrowing the list), there will be a
      noticeable delay before the buffer is rendered.  This is mitigated
      in MCT by the requirement for ‘mct-minimum-input’, though the
@@ -1205,12 +1206,12 @@ Vertico (https://github.com/minad/vertico) by Daniel Mendler
      copy a string or rectangle to a register, and so on.
 
      Vertico has official extensions which can make it work exactly like
-     MCT without any of MCT’s drawbacks.  These extensions can also
-     expand Vertico’s powers such as by providing granular control over
+     MCT without any of MCT's drawbacks.  These extensions can also
+     expand Vertico's powers such as by providing granular control over
      the exact style of presentation for any given completion category
      (e.g.  display Imenu in a separate buffer, show the
      ‘switch-to-buffer’ list horizontally in the minibuffer, and present
-     ‘find-file’ in a vertical list—whatever the user wants).
+     ‘find-file’ in a vertical list--whatever the user wants).
 
      All things considered, there is no compelling reason why one may
      prefer MCT over Vertico in terms of the available functionality:
@@ -1237,7 +1238,7 @@ Icomplete and fido-mode (built-in, multiple authors)
      layer over the built-in infrastructure.
 
 
-File: docn9ps1j.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alternatives,  Up: Top
+File: docY1FVBa.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alternatives,  Up: Top
 
 10 Acknowledgements
 *******************
@@ -1261,11 +1262,11 @@ Packaging
      Andrew Tropin and Nicolas Goaziou (Guix).
 
 Inspiration for certain features
-     ‘icomplete.el’ (built-in—multiple authors), Daniel Mendler
+     ‘icomplete.el’ (built-in--multiple authors), Daniel Mendler
      (‘vertico’), Omar Antolín Camarena (‘embark’, ‘live-completions’).
 
 
-File: docn9ps1j.info,  Node: Official sources,  Next: GNU Free Documentation License,  Prev: Acknowledgements,  Up: Top
+File: docY1FVBa.info,  Node: Official sources,  Next: GNU Free Documentation License,  Prev: Acknowledgements,  Up: Top
 
 11 Official sources
 *******************
@@ -1280,7 +1281,7 @@ Mailing list
      <https://lists.sr.ht/~protesilaos/mct>
 
 
-File: docn9ps1j.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Official sources,  Up: Top
+File: docY1FVBa.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Official sources,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -1303,7 +1304,7 @@ Appendix A GNU Free Documentation License
      author and publisher a way to get credit for their work, while not
      being considered responsible for modifications made by others.
 
-     This License is a kind of “copyleft”, which means that derivative
+     This License is a kind of "copyleft", which means that derivative
      works of the document must themselves be free in the same sense.
      It complements the GNU General Public License, which is a copyleft
      license designed for free software.
@@ -1324,18 +1325,18 @@ Appendix A GNU Free Documentation License
      be distributed under the terms of this License.  Such a notice
      grants a world-wide, royalty-free license, unlimited in duration,
      to use that work under the conditions stated herein.  The
-     “Document”, below, refers to any such manual or work.  Any member
-     of the public is a licensee, and is addressed as “you”.  You accept
+     "Document", below, refers to any such manual or work.  Any member
+     of the public is a licensee, and is addressed as "you".  You accept
      the license if you copy, modify or distribute the work in a way
      requiring permission under copyright law.
 
-     A “Modified Version” of the Document means any work containing the
+     A "Modified Version" of the Document means any work containing the
      Document or a portion of it, either copied verbatim, or with
      modifications and/or translated into another language.
 
-     A “Secondary Section” is a named appendix or a front-matter section
+     A "Secondary Section" is a named appendix or a front-matter section
      of the Document that deals exclusively with the relationship of the
-     publishers or authors of the Document to the Document’s overall
+     publishers or authors of the Document to the Document's overall
      subject (or to related matters) and contains nothing that could
      fall directly within that overall subject.  (Thus, if the Document
      is in part a textbook of mathematics, a Secondary Section may not
@@ -1344,7 +1345,7 @@ Appendix A GNU Free Documentation License
      of legal, commercial, philosophical, ethical or political position
      regarding them.
 
-     The “Invariant Sections” are certain Secondary Sections whose
+     The "Invariant Sections" are certain Secondary Sections whose
      titles are designated, as being those of Invariant Sections, in the
      notice that says that the Document is released under this License.
      If a section does not fit the above definition of Secondary then it
@@ -1352,13 +1353,13 @@ Appendix A GNU Free Documentation License
      contain zero Invariant Sections.  If the Document does not identify
      any Invariant Sections then there are none.
 
-     The “Cover Texts” are certain short passages of text that are
+     The "Cover Texts" are certain short passages of text that are
      listed, as Front-Cover Texts or Back-Cover Texts, in the notice
      that says that the Document is released under this License.  A
      Front-Cover Text may be at most 5 words, and a Back-Cover Text may
      be at most 25 words.
 
-     A “Transparent” copy of the Document means a machine-readable copy,
+     A "Transparent" copy of the Document means a machine-readable copy,
      represented in a format whose specification is available to the
      general public, that is suitable for revising the document
      straightforwardly with generic text editors or (for images composed
@@ -1370,7 +1371,7 @@ Appendix A GNU Free Documentation License
      been arranged to thwart or discourage subsequent modification by
      readers is not Transparent.  An image format is not Transparent if
      used for any substantial amount of text.  A copy that is not
-     “Transparent” is called “Opaque”.
+     "Transparent" is called "Opaque".
 
      Examples of suitable formats for Transparent copies include plain
      ASCII without markup, Texinfo input format, LaTeX input format,
@@ -1383,23 +1384,23 @@ Appendix A GNU Free Documentation License
      the machine-generated HTML, PostScript or PDF produced by some word
      processors for output purposes only.
 
-     The “Title Page” means, for a printed book, the title page itself,
+     The "Title Page" means, for a printed book, the title page itself,
      plus such following pages as are needed to hold, legibly, the
      material this License requires to appear in the title page.  For
-     works in formats which do not have any title page as such, “Title
-     Page” means the text near the most prominent appearance of the
-     work’s title, preceding the beginning of the body of the text.
+     works in formats which do not have any title page as such, "Title
+     Page" means the text near the most prominent appearance of the
+     work's title, preceding the beginning of the body of the text.
 
-     The “publisher” means any person or entity that distributes copies
+     The "publisher" means any person or entity that distributes copies
      of the Document to the public.
 
-     A section “Entitled XYZ” means a named subunit of the Document
+     A section "Entitled XYZ" means a named subunit of the Document
      whose title either is precisely XYZ or contains XYZ in parentheses
      following text that translates XYZ in another language.  (Here XYZ
      stands for a specific section name mentioned below, such as
-     “Acknowledgements”, “Dedications”, “Endorsements”, or “History”.)
-     To “Preserve the Title” of such a section when you modify the
-     Document means that it remains a section “Entitled XYZ” according
+     "Acknowledgements", "Dedications", "Endorsements", or "History".)
+     To "Preserve the Title" of such a section when you modify the
+     Document means that it remains a section "Entitled XYZ" according
      to this definition.
 
      The Document may include Warranty Disclaimers next to the notice
@@ -1429,7 +1430,7 @@ Appendix A GNU Free Documentation License
 
      If you publish printed copies (or copies in media that commonly
      have printed covers) of the Document, numbering more than 100, and
-     the Document’s license notice requires Cover Texts, you must
+     the Document's license notice requires Cover Texts, you must
      enclose the copies in covers that carry, clearly and legibly, all
      these Cover Texts: Front-Cover Texts on the front cover, and
      Back-Cover Texts on the back cover.  Both covers must also clearly
@@ -1501,15 +1502,15 @@ Appendix A GNU Free Documentation License
           the Addendum below.
 
        G. Preserve in that license notice the full lists of Invariant
-          Sections and required Cover Texts given in the Document’s
+          Sections and required Cover Texts given in the Document's
           license notice.
 
        H. Include an unaltered copy of this License.
 
-       I. Preserve the section Entitled “History”, Preserve its Title,
+       I. Preserve the section Entitled "History", Preserve its Title,
           and add to it an item stating at least the title, year, new
           authors, and publisher of the Modified Version as given on the
-          Title Page.  If there is no section Entitled “History” in the
+          Title Page.  If there is no section Entitled "History" in the
           Document, create one stating the title, year, authors, and
           publisher of the Document as given on its Title Page, then add
           an item describing the Modified Version as stated in the
@@ -1519,12 +1520,12 @@ Appendix A GNU Free Documentation License
           for public access to a Transparent copy of the Document, and
           likewise the network locations given in the Document for
           previous versions it was based on.  These may be placed in the
-          “History” section.  You may omit a network location for a work
+          "History" section.  You may omit a network location for a work
           that was published at least four years before the Document
           itself, or if the original publisher of the version it refers
           to gives permission.
 
-       K. For any section Entitled “Acknowledgements” or “Dedications”,
+       K. For any section Entitled "Acknowledgements" or "Dedications",
           Preserve the Title of the section, and preserve in the section
           all the substance and tone of each of the contributor
           acknowledgements and/or dedications given therein.
@@ -1533,11 +1534,11 @@ Appendix A GNU Free Documentation License
           in their text and in their titles.  Section numbers or the
           equivalent are not considered part of the section titles.
 
-       M. Delete any section Entitled “Endorsements”.  Such a section
+       M. Delete any section Entitled "Endorsements".  Such a section
           may not be included in the Modified Version.
 
        N. Do not retitle any existing section to be Entitled
-          “Endorsements” or to conflict in title with any Invariant
+          "Endorsements" or to conflict in title with any Invariant
           Section.
 
        O. Preserve any Warranty Disclaimers.
@@ -1546,15 +1547,15 @@ Appendix A GNU Free Documentation License
      appendices that qualify as Secondary Sections and contain no
      material copied from the Document, you may at your option designate
      some or all of these sections as invariant.  To do this, add their
-     titles to the list of Invariant Sections in the Modified Version’s
+     titles to the list of Invariant Sections in the Modified Version's
      license notice.  These titles must be distinct from any other
      section titles.
 
-     You may add a section Entitled “Endorsements”, provided it contains
+     You may add a section Entitled "Endorsements", provided it contains
      nothing but endorsements of your Modified Version by various
-     parties—for example, statements of peer review or that the text has
-     been approved by an organization as the authoritative definition of
-     a standard.
+     parties--for example, statements of peer review or that the text
+     has been approved by an organization as the authoritative
+     definition of a standard.
 
      You may add a passage of up to five words as a Front-Cover Text,
      and a passage of up to 25 words as a Back-Cover Text, to the end of
@@ -1592,10 +1593,10 @@ Appendix A GNU Free Documentation License
      combined work.
 
      In the combination, you must combine any sections Entitled
-     “History” in the various original documents, forming one section
-     Entitled “History”; likewise combine any sections Entitled
-     “Acknowledgements”, and any sections Entitled “Dedications”.  You
-     must delete all sections Entitled “Endorsements.”
+     "History" in the various original documents, forming one section
+     Entitled "History"; likewise combine any sections Entitled
+     "Acknowledgements", and any sections Entitled "Dedications".  You
+     must delete all sections Entitled "Endorsements."
 
   6. COLLECTIONS OF DOCUMENTS
 
@@ -1616,16 +1617,16 @@ Appendix A GNU Free Documentation License
 
      A compilation of the Document or its derivatives with other
      separate and independent documents or works, in or on a volume of a
-     storage or distribution medium, is called an “aggregate” if the
+     storage or distribution medium, is called an "aggregate" if the
      copyright resulting from the compilation is not used to limit the
-     legal rights of the compilation’s users beyond what the individual
+     legal rights of the compilation's users beyond what the individual
      works permit.  When the Document is included in an aggregate, this
      License does not apply to the other works in the aggregate which
      are not themselves derivative works of the Document.
 
      If the Cover Text requirement of section 3 is applicable to these
      copies of the Document, then if the Document is less than one half
-     of the entire aggregate, the Document’s Cover Texts may be placed
+     of the entire aggregate, the Document's Cover Texts may be placed
      on covers that bracket the Document within the aggregate, or the
      electronic equivalent of covers if the Document is in electronic
      form.  Otherwise they must appear on printed covers that bracket
@@ -1647,8 +1648,8 @@ Appendix A GNU Free Documentation License
      this License or a notice or disclaimer, the original version will
      prevail.
 
-     If a section in the Document is Entitled “Acknowledgements”,
-     “Dedications”, or “History”, the requirement (section 4) to
+     If a section in the Document is Entitled "Acknowledgements",
+     "Dedications", or "History", the requirement (section 4) to
      Preserve its Title (section 1) will typically require changing the
      actual title.
 
@@ -1689,7 +1690,7 @@ Appendix A GNU Free Documentation License
 
      Each version of the License is given a distinguishing version
      number.  If the Document specifies that a particular numbered
-     version of this License “or any later version” applies to it, you
+     version of this License "or any later version" applies to it, you
      have the option of following the terms and conditions either of
      that specified version or of any later version that has been
      published (not as a draft) by the Free Software Foundation.  If the
@@ -1697,29 +1698,29 @@ Appendix A GNU Free Documentation License
      choose any version ever published (not as a draft) by the Free
      Software Foundation.  If the Document specifies that a proxy can
      decide which future versions of this License can be used, that
-     proxy’s public statement of acceptance of a version permanently
+     proxy's public statement of acceptance of a version permanently
      authorizes you to choose that version for the Document.
 
   11. RELICENSING
 
-     “Massive Multiauthor Collaboration Site” (or “MMC Site”) means any
+     "Massive Multiauthor Collaboration Site" (or "MMC Site") means any
      World Wide Web server that publishes copyrightable works and also
      provides prominent facilities for anybody to edit those works.  A
      public wiki that anybody can edit is an example of such a server.
-     A “Massive Multiauthor Collaboration” (or “MMC”) contained in the
+     A "Massive Multiauthor Collaboration" (or "MMC") contained in the
      site means any set of copyrightable works thus published on the MMC
      site.
 
-     “CC-BY-SA” means the Creative Commons Attribution-Share Alike 3.0
+     "CC-BY-SA" means the Creative Commons Attribution-Share Alike 3.0
      license published by Creative Commons Corporation, a not-for-profit
      corporation with a principal place of business in San Francisco,
      California, as well as future copyleft versions of that license
      published by that same organization.
 
-     “Incorporate” means to publish or republish a Document, in whole or
+     "Incorporate" means to publish or republish a Document, in whole or
      in part, as part of another Document.
 
-     An MMC is “eligible for relicensing” if it is licensed under this
+     An MMC is "eligible for relicensing" if it is licensed under this
      License, and if all works that were first published under this
      License somewhere other than this MMC, and subsequently
      incorporated in whole or in part into the MMC, (1) had no cover
@@ -1746,7 +1747,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with...Texts.” line with this:
+Texts, replace the "with...Texts." line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1762,7 +1763,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docn9ps1j.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docY1FVBa.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -1774,7 +1775,7 @@ B Indices
 * Concept index::
 
 
-File: docn9ps1j.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docY1FVBa.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -1820,7 +1821,7 @@ B.1 Function index
                                                                (line 28)
 
 
-File: docn9ps1j.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docY1FVBa.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -1853,7 +1854,7 @@ B.2 Variable index
                                                                (line  6)
 
 
-File: docn9ps1j.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docY1FVBa.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
@@ -1884,45 +1885,45 @@ B.3 Concept index
 
 
 Tag Table:
-Node: Top853
+Node: Top855
 Node: Installation4128
 Node: Install the package4312
 Node: Manual installation method4810
 Node: Sample setup5592
 Node: Overview of MCT8959
-Node: Customizations10426
-Node: Live completion11096
-Node: Minimum input threshold13207
-Node: Delay between live updates14440
-Node: Live updates per command or completion category15127
-Node: Passlist for commands or completion categories16189
-Node: Blocklist for commands or completion categories17343
-Node: Known completion categories18707
-Node: Find completion category20605
-Node: Sort completions based on the command or completion category21235
-Node: Size boundaries of the Completions22732
-Node: Hide the Completions mode line23879
-Node: Remove shadowed file paths24401
-Node: Show an indicator for completing-read-multiple prompts25179
-Node: MCT in the minibuffer and completion in regular buffers26142
-Node: Usage29412
-Node: Cyclic behaviour for mct-mode29680
-Node: Selecting candidates with mct-mode31751
-Node: Keymaps37051
-Node: User-level tweaks or custom code37658
-Node: Sort completion candidates on Emacs 2938062
-Node: Indicator for completing-read-multiple40025
-Node: Ido-style navigation through directories41682
-Node: Third-party extensions43064
-Node: Enable Consult previews45486
-Node: Alternatives45889
-Node: Acknowledgements50375
-Node: Official sources51369
-Node: GNU Free Documentation License51755
-Node: Indices77116
-Node: Function index77292
-Node: Variable index80237
-Node: Concept index82184
+Node: Customizations10418
+Node: Live completion11088
+Node: Minimum input threshold13185
+Node: Delay between live updates14418
+Node: Live updates per command or completion category15101
+Node: Passlist for commands or completion categories16163
+Node: Blocklist for commands or completion categories17315
+Node: Known completion categories18673
+Node: Find completion category20571
+Node: Sort completions based on the command or completion category21201
+Node: Size boundaries of the Completions22698
+Node: Hide the Completions mode line23837
+Node: Remove shadowed file paths24357
+Node: Show an indicator for completing-read-multiple prompts25133
+Node: MCT in the minibuffer and completion in regular buffers26096
+Node: Usage29362
+Node: Cyclic behaviour for mct-mode29630
+Node: Selecting candidates with mct-mode31695
+Node: Keymaps36977
+Node: User-level tweaks or custom code37584
+Node: Sort completion candidates on Emacs 2937988
+Node: Indicator for completing-read-multiple39951
+Node: Ido-style navigation through directories41608
+Node: Third-party extensions42990
+Node: Enable Consult previews45410
+Node: Alternatives45813
+Node: Acknowledgements50288
+Node: Official sources51281
+Node: GNU Free Documentation License51667
+Node: Indices76827
+Node: Function index77003
+Node: Variable index79948
+Node: Concept index81895
 
 End Tag Table
 
