@@ -369,7 +369,7 @@ Do it in accordance with the user option `mct-sort-by-command-or-category'."
 ;;;; Basics of intersection between minibuffer and Completions buffer
 
 (defface mct-highlight-candidate
-  '((t :inherit highlight :extend t))
+  '((t :inherit highlight :extend nil))
   "Face for current candidate in the Completions buffer."
   :group 'mct)
 
@@ -561,6 +561,7 @@ Apply APP by first setting up the minibuffer to work with Mct."
         (setq-local resize-mini-windows t
                     completion-auto-help t)
         (setq mct--active t)
+        (mct--setup-passlist)
         (mct--setup-live-completions)
         (mct--setup-minibuffer-keymap)
         (mct--setup-shadow-files))
@@ -814,20 +815,21 @@ If ARG is supplied, move that many completion groups at a time."
                 (car args))
         (cdr args)))
 
-(defun mct--regex-to-separator (regex)
-  "Parse REGEX of `crm-separator' in `mct-choose-completion-dwim'."
+(defun mct--get-crm-separator ()
+  "Parse `crm-separator' to get the separator.
+Do this because `crm-separator' is a regexp."
   (save-match-data
     (cond
-     ;; whitespace-delimited, like default & org-set-tag-command
-     ((string-match (rx
-                     bos "[" (1+ blank) "]*"
-                     (group (1+ any))
-                     "[" (1+ blank) "]*" eos)
-                    regex)
-      (match-string 1 regex))
-     ;; literal character
-     ((string= regex (regexp-quote regex))
-      regex))))
+     ;; The default value is a propertized string.  Though we need to
+     ;; check further because other functions may `let' bind something
+     ;; else.
+     ((get-text-property 0 'separator crm-separator))
+     ((string-match "\\`\\[[\s\t]*\\(.+\\)[\s\t]*\\]\\'" crm-separator)
+      (match-string 1 crm-separator))
+     ((string= crm-separator (regexp-quote crm-separator))
+      crm-separator)
+     (t
+      ","))))
 
 (defun mct-choose-completion-dwim ()
   "Append to minibuffer when at `completing-read-multiple' prompt.
@@ -839,8 +841,7 @@ In any other prompt use `mct-choose-completion-no-exit'."
     (mct-choose-completion-no-exit)
     (with-current-buffer (window-buffer mini)
       (when crm-completion-table
-        (let ((separator (or (mct--regex-to-separator crm-separator)
-                             ",")))
+        (let ((separator (mct--get-crm-separator)))
           (insert separator))
         (let ((inhibit-message t))
           (switch-to-completions))))))
@@ -980,8 +981,7 @@ This value means that it is overriden by the active region.")
 (defun mct--completions-completion-end ()
   "Return end of completion candidate."
   (if-let* ((string (mct--completion-at-point-p)))
-      (save-excursion
-        (1+ (line-end-position)))
+      (1+ (line-end-position))
     (point)))
 
 (defun mct--overlay-make ()
@@ -1118,7 +1118,6 @@ Do this under any of the following conditions:
       (progn
         (setq completions-sort #'mct-sort-multi-category)
         (add-hook 'completion-list-mode-hook #'mct--setup-completion-list)
-        (add-hook 'minibuffer-setup-hook #'mct--setup-passlist)
         (advice-add #'completing-read-default :around #'mct--completing-read-advice)
         (advice-add #'completing-read-multiple :around #'mct--completing-read-advice)
         (when (and mct-completing-read-multiple-indicator (< emacs-major-version 31))
@@ -1137,7 +1136,6 @@ Do this under any of the following conditions:
         (advice-add #'minibuffer-message :around #'mct--honor-inhibit-message))
     (setq completions-sort mct-last-completions-sort-value)
     (remove-hook 'completion-list-mode-hook #'mct--setup-completion-list)
-    (remove-hook 'minibuffer-setup-hook #'mct--setup-passlist)
     (advice-remove #'completing-read-default #'mct--completing-read-advice)
     (advice-remove #'completing-read-multiple #'mct--completing-read-advice)
     (advice-remove #'completing-read-multiple #'mct--crm-indicator)

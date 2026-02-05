@@ -1,5 +1,4 @@
-This is docDtPNzS.info, produced by makeinfo version 7.1.1 from
-mct.texi.
+This is mct.info, produced by makeinfo version 7.2 from mct.texi.
 
 Copyright (C) 2021-2026 Free Software Foundation, Inc.
 
@@ -20,7 +19,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docDtPNzS.info,  Node: Top,  Next: Installation,  Up: (dir)
+File: mct.info,  Node: Top,  Next: Installation,  Up: (dir)
 
 Minibuffer Confines Transcended (mct.el)
 ****************************************
@@ -128,9 +127,8 @@ Indices
 * Variable index::
 * Concept index::
 
-
 
-File: docDtPNzS.info,  Node: Installation,  Next: Sample setup,  Prev: Top,  Up: Top
+File: mct.info,  Node: Installation,  Next: Sample setup,  Prev: Top,  Up: Top
 
 1 Installation
 **************
@@ -141,7 +139,7 @@ File: docDtPNzS.info,  Node: Installation,  Next: Sample setup,  Prev: Top,  Up:
 * Manual installation method::
 
 
-File: docDtPNzS.info,  Node: Install the package,  Next: Manual installation method,  Up: Installation
+File: mct.info,  Node: Install the package,  Next: Manual installation method,  Up: Installation
 
 1.1 Install the package
 =======================
@@ -158,7 +156,7 @@ configuration.  The following commands shall suffice:
      guix package -i emacs-mct
 
 
-File: docDtPNzS.info,  Node: Manual installation method,  Prev: Install the package,  Up: Installation
+File: mct.info,  Node: Manual installation method,  Prev: Install the package,  Up: Installation
 
 1.2 Manual installation method
 ==============================
@@ -185,7 +183,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docDtPNzS.info,  Node: Sample setup,  Next: Overview of MCT,  Prev: Installation,  Up: Top
+File: mct.info,  Node: Sample setup,  Next: Overview of MCT,  Prev: Installation,  Up: Top
 
 2 Sample setup
 **************
@@ -287,7 +285,7 @@ strings):
        (savehist-mode 1))
 
 
-File: docDtPNzS.info,  Node: Overview of MCT,  Next: Customizations,  Prev: Sample setup,  Up: Top
+File: mct.info,  Node: Overview of MCT,  Next: Customizations,  Prev: Sample setup,  Up: Top
 
 3 Overview of MCT
 *****************
@@ -318,7 +316,7 @@ appear, including a passlist and a blocklist:
    • *note Blocklist for commands or completion categories::
 
 
-File: docDtPNzS.info,  Node: Customizations,  Next: Usage,  Prev: Overview of MCT,  Up: Top
+File: mct.info,  Node: Customizations,  Next: Usage,  Prev: Overview of MCT,  Up: Top
 
 4 Customizations
 ****************
@@ -340,7 +338,7 @@ section documents each user option.
 * MCT in the minibuffer and completion in regular buffers::
 
 
-File: docDtPNzS.info,  Node: Live completion,  Next: Minimum input threshold,  Up: Customizations
+File: mct.info,  Node: Live completion,  Next: Minimum input threshold,  Up: Customizations
 
 4.1 Live completion
 ===================
@@ -390,7 +388,7 @@ categories::).
    *note Size boundaries of the Completions::.
 
 
-File: docDtPNzS.info,  Node: Minimum input threshold,  Next: Delay between live updates,  Prev: Live completion,  Up: Customizations
+File: mct.info,  Node: Minimum input threshold,  Next: Delay between live updates,  Prev: Live completion,  Up: Customizations
 
 4.2 Minimum input threshold
 ===========================
@@ -420,7 +418,7 @@ are specified in the ‘mct-completion-passlist’ and
    *note Live updates per command or completion category::.
 
 
-File: docDtPNzS.info,  Node: Delay between live updates,  Next: Live updates per command or completion category,  Prev: Minimum input threshold,  Up: Customizations
+File: mct.info,  Node: Delay between live updates,  Next: Live updates per command or completion category,  Prev: Minimum input threshold,  Up: Customizations
 
 4.3 Delay between live updates
 ==============================
@@ -439,7 +437,7 @@ are specified in the ‘mct-completion-passlist’ and
    *note Live updates per command or completion category::.
 
 
-File: docDtPNzS.info,  Node: Live updates per command or completion category,  Next: Sort completions based on the command or completion category,  Prev: Delay between live updates,  Up: Customizations
+File: mct.info,  Node: Live updates per command or completion category,  Next: Sort completions based on the command or completion category,  Prev: Delay between live updates,  Up: Customizations
 
 4.4 Live updates per command or completion category
 ===================================================
@@ -468,7 +466,7 @@ commands or categories specified.
 * Find completion category::
 
 
-File: docDtPNzS.info,  Node: Passlist for commands or completion categories,  Next: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
+File: mct.info,  Node: Passlist for commands or completion categories,  Next: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
 
 4.4.1 Passlist for commands or completion categories
 ----------------------------------------------------
@@ -494,7 +492,7 @@ are in conflict, the former takes precedence.
    *note Known completion categories::.
 
 
-File: docDtPNzS.info,  Node: Blocklist for commands or completion categories,  Next: Known completion categories,  Prev: Passlist for commands or completion categories,  Up: Live updates per command or completion category
+File: mct.info,  Node: Blocklist for commands or completion categories,  Next: Known completion categories,  Prev: Passlist for commands or completion categories,  Up: Live updates per command or completion category
 
 4.4.2 Blocklist for commands or completion categories
 -----------------------------------------------------
@@ -525,7 +523,7 @@ appropriate value.  Or better use ‘mct-completion-passlist’.
    *note Known completion categories::.
 
 
-File: docDtPNzS.info,  Node: Known completion categories,  Next: Find completion category,  Prev: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
+File: mct.info,  Node: Known completion categories,  Next: Find completion category,  Prev: Blocklist for commands or completion categories,  Up: Live updates per command or completion category
 
 4.4.3 Known completion categories
 ---------------------------------
@@ -583,7 +581,7 @@ list.
    *note Find completion category::.
 
 
-File: docDtPNzS.info,  Node: Find completion category,  Prev: Known completion categories,  Up: Live updates per command or completion category
+File: mct.info,  Node: Find completion category,  Prev: Known completion categories,  Up: Live updates per command or completion category
 
 4.4.4 Find completion category
 ------------------------------
@@ -599,7 +597,7 @@ works when the variable ‘enable-recursive-minibuffers’ is non-nil.
    *note Known completion categories::.
 
 
-File: docDtPNzS.info,  Node: Sort completions based on the command or completion category,  Next: Size boundaries of the Completions,  Prev: Live updates per command or completion category,  Up: Customizations
+File: mct.info,  Node: Sort completions based on the command or completion category,  Next: Size boundaries of the Completions,  Prev: Live updates per command or completion category,  Up: Customizations
 
 4.5 Sort completions based on the command or completion category
 ================================================================
@@ -637,7 +635,7 @@ and completion category, then the function takes precedence (for example
 completion category is set to sort by history).
 
 
-File: docDtPNzS.info,  Node: Size boundaries of the Completions,  Next: Hide the Completions mode line,  Prev: Sort completions based on the command or completion category,  Up: Customizations
+File: mct.info,  Node: Size boundaries of the Completions,  Next: Hide the Completions mode line,  Prev: Sort completions based on the command or completion category,  Up: Customizations
 
 4.6 Size boundaries of the Completions
 ======================================
@@ -664,7 +662,7 @@ the same number.
    *note Live completion::.
 
 
-File: docDtPNzS.info,  Node: Hide the Completions mode line,  Next: Remove shadowed file paths,  Prev: Size boundaries of the Completions,  Up: Customizations
+File: mct.info,  Node: Hide the Completions mode line,  Next: Remove shadowed file paths,  Prev: Size boundaries of the Completions,  Up: Customizations
 
 4.7 Hide the Completions mode line
 ==================================
@@ -678,7 +676,7 @@ like every other window.  Set this user option to non-nil to remove the
 mode line.
 
 
-File: docDtPNzS.info,  Node: Remove shadowed file paths,  Next: Show an indicator for completing-read-multiple prompts,  Prev: Hide the Completions mode line,  Up: Customizations
+File: mct.info,  Node: Remove shadowed file paths,  Next: Show an indicator for completing-read-multiple prompts,  Prev: Hide the Completions mode line,  Up: Customizations
 
 4.8 Remove shadowed file paths
 ==============================
@@ -696,7 +694,7 @@ everything preceding the ‘~/’ is removed so the interactive selection
 process starts again from the user's ‘$HOME’.
 
 
-File: docDtPNzS.info,  Node: Show an indicator for completing-read-multiple prompts,  Next: MCT in the minibuffer and completion in regular buffers,  Prev: Remove shadowed file paths,  Up: Customizations
+File: mct.info,  Node: Show an indicator for completing-read-multiple prompts,  Next: MCT in the minibuffer and completion in regular buffers,  Prev: Remove shadowed file paths,  Up: Customizations
 
 4.9 Show an indicator for ‘completing-read-multiple’ prompts
 ============================================================
@@ -717,7 +715,7 @@ versions of Emacs >= 31, as those have the user option ‘crm-prompt’
 which covers the same use-case.
 
 
-File: docDtPNzS.info,  Node: MCT in the minibuffer and completion in regular buffers,  Prev: Show an indicator for completing-read-multiple prompts,  Up: Customizations
+File: mct.info,  Node: MCT in the minibuffer and completion in regular buffers,  Prev: Show an indicator for completing-read-multiple prompts,  Up: Customizations
 
 4.10 MCT in the minibuffer and completion in regular buffers
 ============================================================
@@ -789,7 +787,7 @@ the use of a popup box is better.  Consider the ‘corfu’ package by
 Daniel Mendler, which uses such a popup (*note Alternatives::).
 
 
-File: docDtPNzS.info,  Node: Usage,  Next: Keymaps,  Prev: Customizations,  Up: Top
+File: mct.info,  Node: Usage,  Next: Keymaps,  Prev: Customizations,  Up: Top
 
 5 Usage
 *******
@@ -803,7 +801,7 @@ establishes.
 * Selecting candidates with mct-mode::
 
 
-File: docDtPNzS.info,  Node: Cyclic behaviour for mct-mode,  Next: Selecting candidates with mct-mode,  Up: Usage
+File: mct.info,  Node: Cyclic behaviour for mct-mode,  Next: Selecting candidates with mct-mode,  Up: Usage
 
 5.1 Cyclic behaviour for mct-mode
 =================================
@@ -853,7 +851,7 @@ inside the minibuffer with ‘C-l’ (mnemonic is "[l]ist completions" and
 the command is ‘mct-list-completions-toggle’).
 
 
-File: docDtPNzS.info,  Node: Selecting candidates with mct-mode,  Prev: Cyclic behaviour for mct-mode,  Up: Usage
+File: mct.info,  Node: Selecting candidates with mct-mode,  Prev: Cyclic behaviour for mct-mode,  Up: Usage
 
 5.2 Selecting candidates with mct-mode
 ======================================
@@ -945,7 +943,7 @@ There are several ways to select a completion candidate with ‘mct-mode’.
      they stop at the first or last heading.
 
 
-File: docDtPNzS.info,  Node: Keymaps,  Next: User-level tweaks or custom code,  Prev: Usage,  Up: Top
+File: mct.info,  Node: Keymaps,  Next: User-level tweaks or custom code,  Prev: Usage,  Up: Top
 
 6 Keymaps
 *********
@@ -963,7 +961,7 @@ those they extend and override (the names of the original ones are the
 same as above, minus the ‘mct-’ prefix).
 
 
-File: docDtPNzS.info,  Node: User-level tweaks or custom code,  Next: Third-party extensions,  Prev: Keymaps,  Up: Top
+File: mct.info,  Node: User-level tweaks or custom code,  Next: Third-party extensions,  Prev: Keymaps,  Up: Top
 
 7 User-level tweaks or custom code
 **********************************
@@ -977,7 +975,7 @@ In this section we cover custom code that builds on what MCT offers.
 * Ido-style navigation through directories::
 
 
-File: docDtPNzS.info,  Node: Sort completion candidates on Emacs 29,  Next: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
+File: mct.info,  Node: Sort completion candidates on Emacs 29,  Next: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
 
 7.1 Sort completion candidates on Emacs 29
 ==========================================
@@ -1022,7 +1020,7 @@ accepts a custom function.  Consider any of the following examples:
    *note Known completion categories::.
 
 
-File: docDtPNzS.info,  Node: Indicator for completing-read-multiple,  Next: Ido-style navigation through directories,  Prev: Sort completion candidates on Emacs 29,  Up: User-level tweaks or custom code
+File: mct.info,  Node: Indicator for completing-read-multiple,  Next: Ido-style navigation through directories,  Prev: Sort completion candidates on Emacs 29,  Up: User-level tweaks or custom code
 
 7.2 Indicator for completing-read-multiple
 ==========================================
@@ -1057,7 +1055,7 @@ instead:
      (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
 
-File: docDtPNzS.info,  Node: Ido-style navigation through directories,  Prev: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
+File: mct.info,  Node: Ido-style navigation through directories,  Prev: Indicator for completing-read-multiple,  Up: User-level tweaks or custom code
 
 7.3 Ido-style navigation through directories
 ============================================
@@ -1088,7 +1086,7 @@ Add this to your own configuration file instead:
      (define-key minibuffer-local-filename-completion-map (kbd "DEL") #'my-backward-updir)
 
 
-File: docDtPNzS.info,  Node: Third-party extensions,  Next: Alternatives,  Prev: User-level tweaks or custom code,  Up: Top
+File: mct.info,  Node: Third-party extensions,  Next: Alternatives,  Prev: User-level tweaks or custom code,  Up: Top
 
 8 Third-party extensions
 ************************
@@ -1142,7 +1140,7 @@ Cape (https://github.com/minad/cape) also by Daniel
 * Enable Consult previews::
 
 
-File: docDtPNzS.info,  Node: Enable Consult previews,  Up: Third-party extensions
+File: mct.info,  Node: Enable Consult previews,  Up: Third-party extensions
 
 8.1 Enable Consult previews
 ===========================
@@ -1154,7 +1152,7 @@ preview the candidate at point.  All we need to enable it in the
      (add-hook 'completion-list-mode-hook #'consult-preview-at-point-mode)
 
 
-File: docDtPNzS.info,  Node: Alternatives,  Next: Acknowledgements,  Prev: Third-party extensions,  Up: Top
+File: mct.info,  Node: Alternatives,  Next: Acknowledgements,  Prev: Third-party extensions,  Up: Top
 
 9 Alternatives
 **************
@@ -1238,7 +1236,7 @@ Icomplete and fido-mode (built-in, multiple authors)
      layer over the built-in infrastructure.
 
 
-File: docDtPNzS.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alternatives,  Up: Top
+File: mct.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alternatives,  Up: Top
 
 10 Acknowledgements
 *******************
@@ -1266,7 +1264,7 @@ Inspiration for certain features
      (‘vertico’), Omar Antolín Camarena (‘embark’, ‘live-completions’).
 
 
-File: docDtPNzS.info,  Node: Official sources,  Next: GNU Free Documentation License,  Prev: Acknowledgements,  Up: Top
+File: mct.info,  Node: Official sources,  Next: GNU Free Documentation License,  Prev: Acknowledgements,  Up: Top
 
 11 Official sources
 *******************
@@ -1281,7 +1279,7 @@ Mailing list
      <https://lists.sr.ht/~protesilaos/mct>
 
 
-File: docDtPNzS.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Official sources,  Up: Top
+File: mct.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Official sources,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -1763,7 +1761,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docDtPNzS.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: mct.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -1775,7 +1773,7 @@ B Indices
 * Concept index::
 
 
-File: docDtPNzS.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: mct.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -1821,7 +1819,7 @@ B.1 Function index
                                                                (line 28)
 
 
-File: docDtPNzS.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: mct.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -1854,7 +1852,7 @@ B.2 Variable index
                                                                (line  6)
 
 
-File: docDtPNzS.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: mct.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
@@ -1882,52 +1880,52 @@ B.3 Concept index
 * Sorting completions:                   Sort completion candidates on Emacs 29.
                                                                 (line 6)
 
-
 
 Tag Table:
-Node: Top855
-Node: Installation4128
-Node: Install the package4312
-Node: Manual installation method4810
-Node: Sample setup5592
-Node: Overview of MCT8959
-Node: Customizations10418
-Node: Live completion11088
-Node: Minimum input threshold13185
-Node: Delay between live updates14418
-Node: Live updates per command or completion category15101
-Node: Passlist for commands or completion categories16163
-Node: Blocklist for commands or completion categories17315
-Node: Known completion categories18673
-Node: Find completion category20571
-Node: Sort completions based on the command or completion category21201
-Node: Size boundaries of the Completions22698
-Node: Hide the Completions mode line23837
-Node: Remove shadowed file paths24357
-Node: Show an indicator for completing-read-multiple prompts25133
-Node: MCT in the minibuffer and completion in regular buffers26096
-Node: Usage29362
-Node: Cyclic behaviour for mct-mode29630
-Node: Selecting candidates with mct-mode31695
-Node: Keymaps36977
-Node: User-level tweaks or custom code37584
-Node: Sort completion candidates on Emacs 2937988
-Node: Indicator for completing-read-multiple39951
-Node: Ido-style navigation through directories41608
-Node: Third-party extensions42990
-Node: Enable Consult previews45410
-Node: Alternatives45813
-Node: Acknowledgements50288
-Node: Official sources51281
-Node: GNU Free Documentation License51667
-Node: Indices76827
-Node: Function index77003
-Node: Variable index79948
-Node: Concept index81895
+Node: Top847
+Node: Installation4113
+Node: Install the package4291
+Node: Manual installation method4783
+Node: Sample setup5559
+Node: Overview of MCT8920
+Node: Customizations10373
+Node: Live completion11037
+Node: Minimum input threshold13128
+Node: Delay between live updates14355
+Node: Live updates per command or completion category15032
+Node: Passlist for commands or completion categories16088
+Node: Blocklist for commands or completion categories17234
+Node: Known completion categories18586
+Node: Find completion category20478
+Node: Sort completions based on the command or completion category21102
+Node: Size boundaries of the Completions22593
+Node: Hide the Completions mode line23726
+Node: Remove shadowed file paths24240
+Node: Show an indicator for completing-read-multiple prompts25010
+Node: MCT in the minibuffer and completion in regular buffers25967
+Node: Usage29227
+Node: Cyclic behaviour for mct-mode29489
+Node: Selecting candidates with mct-mode31548
+Node: Keymaps36824
+Node: User-level tweaks or custom code37425
+Node: Sort completion candidates on Emacs 2937823
+Node: Indicator for completing-read-multiple39780
+Node: Ido-style navigation through directories41431
+Node: Third-party extensions42807
+Node: Enable Consult previews45221
+Node: Alternatives45618
+Node: Acknowledgements50087
+Node: Official sources51074
+Node: GNU Free Documentation License51454
+Node: Indices76608
+Node: Function index76778
+Node: Variable index79717
+Node: Concept index81658
 
 End Tag Table
 
 
 Local Variables:
 coding: utf-8
+Info-documentlanguage: en
 End:
