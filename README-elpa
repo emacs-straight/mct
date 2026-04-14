@@ -204,8 +204,8 @@ Table of Contents
   │   (mct-mode 1))
   └────
 
-  Other useful extras from the Emacs source code (read their doc
-  strings):
+  Other useful extras from the Emacs source code (read their
+  docstrings):
 
   ┌────
   │ ;;; General settings for the minibuffer

@@ -242,8 +242,8 @@ Minimal setup for the minibuffer and in-buffer completion:
 
        (mct-mode 1))
 
-   Other useful extras from the Emacs source code (read their doc
-strings):
+   Other useful extras from the Emacs source code (read their
+docstrings):
 
      ;;; General settings for the minibuffer
 
@@ -1887,40 +1887,40 @@ Node: Installation4113
 Node: Install the package4291
 Node: Manual installation method4783
 Node: Sample setup5559
-Node: Overview of MCT8920
-Node: Customizations10373
-Node: Live completion11037
-Node: Minimum input threshold13128
-Node: Delay between live updates14355
-Node: Live updates per command or completion category15032
-Node: Passlist for commands or completion categories16088
-Node: Blocklist for commands or completion categories17234
-Node: Known completion categories18586
-Node: Find completion category20478
-Node: Sort completions based on the command or completion category21102
-Node: Size boundaries of the Completions22593
-Node: Hide the Completions mode line23726
-Node: Remove shadowed file paths24240
-Node: Show an indicator for completing-read-multiple prompts25010
-Node: MCT in the minibuffer and completion in regular buffers25967
-Node: Usage29227
-Node: Cyclic behaviour for mct-mode29489
-Node: Selecting candidates with mct-mode31548
-Node: Keymaps36824
-Node: User-level tweaks or custom code37425
-Node: Sort completion candidates on Emacs 2937823
-Node: Indicator for completing-read-multiple39780
-Node: Ido-style navigation through directories41431
-Node: Third-party extensions42807
-Node: Enable Consult previews45221
-Node: Alternatives45618
-Node: Acknowledgements50087
-Node: Official sources51074
-Node: GNU Free Documentation License51454
-Node: Indices76608
-Node: Function index76778
-Node: Variable index79717
-Node: Concept index81658
+Node: Overview of MCT8919
+Node: Customizations10372
+Node: Live completion11036
+Node: Minimum input threshold13127
+Node: Delay between live updates14354
+Node: Live updates per command or completion category15031
+Node: Passlist for commands or completion categories16087
+Node: Blocklist for commands or completion categories17233
+Node: Known completion categories18585
+Node: Find completion category20477
+Node: Sort completions based on the command or completion category21101
+Node: Size boundaries of the Completions22592
+Node: Hide the Completions mode line23725
+Node: Remove shadowed file paths24239
+Node: Show an indicator for completing-read-multiple prompts25009
+Node: MCT in the minibuffer and completion in regular buffers25966
+Node: Usage29226
+Node: Cyclic behaviour for mct-mode29488
+Node: Selecting candidates with mct-mode31547
+Node: Keymaps36823
+Node: User-level tweaks or custom code37424
+Node: Sort completion candidates on Emacs 2937822
+Node: Indicator for completing-read-multiple39779
+Node: Ido-style navigation through directories41430
+Node: Third-party extensions42806
+Node: Enable Consult previews45220
+Node: Alternatives45617
+Node: Acknowledgements50086
+Node: Official sources51073
+Node: GNU Free Documentation License51453
+Node: Indices76607
+Node: Function index76777
+Node: Variable index79716
+Node: Concept index81657
 
 End Tag Table
 
