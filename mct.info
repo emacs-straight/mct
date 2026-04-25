@@ -37,9 +37,9 @@ Copyright (C) 2021-2026 Free Software Foundation, Inc.
      (a) The FSF’s Back-Cover Text is: “You have the freedom to copy and
      modify this GNU manual.”
 
-   This manual, written by Protesilaos Stavrou, describes the
-customization options for ‘mct’ (or ‘mct.el’ and variants), and provides
-every other piece of information pertinent to it.
+   This manual, written by Protesilaos, describes the customization
+options for ‘mct’ (or ‘mct.el’ and variants), and provides every other
+piece of information pertinent to it.
 
    The documentation furnished herein corresponds to stable version
 1.1.0, released on 2025-07-07.  Any reference to a newer feature which
@@ -1244,7 +1244,7 @@ File: mct.info,  Node: Acknowledgements,  Next: Official sources,  Prev: Alterna
 MCT is meant to be a collective effort.  Every bit of help matters.
 
 Author/maintainer
-     Protesilaos Stavrou.
+     Protesilaos.
 
 Contributions to code or documentation
      Daniel Mendler, James Norman Vladimir Cash, Jessie Hu, José Antonio
@@ -1883,44 +1883,44 @@ B.3 Concept index
 
 Tag Table:
 Node: Top847
-Node: Installation4113
-Node: Install the package4291
-Node: Manual installation method4783
-Node: Sample setup5559
-Node: Overview of MCT8919
-Node: Customizations10372
-Node: Live completion11036
-Node: Minimum input threshold13127
-Node: Delay between live updates14354
-Node: Live updates per command or completion category15031
-Node: Passlist for commands or completion categories16087
-Node: Blocklist for commands or completion categories17233
-Node: Known completion categories18585
-Node: Find completion category20477
-Node: Sort completions based on the command or completion category21101
-Node: Size boundaries of the Completions22592
-Node: Hide the Completions mode line23725
-Node: Remove shadowed file paths24239
-Node: Show an indicator for completing-read-multiple prompts25009
-Node: MCT in the minibuffer and completion in regular buffers25966
-Node: Usage29226
-Node: Cyclic behaviour for mct-mode29488
-Node: Selecting candidates with mct-mode31547
-Node: Keymaps36823
-Node: User-level tweaks or custom code37424
-Node: Sort completion candidates on Emacs 2937822
-Node: Indicator for completing-read-multiple39779
-Node: Ido-style navigation through directories41430
-Node: Third-party extensions42806
-Node: Enable Consult previews45220
-Node: Alternatives45617
-Node: Acknowledgements50086
-Node: Official sources51073
-Node: GNU Free Documentation License51453
-Node: Indices76607
-Node: Function index76777
-Node: Variable index79716
-Node: Concept index81657
+Node: Installation4105
+Node: Install the package4283
+Node: Manual installation method4775
+Node: Sample setup5551
+Node: Overview of MCT8911
+Node: Customizations10364
+Node: Live completion11028
+Node: Minimum input threshold13119
+Node: Delay between live updates14346
+Node: Live updates per command or completion category15023
+Node: Passlist for commands or completion categories16079
+Node: Blocklist for commands or completion categories17225
+Node: Known completion categories18577
+Node: Find completion category20469
+Node: Sort completions based on the command or completion category21093
+Node: Size boundaries of the Completions22584
+Node: Hide the Completions mode line23717
+Node: Remove shadowed file paths24231
+Node: Show an indicator for completing-read-multiple prompts25001
+Node: MCT in the minibuffer and completion in regular buffers25958
+Node: Usage29218
+Node: Cyclic behaviour for mct-mode29480
+Node: Selecting candidates with mct-mode31539
+Node: Keymaps36815
+Node: User-level tweaks or custom code37416
+Node: Sort completion candidates on Emacs 2937814
+Node: Indicator for completing-read-multiple39771
+Node: Ido-style navigation through directories41422
+Node: Third-party extensions42798
+Node: Enable Consult previews45212
+Node: Alternatives45609
+Node: Acknowledgements50078
+Node: Official sources51057
+Node: GNU Free Documentation License51437
+Node: Indices76591
+Node: Function index76761
+Node: Variable index79700
+Node: Concept index81641
 
 End Tag Table
 

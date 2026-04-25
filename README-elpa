@@ -1,14 +1,14 @@
                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
                 MINIBUFFER CONFINES TRANSCENDED (MCT.EL)
 
-                          Protesilaos Stavrou
+                              Protesilaos
                           info@protesilaos.com
                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
-This manual, written by Protesilaos Stavrou, describes the customization
-options for `mct' (or `mct.el' and variants), and provides every other
-piece of information pertinent to it.
+This manual, written by Protesilaos, describes the customization options
+for `mct' (or `mct.el' and variants), and provides every other piece of
+information pertinent to it.
 
 The documentation furnished herein corresponds to stable version 1.1.0,
 released on 2025-07-07.  Any reference to a newer feature which does not
@@ -1209,7 +1209,7 @@ section 5.5
   MCT is meant to be a collective effort.  Every bit of help matters.
 
   Author/maintainer
-        Protesilaos Stavrou.
+        Protesilaos.
 
   Contributions to code or documentation
         Daniel Mendler, James Norman Vladimir Cash, Jessie Hu, José
