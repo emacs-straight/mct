@@ -1,2 +1,2 @@
 ;; Generated package description from mct.el  -*- mode: lisp-data; no-byte-compile: t; lexical-binding:t -*-
-(define-package "mct" "1.1.0.0.20260424.102720" "Minibuffer Confines Transcended" '((emacs "29.4")) :commit "fa6b9b4817d8ab1cac64364670e4abfadc91143a" :authors '(("Protesilaos" . "info@protesilaos.com")) :maintainer '("Protesilaos" . "info@protesilaos.com") :url "https://github.com/protesilaos/mct")
+(define-package "mct" "1.1.1.0.20260629.0" "Minibuffer Confines Transcended" '((emacs "29.4")) :commit "ffe1555ace9041c93b78ba2fdf1f4656111394f3" :authors '(("Protesilaos" . "info@protesilaos.com")) :maintainer '("Protesilaos" . "info@protesilaos.com") :url "https://github.com/protesilaos/mct")

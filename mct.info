@@ -1,4 +1,4 @@
-This is mct.info, produced by makeinfo version 7.2 from mct.texi.
+This is mct.info, produced by makeinfo version 7.1.1 from mct.texi.
 
 Copyright (C) 2021-2026 Free Software Foundation, Inc.
 
@@ -126,6 +126,7 @@ Indices
 * Function index::
 * Variable index::
 * Concept index::
+
 
 
 File: mct.info,  Node: Installation,  Next: Sample setup,  Prev: Top,  Up: Top
@@ -1253,8 +1254,9 @@ Contributions to code or documentation
 Ideas and user feedback
      Andrew Tropin, Benjamin (@zealotrush), Case Duckworth, Chris
      Burroughs, Jonathan Irving, José Antonio Ortega Ruiz, Kostadin
-     Ninev, Manuel Uberti, Morgan Willcock, Philip Kaludercic, Theodor
-     Thornhill, Tomasz Hołubowicz, Z.Du.  As well as users: danrobi11.
+     Ninev, Manuel Uberti, Morgan Willcock, Philip Kaludercic, Ryan
+     Davis, Theodor Thornhill, Tomasz Hołubowicz, Z.Du.  As well as
+     users: danrobi11.
 
 Packaging
      Andrew Tropin and Nicolas Goaziou (Guix).
@@ -1880,52 +1882,52 @@ B.3 Concept index
 * Sorting completions:                   Sort completion candidates on Emacs 29.
                                                                 (line 6)
 
+
 
 Tag Table:
-Node: Top847
-Node: Installation4105
-Node: Install the package4283
-Node: Manual installation method4775
-Node: Sample setup5551
-Node: Overview of MCT8911
-Node: Customizations10364
-Node: Live completion11028
-Node: Minimum input threshold13119
-Node: Delay between live updates14346
-Node: Live updates per command or completion category15023
-Node: Passlist for commands or completion categories16079
-Node: Blocklist for commands or completion categories17225
-Node: Known completion categories18577
-Node: Find completion category20469
-Node: Sort completions based on the command or completion category21093
-Node: Size boundaries of the Completions22584
-Node: Hide the Completions mode line23717
-Node: Remove shadowed file paths24231
-Node: Show an indicator for completing-read-multiple prompts25001
-Node: MCT in the minibuffer and completion in regular buffers25958
-Node: Usage29218
-Node: Cyclic behaviour for mct-mode29480
-Node: Selecting candidates with mct-mode31539
-Node: Keymaps36815
-Node: User-level tweaks or custom code37416
-Node: Sort completion candidates on Emacs 2937814
-Node: Indicator for completing-read-multiple39771
-Node: Ido-style navigation through directories41422
-Node: Third-party extensions42798
-Node: Enable Consult previews45212
-Node: Alternatives45609
-Node: Acknowledgements50078
-Node: Official sources51057
-Node: GNU Free Documentation License51437
-Node: Indices76591
-Node: Function index76761
-Node: Variable index79700
-Node: Concept index81641
+Node: Top849
+Node: Installation4108
+Node: Install the package4286
+Node: Manual installation method4778
+Node: Sample setup5554
+Node: Overview of MCT8914
+Node: Customizations10367
+Node: Live completion11031
+Node: Minimum input threshold13122
+Node: Delay between live updates14349
+Node: Live updates per command or completion category15026
+Node: Passlist for commands or completion categories16082
+Node: Blocklist for commands or completion categories17228
+Node: Known completion categories18580
+Node: Find completion category20472
+Node: Sort completions based on the command or completion category21096
+Node: Size boundaries of the Completions22587
+Node: Hide the Completions mode line23720
+Node: Remove shadowed file paths24234
+Node: Show an indicator for completing-read-multiple prompts25004
+Node: MCT in the minibuffer and completion in regular buffers25961
+Node: Usage29221
+Node: Cyclic behaviour for mct-mode29483
+Node: Selecting candidates with mct-mode31542
+Node: Keymaps36818
+Node: User-level tweaks or custom code37419
+Node: Sort completion candidates on Emacs 2937817
+Node: Indicator for completing-read-multiple39774
+Node: Ido-style navigation through directories41425
+Node: Third-party extensions42801
+Node: Enable Consult previews45215
+Node: Alternatives45612
+Node: Acknowledgements50081
+Node: Official sources51077
+Node: GNU Free Documentation License51457
+Node: Indices76611
+Node: Function index76781
+Node: Variable index79720
+Node: Concept index81661
 
 End Tag Table
 
 
 Local Variables:
 coding: utf-8
-Info-documentlanguage: en
 End:
